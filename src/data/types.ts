@@ -10,3 +10,9 @@ export interface SectionCardData {
   desc: string;
   link: string;
 }
+
+export interface CompanyLogos {
+  id: number;
+  image: string;
+  desc: string;
+}

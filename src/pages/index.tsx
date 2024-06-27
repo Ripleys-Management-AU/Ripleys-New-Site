@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout/Layout";
 import WebBanner from "../components/WebBanner";
 import SectionCards from "@/components/SectionCards/SectionCards";
+import CompanyMarquee from "@/components/CompanyMarquee";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Layout>
         <WebBanner />
         <SectionCards />
+        <CompanyMarquee />
       </Layout>
     </main>
   );
