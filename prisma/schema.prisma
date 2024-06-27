@@ -1,0 +1,800 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model accent {
+  name              String              @db.VarChar(100)
+  id                Int                 @id @default(autoincrement())
+  created_at        DateTime?           @db.DateTime(0)
+  updated_at        DateTime?           @db.DateTime(0)
+  talent_map_accent talent_map_accent[]
+}
+
+model asset {
+  id                 Int                 @id @default(autoincrement())
+  filename           String              @db.VarChar(255)
+  title              String?             @db.VarChar(255)
+  descendant_class   String?             @db.VarChar(100)
+  created_at         DateTime?           @db.DateTime(0)
+  updated_at         DateTime?           @db.DateTime(0)
+  blog_post_asset    blog_post_asset?
+  blog_post_document blog_post_document?
+  blog_post_image    blog_post_image?
+  page_asset         page_asset?
+  page_image         page_image?
+  talent_document    talent_document?
+  talent_group_image talent_group_image?
+  talent_image       talent_image?
+}
+
+model blog_category {
+  slug              String              @unique(map: "blog_category_U_1") @db.VarChar(255)
+  name              String              @db.VarChar(255)
+  is_enabled        Boolean             @default(true)
+  id                Int                 @id @default(autoincrement())
+  created_at        DateTime?           @db.DateTime(0)
+  updated_at        DateTime?           @db.DateTime(0)
+  blog_map_category blog_map_category[]
+}
+
+model blog_comment {
+  blog_post_id Int?
+  author       String     @db.VarChar(255)
+  website      String?    @db.VarChar(255)
+  email        String?    @db.VarChar(255)
+  body         String     @db.Text
+  ip_address   String?    @db.VarChar(50)
+  is_enabled   Boolean    @default(true)
+  id           Int        @id @default(autoincrement())
+  created_at   DateTime?  @db.DateTime(0)
+  updated_at   DateTime?  @db.DateTime(0)
+  blog_post    blog_post? @relation(fields: [blog_post_id], references: [id], onDelete: Cascade, map: "blog_comment_FK_1")
+
+  @@index([blog_post_id], map: "blog_comment_FI_1")
+}
+
+model blog_map_category {
+  blog_post_id     Int?
+  blog_category_id Int?
+  id               Int            @id @default(autoincrement())
+  created_at       DateTime?      @db.DateTime(0)
+  updated_at       DateTime?      @db.DateTime(0)
+  blog_post        blog_post?     @relation(fields: [blog_post_id], references: [id], onDelete: Cascade, map: "blog_map_category_FK_1")
+  blog_category    blog_category? @relation(fields: [blog_category_id], references: [id], onDelete: Cascade, map: "blog_map_category_FK_2")
+
+  @@unique([blog_post_id, blog_category_id], map: "mapping")
+  @@index([blog_category_id], map: "blog_map_category_FI_2")
+}
+
+model blog_map_tag {
+  blog_post_id Int?
+  blog_tag_id  Int?
+  id           Int        @id @default(autoincrement())
+  created_at   DateTime?  @db.DateTime(0)
+  updated_at   DateTime?  @db.DateTime(0)
+  blog_post    blog_post? @relation(fields: [blog_post_id], references: [id], onDelete: Cascade, map: "blog_map_tag_FK_1")
+  blog_tag     blog_tag?  @relation(fields: [blog_tag_id], references: [id], onDelete: Cascade, map: "blog_map_tag_FK_2")
+
+  @@unique([blog_post_id, blog_tag_id], map: "mapping")
+  @@index([blog_tag_id], map: "blog_map_tag_FI_2")
+}
+
+model blog_post {
+  title                                                   String               @db.VarChar(255)
+  slug                                                    String               @unique(map: "blog_post_U_1") @db.VarChar(255)
+  publish_date                                            DateTime?            @db.DateTime(0)
+  is_enabled                                              Boolean              @default(true)
+  is_featured                                             Boolean              @default(false)
+  author                                                  String?              @db.VarChar(255)
+  summary                                                 String               @db.Text
+  body                                                    String               @db.Text
+  quote                                                   String?              @db.Text
+  quote_author                                            String?              @db.VarChar(255)
+  image_id                                                Int?
+  section_id                                              String               @db.VarChar(255)
+  id                                                      Int                  @id @default(autoincrement())
+  created_at                                              DateTime?            @db.DateTime(0)
+  updated_at                                              DateTime?            @db.DateTime(0)
+  blog_comment                                            blog_comment[]
+  blog_map_category                                       blog_map_category[]
+  blog_map_tag                                            blog_map_tag[]
+  blog_post_image_blog_post_image_idToblog_post_image     blog_post_image?     @relation("blog_post_image_idToblog_post_image", fields: [image_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_FK_1")
+  blog_post_asset                                         blog_post_asset[]
+  blog_post_document                                      blog_post_document[]
+  blog_post_image_blog_post_image_blog_post_idToblog_post blog_post_image[]    @relation("blog_post_image_blog_post_idToblog_post")
+
+  @@index([image_id], map: "blog_post_FI_1")
+  @@index([section_id], map: "section_id")
+}
+
+model blog_post_asset {
+  blog_post_id     Int
+  id               Int              @id
+  filename         String           @db.VarChar(255)
+  title            String?          @db.VarChar(255)
+  created_at       DateTime?        @db.DateTime(0)
+  updated_at       DateTime?        @db.DateTime(0)
+  descendant_class String?          @db.VarChar(100)
+  blog_post        blog_post        @relation(fields: [blog_post_id], references: [id], onDelete: Cascade, map: "blog_post_asset_FK_1")
+  asset            asset            @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_asset_FK_2")
+  blog_post_image  blog_post_image?
+
+  @@index([blog_post_id], map: "blog_post_asset_FI_1")
+}
+
+model blog_post_document {
+  blog_post_id Int
+  sequence     Int       @default(999)
+  id           Int       @id
+  filename     String    @db.VarChar(255)
+  title        String?   @db.VarChar(255)
+  created_at   DateTime? @db.DateTime(0)
+  updated_at   DateTime? @db.DateTime(0)
+  blog_post    blog_post @relation(fields: [blog_post_id], references: [id], onDelete: Cascade, map: "blog_post_document_FK_1")
+  asset        asset     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_document_FK_2")
+
+  @@index([blog_post_id], map: "blog_post_document_FI_1")
+}
+
+model blog_post_image {
+  blog_post_id                                      Int
+  id                                                Int             @id
+  filename                                          String          @db.VarChar(255)
+  title                                             String?         @db.VarChar(255)
+  created_at                                        DateTime?       @db.DateTime(0)
+  updated_at                                        DateTime?       @db.DateTime(0)
+  blog_post_blog_post_image_idToblog_post_image     blog_post[]     @relation("blog_post_image_idToblog_post_image")
+  blog_post_asset                                   blog_post_asset @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_image_FK_1")
+  blog_post_blog_post_image_blog_post_idToblog_post blog_post       @relation("blog_post_image_blog_post_idToblog_post", fields: [blog_post_id], references: [id], onDelete: Cascade, map: "blog_post_image_FK_2")
+  asset                                             asset           @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_image_FK_3")
+
+  @@index([blog_post_id], map: "blog_post_image_I_1")
+}
+
+model blog_section {
+  name       String    @db.VarChar(255)
+  id         String    @id @db.VarChar(255)
+  sequence   Int?
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+}
+
+model blog_tag {
+  slug         String         @unique(map: "blog_tag_U_1") @db.VarChar(255)
+  name         String         @db.VarChar(255)
+  id           Int            @id @default(autoincrement())
+  created_at   DateTime?      @db.DateTime(0)
+  updated_at   DateTime?      @db.DateTime(0)
+  blog_map_tag blog_map_tag[]
+}
+
+model contact {
+  status                                           Int            @db.TinyInt
+  first_name                                       String         @db.VarChar(255)
+  last_name                                        String         @db.VarChar(255)
+  address1                                         String         @db.VarChar(255)
+  address2                                         String?        @db.VarChar(255)
+  suburb                                           String         @db.VarChar(255)
+  state                                            Int            @db.TinyInt
+  postcode                                         String         @db.VarChar(255)
+  fax                                              String?        @db.VarChar(255)
+  phone_work                                       String?        @db.VarChar(255)
+  phone_mobile                                     String?        @db.VarChar(255)
+  email                                            String         @db.VarChar(255)
+  position                                         String         @db.VarChar(255)
+  organisation                                     String         @db.VarChar(255)
+  category                                         String?        @db.VarChar(255)
+  notes                                            String?        @db.Text
+  created_by                                       Int?
+  modified_by                                      Int?
+  id                                               Int            @id @default(autoincrement())
+  slug                                             String?        @unique(map: "contact_slug") @db.VarChar(255)
+  created_at                                       DateTime?      @db.DateTime(0)
+  updated_at                                       DateTime?      @db.DateTime(0)
+  old_id                                           Int
+  sf_guard_user_contact_created_byTosf_guard_user  sf_guard_user? @relation("contact_created_byTosf_guard_user", fields: [created_by], references: [id], map: "contact_FK_1")
+  sf_guard_user_contact_modified_byTosf_guard_user sf_guard_user? @relation("contact_modified_byTosf_guard_user", fields: [modified_by], references: [id], map: "contact_FK_2")
+
+  @@index([created_by], map: "contact_FI_1")
+  @@index([modified_by], map: "contact_FI_2")
+}
+
+model country {
+  id         String    @id @db.Char(3)
+  name       String?   @db.VarChar(50)
+  a2         String?   @db.Char(2)
+  a3         String?   @db.Char(3)
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+  talent     talent[]
+}
+
+model ethnicity {
+  name       String    @unique(map: "ethnicity_U_1") @db.VarChar(100)
+  id         Int       @id @default(autoincrement())
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+  talent     talent[]
+}
+
+model job {
+  title          String           @db.VarChar(255)
+  subject        String           @default("") @db.VarChar(255)
+  description    String           @db.Text
+  id             Int              @id @default(autoincrement())
+  slug           String?          @unique(map: "job_slug") @db.VarChar(255)
+  created_at     DateTime?        @db.DateTime(0)
+  updated_at     DateTime?        @db.DateTime(0)
+  job_map_talent job_map_talent[]
+  sms_log        sms_log[]
+}
+
+model job_map_talent {
+  talent_id  Int
+  job_id     Int
+  id         Int       @id @default(autoincrement())
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+  talent     talent    @relation(fields: [talent_id], references: [id], onDelete: Cascade, map: "job_map_talent_FK_1")
+  job        job       @relation(fields: [job_id], references: [id], onDelete: Cascade, map: "job_map_talent_FK_2")
+
+  @@unique([talent_id, job_id], map: "job_map_talent_U_1")
+  @@index([job_id], map: "job_map_talent_FI_2")
+}
+
+model language {
+  name                String                @unique(map: "language_U_1") @db.VarChar(100)
+  id                  Int                   @id @default(autoincrement())
+  created_at          DateTime?             @db.DateTime(0)
+  updated_at          DateTime?             @db.DateTime(0)
+  talent_map_language talent_map_language[]
+}
+
+model license {
+  name               String               @unique(map: "license_U_1") @db.VarChar(100)
+  id                 Int                  @id @default(autoincrement())
+  created_at         DateTime?            @db.DateTime(0)
+  updated_at         DateTime?            @db.DateTime(0)
+  talent_map_license talent_map_license[]
+}
+
+model module {
+  id              Int               @id @default(autoincrement())
+  name            String            @db.VarChar(255)
+  admin_route     String            @db.VarChar(255)
+  created_at      DateTime?         @db.DateTime(0)
+  updated_at      DateTime?         @db.DateTime(0)
+  template_module template_module[]
+}
+
+model page {
+  id                     Int                    @id @default(autoincrement())
+  template_id            Int?
+  identifier             String                 @unique(map: "page_U_1") @db.VarChar(255)
+  name                   String                 @db.VarChar(255)
+  visible                Boolean?               @default(false)
+  lock_position          Boolean?               @default(false)
+  lock_children          Boolean?               @default(false)
+  forward_to_first_child Boolean?               @default(false)
+  created_at             DateTime?              @db.DateTime(0)
+  updated_at             DateTime?              @db.DateTime(0)
+  tree_left              Int?
+  tree_right             Int?
+  tree_level             Int?
+  slug                   String?                @unique(map: "page_slug") @db.VarChar(255)
+  template               template?              @relation(fields: [template_id], references: [id], map: "page_FK_1")
+  page_asset             page_asset[]
+  page_image             page_image[]
+  prop_content           prop_content[]
+  prop_feature           prop_feature[]
+  prop_featured_link     prop_featured_link[]
+  prop_meta              prop_meta[]
+  prop_subpages          prop_subpages[]
+  prop_tag               prop_tag[]
+  ripleys_prop_content   ripleys_prop_content[]
+
+  @@index([template_id], map: "page_FI_1")
+}
+
+model page_asset {
+  page_id          Int
+  id               Int         @id
+  filename         String      @db.VarChar(255)
+  title            String?     @db.VarChar(255)
+  created_at       DateTime?   @db.DateTime(0)
+  updated_at       DateTime?   @db.DateTime(0)
+  descendant_class String?     @db.VarChar(100)
+  page             page        @relation(fields: [page_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_asset_FK_1")
+  asset            asset       @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_asset_FK_2")
+  page_image       page_image?
+
+  @@index([page_id], map: "page_asset_FI_1")
+}
+
+model page_image {
+  page_id            Int
+  id                 Int                  @id
+  filename           String               @db.VarChar(255)
+  title              String?              @db.VarChar(255)
+  created_at         DateTime?            @db.DateTime(0)
+  updated_at         DateTime?            @db.DateTime(0)
+  page_asset         page_asset           @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_image_FK_1")
+  page               page                 @relation(fields: [page_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_image_FK_2")
+  asset              asset                @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_image_FK_3")
+  prop_content       prop_content[]
+  prop_feature       prop_feature[]
+  prop_featured_link prop_featured_link[]
+
+  @@index([page_id], map: "page_image_I_1")
+}
+
+model prop_content {
+  id         Int         @id @default(autoincrement())
+  page_id    Int?
+  title      String?     @db.Text
+  body       String?     @db.Text
+  summary    String?     @db.Text
+  image_id   Int?
+  created_at DateTime?   @db.DateTime(0)
+  updated_at DateTime?   @db.DateTime(0)
+  page       page?       @relation(fields: [page_id], references: [id], onDelete: Cascade, map: "prop_content_FK_1")
+  page_image page_image? @relation(fields: [image_id], references: [id], map: "prop_content_FK_2")
+
+  @@index([page_id], map: "prop_content_FI_1")
+  @@index([image_id], map: "prop_content_FI_2")
+}
+
+model prop_feature {
+  id         Int         @id @default(autoincrement())
+  page_id    Int?
+  title      String?     @db.VarChar(255)
+  body       String?     @db.Text
+  url        String?     @db.VarChar(255)
+  image_id   Int?
+  created_at DateTime?   @db.DateTime(0)
+  updated_at DateTime?   @db.DateTime(0)
+  page       page?       @relation(fields: [page_id], references: [id], onDelete: Cascade, map: "prop_feature_FK_1")
+  page_image page_image? @relation(fields: [image_id], references: [id], map: "prop_feature_FK_2")
+
+  @@index([page_id], map: "prop_feature_FI_1")
+  @@index([image_id], map: "prop_feature_FI_2")
+}
+
+model prop_featured_link {
+  id         Int         @id @default(autoincrement())
+  page_id    Int?
+  image_id   Int?
+  title      String?     @db.VarChar(255)
+  url        String?     @db.VarChar(255)
+  created_at DateTime?   @db.DateTime(0)
+  updated_at DateTime?   @db.DateTime(0)
+  page       page?       @relation(fields: [page_id], references: [id], onDelete: Cascade, map: "prop_featured_link_FK_1")
+  page_image page_image? @relation(fields: [image_id], references: [id], map: "prop_featured_link_FK_2")
+
+  @@index([page_id], map: "prop_featured_link_FI_1")
+  @@index([image_id], map: "prop_featured_link_FI_2")
+}
+
+model prop_meta {
+  id          Int       @id @default(autoincrement())
+  page_id     Int?
+  description String?   @db.Text
+  keywords    String?   @db.Text
+  created_at  DateTime? @db.DateTime(0)
+  updated_at  DateTime? @db.DateTime(0)
+  title       String?   @db.VarChar(255)
+  page        page?     @relation(fields: [page_id], references: [id], onDelete: Cascade, map: "prop_meta_FK_1")
+
+  @@index([page_id], map: "prop_meta_FI_1")
+}
+
+model prop_subpages {
+  id         Int       @id @default(autoincrement())
+  page_id    Int?
+  depth      Int?      @db.SmallInt
+  type       Int?      @default(1) @db.TinyInt
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+  page       page?     @relation(fields: [page_id], references: [id], onDelete: Cascade, map: "prop_subpages_FK_1")
+
+  @@index([page_id], map: "prop_subpages_FI_1")
+}
+
+model prop_tag {
+  id         Int       @id @default(autoincrement())
+  page_id    Int?
+  name       String    @db.VarChar(255)
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+  page       page?     @relation(fields: [page_id], references: [id], onDelete: Cascade, map: "prop_tag_FK_1")
+
+  @@index([page_id], map: "prop_tag_FI_1")
+  @@index([name], map: "prop_tag_I_1")
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model propel_migration {
+  version Int? @default(0)
+
+  @@ignore
+}
+
+model property {
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(255)
+  model_class       String              @db.VarChar(255)
+  form_class        String              @db.VarChar(255)
+  min               Int?                @db.SmallInt
+  max               Int?                @db.SmallInt
+  sequence          Int                 @default(0) @db.SmallInt
+  admin_only        Boolean?            @default(false)
+  created_at        DateTime?           @db.DateTime(0)
+  updated_at        DateTime?           @db.DateTime(0)
+  template_property template_property[]
+}
+
+model ripleys_prop_content {
+  id                   Int       @id @default(autoincrement())
+  page_id              Int?
+  subtitle             String?   @db.VarChar(255)
+  body                 String?   @db.Text
+  left_column_subtitle String?   @db.VarChar(255)
+  left_column_content  String?   @db.Text
+  created_at           DateTime? @db.DateTime(0)
+  updated_at           DateTime? @db.DateTime(0)
+  page                 page?     @relation(fields: [page_id], references: [id], onDelete: Cascade, map: "ripleys_prop_content_FK_1")
+
+  @@index([page_id], map: "ripleys_prop_content_FI_1")
+}
+
+model sf_guard_group {
+  id                        Int                         @id @default(autoincrement())
+  name                      String                      @unique(map: "sf_guard_group_U_1") @db.VarChar(255)
+  description               String?                     @db.Text
+  created_at                DateTime?                   @db.DateTime(0)
+  updated_at                DateTime?                   @db.DateTime(0)
+  sf_guard_group_permission sf_guard_group_permission[]
+  sf_guard_user_group       sf_guard_user_group[]
+}
+
+model sf_guard_group_permission {
+  group_id            Int
+  permission_id       Int
+  created_at          DateTime?           @db.DateTime(0)
+  updated_at          DateTime?           @db.DateTime(0)
+  sf_guard_group      sf_guard_group      @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_group_permission_FK_1")
+  sf_guard_permission sf_guard_permission @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_group_permission_FK_2")
+
+  @@id([group_id, permission_id])
+  @@index([permission_id], map: "sf_guard_group_permission_FI_2")
+}
+
+model sf_guard_permission {
+  id                        Int                         @id @default(autoincrement())
+  name                      String                      @unique(map: "sf_guard_permission_U_1") @db.VarChar(255)
+  description               String?                     @db.Text
+  created_at                DateTime?                   @db.DateTime(0)
+  updated_at                DateTime?                   @db.DateTime(0)
+  sf_guard_group_permission sf_guard_group_permission[]
+  sf_guard_user_permission  sf_guard_user_permission[]
+}
+
+model sf_guard_remember_key {
+  user_id       Int
+  remember_key  String?       @db.VarChar(32)
+  ip_address    String        @db.VarChar(50)
+  created_at    DateTime?     @db.DateTime(0)
+  updated_at    DateTime?     @db.DateTime(0)
+  sf_guard_user sf_guard_user @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_remember_key_FK_1")
+
+  @@id([user_id, ip_address])
+}
+
+model sf_guard_user {
+  id                                         Int                        @id @default(autoincrement())
+  username                                   String                     @unique(map: "sf_guard_user_U_1") @db.VarChar(128)
+  algorithm                                  String                     @default("sha1") @db.VarChar(128)
+  salt                                       String                     @db.VarChar(128)
+  password                                   String                     @db.VarChar(128)
+  created_at                                 DateTime?                  @db.DateTime(0)
+  last_login                                 DateTime?                  @db.DateTime(0)
+  is_active                                  Boolean                    @default(true)
+  is_super_admin                             Boolean                    @default(false)
+  updated_at                                 DateTime?                  @db.DateTime(0)
+  contact_contact_created_byTosf_guard_user  contact[]                  @relation("contact_created_byTosf_guard_user")
+  contact_contact_modified_byTosf_guard_user contact[]                  @relation("contact_modified_byTosf_guard_user")
+  sf_guard_remember_key                      sf_guard_remember_key[]
+  sf_guard_user_group                        sf_guard_user_group[]
+  sf_guard_user_permission                   sf_guard_user_permission[]
+  talent_talent_created_byTosf_guard_user    talent[]                   @relation("talent_created_byTosf_guard_user")
+  talent_talent_modified_byTosf_guard_user   talent[]                   @relation("talent_modified_byTosf_guard_user")
+}
+
+model sf_guard_user_group {
+  user_id        Int
+  group_id       Int
+  created_at     DateTime?      @db.DateTime(0)
+  updated_at     DateTime?      @db.DateTime(0)
+  sf_guard_user  sf_guard_user  @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_user_group_FK_1")
+  sf_guard_group sf_guard_group @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_user_group_FK_2")
+
+  @@id([user_id, group_id])
+  @@index([group_id], map: "sf_guard_user_group_FI_2")
+}
+
+model sf_guard_user_permission {
+  user_id             Int
+  permission_id       Int
+  created_at          DateTime?           @db.DateTime(0)
+  updated_at          DateTime?           @db.DateTime(0)
+  sf_guard_user       sf_guard_user       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_user_permission_FK_1")
+  sf_guard_permission sf_guard_permission @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_user_permission_FK_2")
+
+  @@id([user_id, permission_id])
+  @@index([permission_id], map: "sf_guard_user_permission_FI_2")
+}
+
+model sms_log {
+  number        String    @db.VarChar(255)
+  length        Int
+  is_sent       Boolean   @default(false)
+  exception_msg String?   @db.VarChar(255)
+  talent_id     Int?
+  job_id        Int?
+  id            Int       @id @default(autoincrement())
+  created_at    DateTime? @db.DateTime(0)
+  updated_at    DateTime? @db.DateTime(0)
+  talent        talent?   @relation(fields: [talent_id], references: [id], map: "sms_log_FK_1")
+  job           job?      @relation(fields: [job_id], references: [id], map: "sms_log_FK_2")
+
+  @@index([talent_id], map: "sms_log_FI_1")
+  @@index([job_id], map: "sms_log_FI_2")
+}
+
+model tag {
+  name       String    @db.VarChar(25)
+  id         Int       @id @default(autoincrement())
+  slug       String?   @unique(map: "tag_slug") @db.VarChar(255)
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+}
+
+model talent {
+  old_id                                          Int?
+  status                                          Int                       @default(2) @db.TinyInt
+  first_name                                      String                    @db.VarChar(255)
+  last_name                                       String                    @db.VarChar(255)
+  category                                        Int                       @db.TinyInt
+  nationality_id                                  String?                   @db.Char(3)
+  address1                                        String                    @db.VarChar(255)
+  address2                                        String?                   @db.VarChar(255)
+  suburb                                          String                    @db.VarChar(255)
+  state                                           Int                       @db.TinyInt
+  postcode                                        String                    @db.VarChar(255)
+  phone_home                                      String?                   @db.VarChar(255)
+  phone_mobile                                    String?                   @db.VarChar(255)
+  phone_work                                      String?                   @db.VarChar(255)
+  email                                           String?                   @db.VarChar(255)
+  occupation                                      String                    @db.VarChar(255)
+  tfn                                             String                    @db.VarChar(50)
+  meaaid                                          String?                   @db.VarChar(50)
+  super_fund_name                                 String?                   @db.VarChar(100)
+  super_membership_number                         String?                   @db.VarChar(100)
+  bank_account_name                               String?                   @db.VarChar(100)
+  bsb                                             String?                   @db.VarChar(100)
+  bank_account_number                             String?                   @db.VarChar(100)
+  business_name                                   String?                   @db.VarChar(100)
+  abn                                             String?                   @db.VarChar(100)
+  notes                                           String?                   @db.Text
+  gender                                          Int                       @db.TinyInt
+  birth_date                                      DateTime                  @db.Date
+  ethnicity_id                                    Int?
+  eye_colour                                      String                    @db.VarChar(100)
+  hair_colour                                     String                    @db.VarChar(100)
+  height                                          Int
+  waist                                           Int?
+  bust                                            Int?
+  hips                                            Int?
+  dress_size                                      String?                   @db.VarChar(50)
+  chest                                           Int?
+  shoe                                            String?                   @db.VarChar(50)
+  suit                                            String?                   @db.VarChar(50)
+  suit_length                                     String?                   @db.Char(1)
+  shirt                                           String?                   @db.VarChar(50)
+  inside_leg                                      Int
+  smoker                                          Boolean                   @default(false)
+  distinctive_marks                               String?                   @db.Text
+  experience                                      String?                   @db.Text
+  showreel                                        String?                   @db.Text
+  skills_interests                                String?                   @db.Text
+  artist_type                                     String?                   @db.VarChar(100)
+  date_joined                                     DateTime                  @db.DateTime(0)
+  date_expiry                                     DateTime                  @db.DateTime(0)
+  created_by                                      Int?
+  modified_by                                     Int?
+  id                                              Int                       @id @default(autoincrement())
+  slug                                            String?                   @unique(map: "talent_slug") @db.VarChar(255)
+  created_at                                      DateTime?                 @db.DateTime(0)
+  updated_at                                      DateTime?                 @db.DateTime(0)
+  intensive_course                                Int?                      @db.TinyInt
+  collar                                          Int?
+  job_map_talent                                  job_map_talent[]
+  sms_log                                         sms_log[]
+  country                                         country?                  @relation(fields: [nationality_id], references: [id], map: "talent_FK_1")
+  ethnicity                                       ethnicity?                @relation(fields: [ethnicity_id], references: [id], map: "talent_FK_2")
+  sf_guard_user_talent_created_byTosf_guard_user  sf_guard_user?            @relation("talent_created_byTosf_guard_user", fields: [created_by], references: [id], map: "talent_FK_3")
+  sf_guard_user_talent_modified_byTosf_guard_user sf_guard_user?            @relation("talent_modified_byTosf_guard_user", fields: [modified_by], references: [id], map: "talent_FK_4")
+  talent_document                                 talent_document[]
+  talent_image                                    talent_image[]
+  talent_map_talent_group                         talent_map_talent_group[]
+
+  @@index([nationality_id], map: "talent_FI_1")
+  @@index([ethnicity_id], map: "talent_FI_2")
+  @@index([created_by], map: "talent_FI_3")
+  @@index([modified_by], map: "talent_FI_4")
+}
+
+model talent_document {
+  talent_id   Int
+  description String?   @db.Text
+  sequence    Int       @default(999)
+  id          Int       @id
+  filename    String    @db.VarChar(255)
+  title       String?   @db.VarChar(255)
+  created_at  DateTime? @db.DateTime(0)
+  updated_at  DateTime? @db.DateTime(0)
+  talent      talent    @relation(fields: [talent_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_document_FK_1")
+  asset       asset     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_document_FK_2")
+
+  @@index([talent_id], map: "talent_document_FI_1")
+}
+
+model talent_group {
+  old_id                  Int?
+  title                   String                    @db.VarChar(255)
+  type                    Int                       @db.TinyInt
+  id                      Int                       @id @default(autoincrement())
+  slug                    String?                   @unique(map: "talent_group_slug") @db.VarChar(255)
+  created_at              DateTime?                 @db.DateTime(0)
+  updated_at              DateTime?                 @db.DateTime(0)
+  talent_group_image      talent_group_image[]
+  talent_map_talent_group talent_map_talent_group[]
+}
+
+model talent_group_image {
+  talent_group_id Int
+  caption         String?      @db.Text
+  sequence        Int          @default(999)
+  id              Int          @id
+  filename        String       @db.VarChar(255)
+  title           String?      @db.VarChar(255)
+  created_at      DateTime?    @db.DateTime(0)
+  updated_at      DateTime?    @db.DateTime(0)
+  talent_group    talent_group @relation(fields: [talent_group_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_group_image_FK_1")
+  asset           asset        @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_group_image_FK_2")
+
+  @@index([talent_group_id], map: "talent_group_image_FI_1")
+}
+
+model talent_image {
+  talent_id  Int
+  caption    String?   @db.Text
+  sequence   Int       @default(999)
+  id         Int       @id
+  filename   String    @db.VarChar(255)
+  title      String?   @db.VarChar(255)
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+  talent     talent    @relation(fields: [talent_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_image_FK_1")
+  asset      asset     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_image_FK_2")
+
+  @@index([talent_id], map: "talent_image_FI_1")
+}
+
+model talent_map_accent {
+  talent_id  Int
+  accent_id  Int
+  id         Int       @id @default(autoincrement())
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+  accent     accent    @relation(fields: [accent_id], references: [id], onDelete: Cascade, map: "talent_map_accent_FK_2")
+
+  @@index([accent_id], map: "talent_map_accent_FI_2")
+}
+
+model talent_map_language {
+  talent_id   Int
+  language_id Int
+  id          Int       @id @default(autoincrement())
+  created_at  DateTime? @db.DateTime(0)
+  updated_at  DateTime? @db.DateTime(0)
+  language    language  @relation(fields: [language_id], references: [id], onDelete: Cascade, map: "talent_map_language_FK_2")
+
+  @@index([language_id], map: "talent_map_language_FI_2")
+}
+
+model talent_map_license {
+  talent_id  Int
+  license_id Int
+  id         Int       @id @default(autoincrement())
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+  license    license   @relation(fields: [license_id], references: [id], onDelete: Cascade, map: "talent_map_license_FK_2")
+
+  @@index([license_id], map: "talent_map_license_FI_2")
+}
+
+model talent_map_talent_group {
+  talent_id       Int
+  talent_group_id Int
+  id              Int          @id @default(autoincrement())
+  created_at      DateTime?    @db.DateTime(0)
+  updated_at      DateTime?    @db.DateTime(0)
+  talent          talent       @relation(fields: [talent_id], references: [id], onDelete: Cascade, map: "talent_map_talent_group_FK_1")
+  talent_group    talent_group @relation(fields: [talent_group_id], references: [id], onDelete: Cascade, map: "talent_map_talent_group_FK_2")
+
+  @@index([talent_id], map: "talent_map_talent_group_FI_1")
+  @@index([talent_group_id], map: "talent_map_talent_group_FI_2")
+}
+
+model talent_map_union {
+  talent_id  Int
+  union_id   Int
+  id         Int       @id @default(autoincrement())
+  created_at DateTime? @db.DateTime(0)
+  updated_at DateTime? @db.DateTime(0)
+  union      union     @relation(fields: [union_id], references: [id], onDelete: Cascade, map: "talent_map_union_FK_2")
+
+  @@index([union_id], map: "talent_map_union_FI_2")
+}
+
+model template {
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(255)
+  filename          String              @unique(map: "template_U_1") @db.VarChar(255)
+  created_at        DateTime?           @db.DateTime(0)
+  updated_at        DateTime?           @db.DateTime(0)
+  page              page[]
+  template_module   template_module[]
+  template_property template_property[]
+}
+
+model template_module {
+  id          Int       @id @default(autoincrement())
+  template_id Int
+  module_id   Int
+  created_at  DateTime? @db.DateTime(0)
+  updated_at  DateTime? @db.DateTime(0)
+  template    template  @relation(fields: [template_id], references: [id], onDelete: Cascade, map: "template_module_FK_1")
+  module      module    @relation(fields: [module_id], references: [id], onDelete: Cascade, map: "template_module_FK_2")
+
+  @@unique([template_id, module_id], map: "mapping")
+  @@index([module_id], map: "template_module_FI_2")
+}
+
+model template_property {
+  id          Int       @id @default(autoincrement())
+  template_id Int
+  property_id Int
+  created_at  DateTime? @db.DateTime(0)
+  updated_at  DateTime? @db.DateTime(0)
+  template    template  @relation(fields: [template_id], references: [id], onDelete: Cascade, map: "template_property_FK_1")
+  property    property  @relation(fields: [property_id], references: [id], onDelete: Cascade, map: "template_property_FK_2")
+
+  @@index([template_id], map: "template_property_FI_1")
+  @@index([property_id], map: "template_property_FI_2")
+}
+
+model union {
+  name             String             @db.VarChar(100)
+  id               Int                @id @default(autoincrement())
+  created_at       DateTime?          @db.DateTime(0)
+  updated_at       DateTime?          @db.DateTime(0)
+  talent_map_union talent_map_union[]
+}
