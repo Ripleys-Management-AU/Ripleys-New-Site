@@ -5,7 +5,7 @@ import SectionCards from "@/components/SectionCards/SectionCards";
 
 export default function Home() {
   return (
-    <main className="bg-black min-h-screen">
+    <main className="bg-black min-h-screen font-white">
       <Layout>
         <WebBanner />
         <SectionCards />
