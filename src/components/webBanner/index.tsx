@@ -28,7 +28,7 @@ const WebBanner = () => {
   };
 
   return (
-    <section className="w-full overflow-hidden">
+    <section className="w-full overflow-hidden mt-24 lg:mt-32">
       <div className="embla w-full" ref={emblaRef}>
         <div className="embla__container">
           {webBannerImages.map((item) => (
@@ -47,7 +47,11 @@ const WebBanner = () => {
             }}
             className="cursor-pointer"
           >
-            {selectedIndex === item.id ? <GoDotFill /> : <GoDot />}
+            {selectedIndex === item.id ? (
+              <GoDotFill color={"white"} />
+            ) : (
+              <GoDot color={"white"} />
+            )}
           </div>
         ))}
       </div>
