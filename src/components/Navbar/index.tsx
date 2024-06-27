@@ -53,7 +53,6 @@ const Navbar = () => {
           color={isMobileMenuOpen ? "black" : "white"}
           borderRadius={0}
           animationDuration={0.5}
-          className="cursor-pointer"
         />
       </div>
       {isMobileMenuOpen && (
