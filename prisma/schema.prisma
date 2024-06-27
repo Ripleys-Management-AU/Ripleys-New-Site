@@ -104,7 +104,7 @@ model blog_post {
   blog_comment                                            blog_comment[]
   blog_map_category                                       blog_map_category[]
   blog_map_tag                                            blog_map_tag[]
-  blog_post_image_blog_post_image_idToblog_post_image     blog_post_image?     @relation("blog_post_image_idToblog_post_image", fields: [image_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_FK_1")
+  blog_post_image_blog_post_image_idToblog_post_image     blog_post_image?     @relation("blog_post_image_idToblog_post_image", fields: [image_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "blog_post_FK_1")
   blog_post_asset                                         blog_post_asset[]
   blog_post_document                                      blog_post_document[]
   blog_post_image_blog_post_image_blog_post_idToblog_post blog_post_image[]    @relation("blog_post_image_blog_post_idToblog_post")
@@ -122,7 +122,7 @@ model blog_post_asset {
   updated_at       DateTime?        @db.DateTime(0)
   descendant_class String?          @db.VarChar(100)
   blog_post        blog_post        @relation(fields: [blog_post_id], references: [id], onDelete: Cascade, map: "blog_post_asset_FK_1")
-  asset            asset            @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_asset_FK_2")
+  asset            asset            @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "blog_post_asset_FK_2")
   blog_post_image  blog_post_image?
 
   @@index([blog_post_id], map: "blog_post_asset_FI_1")
@@ -137,7 +137,7 @@ model blog_post_document {
   created_at   DateTime? @db.DateTime(0)
   updated_at   DateTime? @db.DateTime(0)
   blog_post    blog_post @relation(fields: [blog_post_id], references: [id], onDelete: Cascade, map: "blog_post_document_FK_1")
-  asset        asset     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_document_FK_2")
+  asset        asset     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "blog_post_document_FK_2")
 
   @@index([blog_post_id], map: "blog_post_document_FI_1")
 }
@@ -150,9 +150,9 @@ model blog_post_image {
   created_at                                        DateTime?       @db.DateTime(0)
   updated_at                                        DateTime?       @db.DateTime(0)
   blog_post_blog_post_image_idToblog_post_image     blog_post[]     @relation("blog_post_image_idToblog_post_image")
-  blog_post_asset                                   blog_post_asset @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_image_FK_1")
+  blog_post_asset                                   blog_post_asset @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "blog_post_image_FK_1")
   blog_post_blog_post_image_blog_post_idToblog_post blog_post       @relation("blog_post_image_blog_post_idToblog_post", fields: [blog_post_id], references: [id], onDelete: Cascade, map: "blog_post_image_FK_2")
-  asset                                             asset           @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "blog_post_image_FK_3")
+  asset                                             asset           @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "blog_post_image_FK_3")
 
   @@index([blog_post_id], map: "blog_post_image_I_1")
 }
@@ -310,8 +310,8 @@ model page_asset {
   created_at       DateTime?   @db.DateTime(0)
   updated_at       DateTime?   @db.DateTime(0)
   descendant_class String?     @db.VarChar(100)
-  page             page        @relation(fields: [page_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_asset_FK_1")
-  asset            asset       @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_asset_FK_2")
+  page             page        @relation(fields: [page_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "page_asset_FK_1")
+  asset            asset       @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "page_asset_FK_2")
   page_image       page_image?
 
   @@index([page_id], map: "page_asset_FI_1")
@@ -324,9 +324,9 @@ model page_image {
   title              String?              @db.VarChar(255)
   created_at         DateTime?            @db.DateTime(0)
   updated_at         DateTime?            @db.DateTime(0)
-  page_asset         page_asset           @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_image_FK_1")
-  page               page                 @relation(fields: [page_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_image_FK_2")
-  asset              asset                @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "page_image_FK_3")
+  page_asset         page_asset           @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "page_image_FK_1")
+  page               page                 @relation(fields: [page_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "page_image_FK_2")
+  asset              asset                @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "page_image_FK_3")
   prop_content       prop_content[]
   prop_feature       prop_feature[]
   prop_featured_link prop_featured_link[]
@@ -468,8 +468,8 @@ model sf_guard_group_permission {
   permission_id       Int
   created_at          DateTime?           @db.DateTime(0)
   updated_at          DateTime?           @db.DateTime(0)
-  sf_guard_group      sf_guard_group      @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_group_permission_FK_1")
-  sf_guard_permission sf_guard_permission @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_group_permission_FK_2")
+  sf_guard_group      sf_guard_group      @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sf_guard_group_permission_FK_1")
+  sf_guard_permission sf_guard_permission @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sf_guard_group_permission_FK_2")
 
   @@id([group_id, permission_id])
   @@index([permission_id], map: "sf_guard_group_permission_FI_2")
@@ -491,7 +491,7 @@ model sf_guard_remember_key {
   ip_address    String        @db.VarChar(50)
   created_at    DateTime?     @db.DateTime(0)
   updated_at    DateTime?     @db.DateTime(0)
-  sf_guard_user sf_guard_user @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_remember_key_FK_1")
+  sf_guard_user sf_guard_user @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sf_guard_remember_key_FK_1")
 
   @@id([user_id, ip_address])
 }
@@ -521,8 +521,8 @@ model sf_guard_user_group {
   group_id       Int
   created_at     DateTime?      @db.DateTime(0)
   updated_at     DateTime?      @db.DateTime(0)
-  sf_guard_user  sf_guard_user  @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_user_group_FK_1")
-  sf_guard_group sf_guard_group @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_user_group_FK_2")
+  sf_guard_user  sf_guard_user  @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sf_guard_user_group_FK_1")
+  sf_guard_group sf_guard_group @relation(fields: [group_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sf_guard_user_group_FK_2")
 
   @@id([user_id, group_id])
   @@index([group_id], map: "sf_guard_user_group_FI_2")
@@ -533,8 +533,8 @@ model sf_guard_user_permission {
   permission_id       Int
   created_at          DateTime?           @db.DateTime(0)
   updated_at          DateTime?           @db.DateTime(0)
-  sf_guard_user       sf_guard_user       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_user_permission_FK_1")
-  sf_guard_permission sf_guard_permission @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "sf_guard_user_permission_FK_2")
+  sf_guard_user       sf_guard_user       @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sf_guard_user_permission_FK_1")
+  sf_guard_permission sf_guard_permission @relation(fields: [permission_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "sf_guard_user_permission_FK_2")
 
   @@id([user_id, permission_id])
   @@index([permission_id], map: "sf_guard_user_permission_FI_2")
@@ -649,8 +649,8 @@ model talent_document {
   title       String?   @db.VarChar(255)
   created_at  DateTime? @db.DateTime(0)
   updated_at  DateTime? @db.DateTime(0)
-  talent      talent    @relation(fields: [talent_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_document_FK_1")
-  asset       asset     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_document_FK_2")
+  talent      talent    @relation(fields: [talent_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "talent_document_FK_1")
+  asset       asset     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "talent_document_FK_2")
 
   @@index([talent_id], map: "talent_document_FI_1")
 }
@@ -676,8 +676,8 @@ model talent_group_image {
   title           String?      @db.VarChar(255)
   created_at      DateTime?    @db.DateTime(0)
   updated_at      DateTime?    @db.DateTime(0)
-  talent_group    talent_group @relation(fields: [talent_group_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_group_image_FK_1")
-  asset           asset        @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_group_image_FK_2")
+  talent_group    talent_group @relation(fields: [talent_group_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "talent_group_image_FK_1")
+  asset           asset        @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "talent_group_image_FK_2")
 
   @@index([talent_group_id], map: "talent_group_image_FI_1")
 }
@@ -691,8 +691,8 @@ model talent_image {
   title      String?   @db.VarChar(255)
   created_at DateTime? @db.DateTime(0)
   updated_at DateTime? @db.DateTime(0)
-  talent     talent    @relation(fields: [talent_id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_image_FK_1")
-  asset      asset     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "talent_image_FK_2")
+  talent     talent    @relation(fields: [talent_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "talent_image_FK_1")
+  asset      asset     @relation(fields: [id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "talent_image_FK_2")
 
   @@index([talent_id], map: "talent_image_FI_1")
 }
