@@ -593,7 +593,7 @@ model talent {
   abn                                             String?                   @db.VarChar(100)
   notes                                           String?                   @db.Text
   gender                                          Int                       @db.TinyInt
-  birth_date                                      DateTime                  @db.Date
+  birth_date                                      DateTime?                 @db.DateTime(0)
   ethnicity_id                                    Int?
   eye_colour                                      String                    @db.VarChar(100)
   hair_colour                                     String                    @db.VarChar(100)
@@ -614,8 +614,8 @@ model talent {
   showreel                                        String?                   @db.Text
   skills_interests                                String?                   @db.Text
   artist_type                                     String?                   @db.VarChar(100)
-  date_joined                                     DateTime                  @db.DateTime(0)
-  date_expiry                                     DateTime                  @db.DateTime(0)
+  date_joined                                     DateTime?                 @db.DateTime(0)
+  date_expiry                                     DateTime?                 @db.DateTime(0)
   created_by                                      Int?
   modified_by                                     Int?
   id                                              Int                       @id @default(autoincrement())
