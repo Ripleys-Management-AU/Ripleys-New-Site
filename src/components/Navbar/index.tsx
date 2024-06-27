@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useMediaQuery } from "react-responsive";
 import { FaChevronDown } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -7,16 +8,19 @@ import Link from "next/link";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1024px)",
+  });
 
   const router = useRouter();
 
   return (
-    <div className="fixed bg-black flex flex-row lg:flex-col justify-between lg:justify-center items-center pt-2 px-8 lg:px-0 pb-4 w-full lg:text-white top-0 z-[998]">
+    <div className="fixed bg-black flex flex-row lg:flex-col justify-between lg:justify-center items-center pt-2 px-8 lg:px-0 pb-2 lg:pb-4 w-full lg:text-white top-0 z-[998]">
       <Image
         src="images/logo-with-text.svg"
         alt="logo"
-        height={80}
-        width={80}
+        height={isDesktopOrLaptop ? 80 : 55}
+        width={isDesktopOrLaptop ? 80 : 55}
         className="cursor-pointer relative z-[999]"
         onClick={() => {
           router.push("/");
@@ -46,8 +50,8 @@ const Navbar = () => {
           menuClicked={() => {
             setIsMobileMenuOpen((prevState) => !prevState);
           }}
-          width={25}
-          height={19}
+          width={23}
+          height={18}
           strokeWidth={2}
           rotate={0}
           color={isMobileMenuOpen ? "black" : "white"}

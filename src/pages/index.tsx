@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout/Layout";
-import WebBanner from "@/components/webBanner";
+import WebBanner from "../components/WebBanner";
 import SectionCards from "@/components/SectionCards/SectionCards";
 
 export default function Home() {
