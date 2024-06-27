@@ -3,3 +3,10 @@ export interface WebBannerImage {
   image: string;
   desc: string;
 }
+
+export interface SectionCardData {
+  id: number;
+  image: string;
+  desc: string;
+  link: string;
+}

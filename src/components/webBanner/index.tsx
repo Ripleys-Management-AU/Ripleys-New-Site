@@ -1,4 +1,4 @@
-import { webBannerImages } from "@/data/webBanner";
+import { webBannerImages } from "@/data/webBannerData";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { GoDot } from "react-icons/go";
@@ -28,7 +28,7 @@ const WebBanner = () => {
   };
 
   return (
-    <div className="w-full overflow-hidden">
+    <section className="w-full overflow-hidden">
       <div className="embla w-full" ref={emblaRef}>
         <div className="embla__container">
           {webBannerImages.map((item) => (
@@ -51,7 +51,7 @@ const WebBanner = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
