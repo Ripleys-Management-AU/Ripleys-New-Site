@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 const WebBanner = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    Autoplay({ playOnInit: true, delay: 8000 }),
+    Autoplay({ playOnInit: true, delay: 5000 }),
   ]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
