@@ -56,7 +56,7 @@ const Navbar = () => {
         />
       </div>
       {isMobileMenuOpen && (
-        <div className="lg:hidden w-screen left-0 items-start h-screen flex flex-col fixed px-6 pt-20 bg-white bg-opacity-80 backdrop-blur-lg z-[60] pointer will-change-opacity overflow-scroll top-0">
+        <div className="lg:hidden w-screen left-0 items-start h-screen flex flex-col fixed px-6 pt-20 bg-white bg-opacity-70 mobile-blur z-[60] pointer will-change-opacity overflow-scroll top-0">
           <ul className="text-xl w-full uppercase font-bold text-cyan-800">
             <li>
               <Link
