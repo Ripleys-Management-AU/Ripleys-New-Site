@@ -3,7 +3,7 @@ import { companyLogos } from "@/data/companyLogos";
 
 const CompanyMarquee = () => {
   return (
-    <div className="text-center my-4">
+    <div className="text-center mt-4">
       <h1 className="uppercase text-4xl font-semibold text-gray-300 mb-8">
         Who We&apos;Re Working With
       </h1>
