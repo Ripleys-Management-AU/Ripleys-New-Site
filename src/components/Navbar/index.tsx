@@ -9,8 +9,10 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null);
-  const [debouncedActiveDropdown, setDebouncedActiveDropdown] = useState(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [debouncedActiveDropdown, setDebouncedActiveDropdown] = useState<
+    string | null
+  >(null);
 
   const isDesktopOrLaptop = useResponsiveMediaQuery(
     "(min-width: 1024px)",
@@ -31,7 +33,7 @@ const Navbar = () => {
     };
   }, [activeDropdown]);
 
-  const handleMouseEnter = (dropdown) => {
+  const handleMouseEnter = (dropdown: string | null) => {
     setActiveDropdown(dropdown);
   };
 
