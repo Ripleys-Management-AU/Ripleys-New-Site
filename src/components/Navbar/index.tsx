@@ -1,16 +1,43 @@
 import Image from "next/image";
-import { useMediaQuery } from "react-responsive";
 import { FaChevronDown } from "react-icons/fa";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HamburgerMenu from "react-hamburger-menu";
 import Link from "next/link";
+import useResponsiveMediaQuery from "@/hooks/useResponsiveMediaQuery";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isDesktopOrLaptop = useMediaQuery({
-    query: "(min-width: 1024px)",
-  });
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [debouncedActiveDropdown, setDebouncedActiveDropdown] = useState(null);
+
+  const isDesktopOrLaptop = useResponsiveMediaQuery(
+    "(min-width: 1024px)",
+    true,
+  );
+
+  useEffect(() => {
+    if (activeDropdown !== null) {
+      setDebouncedActiveDropdown(activeDropdown);
+      return;
+    }
+    const handler = setTimeout(() => {
+      setDebouncedActiveDropdown(activeDropdown);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [activeDropdown]);
+
+  const handleMouseEnter = (dropdown) => {
+    setActiveDropdown(dropdown);
+  };
+
+  const handleMouseLeave = () => {
+    setActiveDropdown(null);
+  };
 
   const router = useRouter();
 
@@ -27,21 +54,134 @@ const Navbar = () => {
         }}
       />
       <div className="hidden lg:flex flex-col lg:flex-row justify-center gap-20 pt-2 lg:w-4/5">
-        <h1 className="flex items-center gap-2 cursor-pointer">
-          Talent
-          <FaChevronDown size={12} />
+        <div
+          className="relative"
+          onMouseEnter={() => handleMouseEnter("talent")}
+          onMouseLeave={handleMouseLeave}
+        >
+          <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
+            Talent
+            <FaChevronDown size={12} />
+          </h1>
+          <AnimatePresence>
+            {debouncedActiveDropdown === "talent" && (
+              <motion.div
+                className="absolute top-[32px] left-0 mt-2 w-40 text-white bg-nav-dropdown p-2 shadow-lg z-[999] overflow-hidden"
+                onMouseEnter={() => handleMouseEnter("talent")}
+                onMouseLeave={handleMouseLeave}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ul className="flex flex-col gap-5 py-[8px] px-[5px]">
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage1">All Talent</Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage2">Women</Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage3">Men</Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage3">Children & Teens</Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage3">Couples</Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage3">Families</Link>
+                  </li>
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+        <div
+          className="relative"
+          onMouseEnter={() => handleMouseEnter("forClients")}
+          onMouseLeave={handleMouseLeave}
+        >
+          <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
+            For Clients
+            <FaChevronDown size={12} />
+          </h1>
+          <AnimatePresence>
+            {debouncedActiveDropdown === "forClients" && (
+              <motion.div
+                className="absolute top-[32px] left-0 mt-2 w-40 text-white bg-nav-dropdown p-2 shadow-lg z-[999] overflow-hidden"
+                onMouseEnter={() => handleMouseEnter("forClients")}
+                onMouseLeave={handleMouseLeave}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ul className="flex flex-col gap-5 py-[8px] px-[5px]">
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forClients/subpage1">Booking Terms</Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forClients/subpage2">Request Talent</Link>
+                  </li>
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+        <div
+          className="relative"
+          onMouseEnter={() => handleMouseEnter("forTalents")}
+          onMouseLeave={handleMouseLeave}
+        >
+          <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
+            For Talents
+            <FaChevronDown size={12} />
+          </h1>
+          <AnimatePresence>
+            {debouncedActiveDropdown === "forTalents" && (
+              <motion.div
+                className="absolute top-[32px] left-0 mt-2 w-40 text-white bg-nav-dropdown p-2 shadow-lg z-[999] overflow-hidden"
+                onMouseEnter={() => handleMouseEnter("forTalents")}
+                onMouseLeave={handleMouseLeave}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <ul className="flex flex-col gap-5 py-[8px] px-[5px]">
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage1">How To Join</Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage2">FAQ</Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage3">Registration Form</Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage3">
+                      Registration Process
+                    </Link>
+                  </li>
+                  <li className="hover:text-gray-500 duration-200">
+                    <Link href="/forTalents/subpage3">Make A Payment</Link>
+                  </li>
+                </ul>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+        <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
+          News
         </h1>
-        <h1 className="flex items-center gap-2 cursor-pointer">
-          For Clients
-          <FaChevronDown size={12} />
+        <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
+          About
         </h1>
-        <h1 className="flex items-center gap-2 cursor-pointer">
-          For Talents
-          <FaChevronDown size={12} />
+        <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
+          Contact
         </h1>
-        <h1 className="flex items-center gap-2 cursor-pointer">News</h1>
-        <h1 className="flex items-center gap-2 cursor-pointer">About</h1>
-        <h1 className="flex items-center gap-2 cursor-pointer">Contact</h1>
       </div>
 
       <div className="block lg:hidden relative z-[999]">
