@@ -18,7 +18,7 @@ const TalentCard: React.FC<props> = ({ talent }) => {
       : "/images/talent/default_person_man.jpeg";
 
   return (
-    <div className="rounded-lg bg-card-bg p-4 w-full border border-gray-500 overflow-hidden hover:translate-y-[-5px] duration-200 cursor-pointer">
+    <div className="rounded-lg bg-card-bg p-4 w-full border border-gray-500 overflow-hidden hover:translate-y-[-5px] duration-200 cursor-pointer text-white">
       <div className="flex w-full">
         <img
           src={talentImage}
