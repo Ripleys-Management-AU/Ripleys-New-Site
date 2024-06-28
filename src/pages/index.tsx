@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout/Layout";
-import WebBanner from "../components/WebBanner";
+import WebBanner from "../components/WebBanner/WebBanner";
 import SectionCards from "@/components/SectionCards/SectionCards";
-import CompanyMarquee from "@/components/CompanyMarquee";
+import CompanyMarquee from "@/components/CompanyMarquee/CompanyMarquee";
 
 export default function Home() {
   return (
