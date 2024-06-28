@@ -210,7 +210,7 @@ const Navbar = () => {
             <li>
               <Link
                 className="py-2.5 w-full items-center block relative flex border-b border-cyan-500"
-                href="/Talent"
+                href="/talent"
               >
                 Talent
               </Link>
