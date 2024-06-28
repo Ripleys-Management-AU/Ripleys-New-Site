@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Talent } from "@/model/types";
+import { TalentType } from "@/model/types";
 import TalentCard from "@/components/TalentView/TalentCard/TalentCard";
 
 interface props {
-  talents: Talent[];
+  talents: TalentType[];
 }
 
 const TalentView: React.FC<props> = ({ talents }) => {

@@ -7,10 +7,10 @@ import TalentView from "@/components/TalentView/TalentView";
 
 import config from "@/config/config";
 import { FEMALE, MALE } from "@/constants";
-import { Talent } from "@/model/types";
+import { TalentType } from "@/model/types";
 
 interface props {
-  talents: Talent[];
+  talents: TalentType[];
 }
 
 const Talent: React.FC<props> = ({ talents }) => {

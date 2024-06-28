@@ -16,7 +16,7 @@ interface Ethnicity {
   updated_at: Date;
 }
 
-export interface Talent {
+export interface TalentType {
   old_id: number;
   status: number;
   first_name: string;
