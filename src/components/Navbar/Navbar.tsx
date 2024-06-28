@@ -1,11 +1,12 @@
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { FaChevronDown } from "react-icons/fa";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import HamburgerMenu from "react-hamburger-menu";
-import Link from "next/link";
+import { FaChevronDown } from "react-icons/fa";
+
 import useResponsiveMediaQuery from "@/hooks/useResponsiveMediaQuery";
-import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -81,19 +82,21 @@ const Navbar = () => {
                     <Link href="/talent">All Talent</Link>
                   </li>
                   <li className="hover:text-gray-500 duration-200">
-                    <Link href="/talent/subpage2">Women</Link>
+                    <Link href="/talent?gender=female">Women</Link>
                   </li>
                   <li className="hover:text-gray-500 duration-200">
-                    <Link href="/talent/subpage3">Men</Link>
+                    <Link href="/talent?gender=male">Men</Link>
                   </li>
                   <li className="hover:text-gray-500 duration-200">
-                    <Link href="/talent/subpage3">Children & Teens</Link>
+                    <Link href="/talent?type=children-teens">
+                      Children & Teens
+                    </Link>
                   </li>
                   <li className="hover:text-gray-500 duration-200">
-                    <Link href="/talent/subpage3">Couples</Link>
+                    <Link href="/talent?type=couples">Couples</Link>
                   </li>
                   <li className="hover:text-gray-500 duration-200">
-                    <Link href="/talent/subpage3">Families</Link>
+                    <Link href="/talent?type=families">Families</Link>
                   </li>
                 </ul>
               </motion.div>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import { sectionCards } from "@/data/sectionCardData";
 
 const SectionCards = () => {

@@ -1,4 +1,5 @@
 import Marquee from "react-fast-marquee";
+
 import { companyLogos } from "@/data/companyLogos";
 
 const CompanyMarquee = () => {

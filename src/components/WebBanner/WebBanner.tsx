@@ -1,9 +1,10 @@
-import { webBannerImages } from "@/data/webBannerData";
-import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import useEmblaCarousel from "embla-carousel-react";
+import { useEffect, useState } from "react";
 import { GoDot } from "react-icons/go";
 import { GoDotFill } from "react-icons/go";
-import { useEffect, useState } from "react";
+
+import { webBannerImages } from "@/data/webBannerData";
 
 const WebBanner = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
