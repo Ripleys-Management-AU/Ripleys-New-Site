@@ -26,7 +26,6 @@ export default Talent;
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { gender, type } = context.query;
 
-  // Fetch data based on the query parameter
   let data;
 
   if (!gender && !type) {
