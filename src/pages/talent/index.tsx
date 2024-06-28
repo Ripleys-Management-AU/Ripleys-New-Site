@@ -1,14 +1,22 @@
+import axios from "axios";
+import { GetServerSidePropsContext } from "next";
+import React from "react";
+
 import Layout from "@/components/Layout/Layout";
 import TalentView from "@/components/TalentView/TalentView";
-import { GetServerSidePropsContext } from "next";
-import axios from "axios";
+
 import config from "@/config/config";
 import { FEMALE, MALE } from "@/constants";
+import { Talent } from "@/model/types";
 
-const Talent = () => {
+interface props {
+  talents: Talent[];
+}
+
+const Talent: React.FC<props> = ({ talents }) => {
   return (
     <Layout>
-      <TalentView />
+      <TalentView talents={talents} />
     </Layout>
   );
 };
@@ -19,13 +27,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { gender, type } = context.query;
 
   // Fetch data based on the query parameter
-  let data = [];
+  let data;
 
   if (!gender && !type) {
     const res = await axios.get(`${config.baseUrl}/api/talent`);
-    data = res.data;
-
-    console.log(data);
+    data = res.data.talents;
 
     return {
       props: {
@@ -38,12 +44,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const res = await axios.get(
       `${config.baseUrl}/api/talent?gender=${gender === "female" ? FEMALE : MALE}`,
     );
-    data = res.data;
+    data = res.data.talents;
   }
 
   if (type) {
     const res = await axios.get(`${config.baseUrl}/api/talent?type=${type}`);
-    data = res.data;
+    data = res.data.talents;
   }
 
   return {
