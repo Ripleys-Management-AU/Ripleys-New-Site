@@ -64,7 +64,7 @@ const TalentView: React.FC<props> = ({
   }, [router.query.gender, router.query.type]);
 
   return (
-    <div className="w-full flex flex-col items-center min-h-[60vh] mt-20 lg:mt-44">
+    <div className="w-full flex flex-col items-center min-h-[60vh] pt-20 lg:pt-44">
       <div className="w-4/5">
         {loading ? (
           <div className="w-full min-h-[60vh] flex items-center justify-center">
