@@ -33,7 +33,7 @@ const TalentCard: React.FC<props> = ({ talent, setShowFullImages }) => {
       <div className="flex w-full">
         <img
           src={talentImage}
-          alt={`${talent.first_name} ${talent.last_name}`}
+          // alt={`${talent.first_name} ${talent.last_name}`}
           className="h-[150px] w-[100px] rounded-lg duration-200"
           // style={{
           //   maskImage:
