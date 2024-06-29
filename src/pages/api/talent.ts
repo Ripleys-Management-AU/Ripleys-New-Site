@@ -7,15 +7,29 @@ export default async function talent(
   res: NextApiResponse,
 ) {
   try {
+    const { gender, type, skip, take } = req.query;
     if (req.method === "GET") {
-      if (!req.query.gender && !req.query.type) {
-        const talents = await queryAllTalent();
-        return res.status(200).json({ talents });
+      if (!gender && !type) {
+        if (!skip || !take) {
+          const talents = await queryAllTalent();
+          return res.status(200).json({ talents });
+        } else {
+          const talents = await queryAllTalent(Number(skip), Number(take));
+          return res.status(200).json({ talents });
+        }
       }
-      if (req.query.gender) {
-        const { gender } = req.query;
-        const talents = await queryTalentByGender(Number(gender));
-        return res.status(200).json({ talents });
+      if (gender) {
+        if (!skip || !take) {
+          const talents = await queryTalentByGender(Number(gender));
+          return res.status(200).json({ talents });
+        } else {
+          const talents = await queryTalentByGender(
+            Number(gender),
+            Number(skip),
+            Number(take),
+          );
+          return res.status(200).json({ talents });
+        }
       }
       return res.status(200).json({ talents: [] });
     }

@@ -16,7 +16,8 @@ const config: Config = {
       colors: {
         "nav-dropdown": "#141414",
         "card-bg": "#111217",
-        "button-bg": "#393a41",
+        "button-bg": "#23232b",
+        "button-bg-hover": "#35373e",
       },
     },
   },
