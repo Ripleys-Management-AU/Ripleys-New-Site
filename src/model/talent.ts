@@ -1,3 +1,4 @@
+import { TALENT_ACTIVE } from "@/constants";
 import prisma from "@/model/client";
 
 export const queryAllTalent = async (skip?: number, take?: number) => {
@@ -5,10 +6,12 @@ export const queryAllTalent = async (skip?: number, take?: number) => {
     let talents;
     if (skip === null || take === null) {
       talents = await prisma.talent.findMany({
+        where: { status: TALENT_ACTIVE },
         include: { talent_image: true, ethnicity: true },
       });
     } else {
       talents = await prisma.talent.findMany({
+        where: { status: TALENT_ACTIVE },
         include: { talent_image: true, ethnicity: true },
         skip,
         take,
@@ -30,12 +33,12 @@ export const queryTalentByGender = async (
   try {
     if (skip === null || take === null) {
       talents = await prisma.talent.findMany({
-        where: { gender },
+        where: { gender, status: TALENT_ACTIVE },
         include: { talent_image: true, ethnicity: true },
       });
     } else {
       talents = await prisma.talent.findMany({
-        where: { gender },
+        where: { gender, status: TALENT_ACTIVE },
         include: { talent_image: true, ethnicity: true },
         skip,
         take,

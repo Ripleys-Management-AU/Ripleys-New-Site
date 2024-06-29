@@ -1,24 +1,32 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
+import { Blocks } from "react-loader-spinner";
+import ReactPaginate from "react-paginate";
 
 import TalentCard from "@/components/TalentView/TalentCard/TalentCard";
-import TalentCardSkeleton from "@/components/TalentView/TalentCardSkeleton/TalentCardSkeleton";
 
 import config from "@/config/config";
 import { FEMALE, MALE } from "@/constants";
 import { TalentType } from "@/model/types";
 
-const TalentView: React.FC = () => {
+interface props {
+  talentFullImage: TalentType | null;
+  setTalentFullImage: Dispatch<TalentType | null>;
+}
+
+const TalentView: React.FC<props> = ({
+  talentFullImage,
+  setTalentFullImage,
+}) => {
   const [talents, setTalents] = useState<TalentType[]>([]);
-  const [talentFullImage, setTalentFullImage] = useState<null | TalentType>(
-    null,
-  );
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, SetCurrentPage] = useState<number>(1);
 
   const router = useRouter();
+
+  const handlePageChange = async () => {};
 
   useEffect(() => {
     const fetchTalents = async () => {
@@ -56,24 +64,46 @@ const TalentView: React.FC = () => {
   }, [router.query.gender, router.query.type]);
 
   return (
-    <div className="w-full flex justify-center">
-      <div className="min-h-screen mt-20 lg:mt-44 w-4/5">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center w-full">
-          {loading
-            ? [...Array(config.talentPerPage)].map((_, index) => (
-                <TalentCardSkeleton key={index} />
-              ))
-            : talents?.map((talent) => (
-                <div key={talent.id} className="w-full">
-                  <TalentCard
-                    talent={talent}
-                    setShowFullImages={setTalentFullImage}
-                  />
-                </div>
-              ))}
-        </div>
+    <div className="w-full flex flex-col items-center min-h-[60vh] mt-20 lg:mt-44">
+      <div className="w-4/5">
+        {loading ? (
+          <div className="w-full min-h-[60vh] flex items-center justify-center">
+            <Blocks
+              height="80"
+              width="80"
+              color="#4fa94d"
+              ariaLabel="blocks-loading"
+              wrapperStyle={{}}
+              wrapperClass="blocks-wrapper"
+              visible={true}
+            />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center w-full">
+            {talents?.map((talent) => (
+              <div key={talent.id} className="w-full">
+                <TalentCard
+                  talent={talent}
+                  setShowFullImages={setTalentFullImage}
+                />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       {/*{talentFullImage && <div>{talentFullImage.first_name}</div>}*/}
+      {/*<div>*/}
+      {/*  <ReactPaginate*/}
+      {/*    breakLabel="..."*/}
+      {/*    nextLabel="next >"*/}
+      {/*    onPageChange={() => {}}*/}
+      {/*    pageRangeDisplayed={5}*/}
+      {/*    pageCount={100}*/}
+      {/*    previousLabel="< previous"*/}
+      {/*    renderOnZeroPageCount={null}*/}
+      {/*    className="bg-button-bg-hover"*/}
+      {/*  />*/}
+      {/*</div>*/}
     </div>
   );
 };

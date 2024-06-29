@@ -47,7 +47,7 @@ const Navbar = () => {
   return (
     <div className="fixed bg-black flex flex-row lg:flex-col justify-between lg:justify-center items-center pt-2 px-8 lg:px-0 pb-2 lg:pb-4 w-full lg:text-white top-0 z-[998]">
       <Image
-        src="images/logo-with-text.svg"
+        src="/images/logo-with-text.svg"
         alt="logo"
         height={isDesktopOrLaptop ? 80 : 55}
         width={isDesktopOrLaptop ? 80 : 55}

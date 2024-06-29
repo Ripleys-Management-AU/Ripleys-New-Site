@@ -29,23 +29,7 @@ const TalentCardSkeleton = () => {
                 className="rounded-lg"
               />
             </h1>
-            <div className="grid grid-cols-3 gap-2 mt-4">
-              <div className="flex flex-col justify-center items-center">
-                <Skeleton
-                  height="12px"
-                  width="40px"
-                  baseColor="#2c2d31"
-                  highlightColor="#3c3d42"
-                  className="rounded-lg"
-                />
-                <Skeleton
-                  height="12px"
-                  width="60px"
-                  baseColor="#2c2d31"
-                  highlightColor="#3c3d42"
-                  className="rounded-lg"
-                />
-              </div>
+            <div className="grid grid-cols-2 gap-12 mt-4">
               <div className="flex flex-col justify-center items-center">
                 <Skeleton
                   height="12px"

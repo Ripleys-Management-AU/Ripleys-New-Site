@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Layout from "@/components/Layout/Layout";
 import TalentView from "@/components/TalentView/TalentView";
 
-const Talent: React.FC = () => {
+import { TalentType } from "@/model/types";
+
+const TalentPage: React.FC = () => {
+  const [talentFullImage, setTalentFullImage] = useState<null | TalentType>(
+    null,
+  );
+
   return (
     <Layout>
-      <TalentView />
+      <TalentView
+        talentFullImage={talentFullImage}
+        setTalentFullImage={setTalentFullImage}
+      />
     </Layout>
   );
 };
 
-export default Talent;
+export default TalentPage;
 
 // export async function getServerSideProps(context: GetServerSidePropsContext) {
 //   const { gender, type } = context.query;

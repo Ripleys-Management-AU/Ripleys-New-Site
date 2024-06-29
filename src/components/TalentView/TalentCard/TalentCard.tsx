@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { Dispatch } from "react";
 import { IoMdShare } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -6,6 +7,7 @@ import { MdMail } from "react-icons/md";
 import GrayButton from "@/components/GrayButton/GrayButton";
 
 import { TalentType } from "@/model/types";
+import { calculateAge } from "@/utils/talent";
 
 interface props {
   talent: TalentType;
@@ -23,6 +25,8 @@ const TalentCard: React.FC<props> = ({ talent, setShowFullImages }) => {
     talent.gender === 1
       ? "/images/talent/default_person_women.jpeg"
       : "/images/talent/default_person_man.jpeg";
+
+  const router = useRouter();
 
   return (
     <div className="rounded-lg bg-card-bg p-4 w-full border border-gray-500 hover:translate-y-[-5px] duration-200 text-white">
@@ -46,7 +50,7 @@ const TalentCard: React.FC<props> = ({ talent, setShowFullImages }) => {
             <h1 className="text-lg font-semibold">
               {talent.first_name} {talent.last_name}
             </h1>
-            <div className="grid grid-cols-3 gap-2 mt-4">
+            <div className="grid grid-cols-2 gap-12 mt-4">
               <div className="flex flex-col justify-center items-center">
                 <p>Gender</p>
                 <p className="text-gray-400">
@@ -54,12 +58,10 @@ const TalentCard: React.FC<props> = ({ talent, setShowFullImages }) => {
                 </p>
               </div>
               <div className="flex flex-col justify-center items-center">
-                <p>Ethnicity</p>
-                <p className="text-gray-400">{talent.ethnicity?.name}</p>
-              </div>
-              <div className="flex flex-col justify-center items-center">
-                <p>Height</p>
-                <p className="text-gray-400">{talent.height}</p>
+                <p>Age</p>
+                <p className="text-gray-400">
+                  {calculateAge(talent.birth_date)}
+                </p>
               </div>
             </div>
           </div>
@@ -70,7 +72,12 @@ const TalentCard: React.FC<props> = ({ talent, setShowFullImages }) => {
             <GrayButton className="mt-2">
               <IoMdShare />
             </GrayButton>
-            <GrayButton className="mt-2">
+            <GrayButton
+              className="mt-2"
+              onClick={() => {
+                router.push(`/talent/${talent.id}`);
+              }}
+            >
               <MdKeyboardArrowRight />
             </GrayButton>
           </div>

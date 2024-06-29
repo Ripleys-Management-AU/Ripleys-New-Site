@@ -16,11 +16,11 @@ const Footer = () => {
             {/*</div>*/}
             <div className="flex items-start justify-start flex-col gap-5 col-span-1 md:col-span-4">
               <Image
-                src="images/logo-with-text.svg"
+                src="/images/logo-with-text.svg"
                 alt="logo"
                 height={70}
                 width={70}
-                className="cursor-pointer relative z-[999]"
+                className="cursor-pointer"
               />
               <div className="flex items-center justify-center gap-5">
                 <Link href="/">
