@@ -4,7 +4,6 @@ export const queryAllTalent = async (skip?: number, take?: number) => {
   try {
     let talents;
     if (skip === null || take === null) {
-      console.log("in");
       talents = await prisma.talent.findMany({
         include: { talent_image: true, ethnicity: true },
       });

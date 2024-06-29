@@ -23,6 +23,7 @@ const TalentView: React.FC = () => {
   useEffect(() => {
     const fetchTalents = async () => {
       try {
+        setLoading(true);
         let data = [];
         if (!router.query.gender && !router.query.type) {
           const res = await axios.get(
