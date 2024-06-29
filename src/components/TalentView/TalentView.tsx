@@ -73,7 +73,7 @@ const TalentView: React.FC = () => {
               ))}
         </div>
       </div>
-      {talentFullImage && <div>{talentFullImage.first_name}</div>}
+      {/*{talentFullImage && <div>{talentFullImage.first_name}</div>}*/}
     </div>
   );
 };
