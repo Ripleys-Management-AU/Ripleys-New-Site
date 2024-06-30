@@ -111,7 +111,7 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
               <img
                 key={index}
                 src={`/uploads/${item.filename}`}
-                className="w-[95px] h-[150px] lg:w-[210px] lg:h-[320px] rounded-[5px] cursor-pointer hover:filter hover:brightness-75 duration-200"
+                className="h-[150px] lg:h-[320px] rounded-[5px] cursor-pointer hover:filter hover:brightness-75 duration-200"
                 onClick={() => {
                   setCurrentImageIndex(index);
                 }}
