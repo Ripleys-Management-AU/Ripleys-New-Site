@@ -7,7 +7,7 @@ import { MdMail } from "react-icons/md";
 import GrayButton from "@/components/GrayButton/GrayButton";
 
 import { TalentType } from "@/model/types";
-import { calculateAge } from "@/utils/talent";
+import { calculateAge, mapAgeToAgeRange } from "@/utils/talent";
 
 interface props {
   talent: TalentType;
@@ -60,7 +60,8 @@ const TalentCard: React.FC<props> = ({ talent, setShowFullImages }) => {
               <div className="flex flex-col justify-center items-center">
                 <p>Age</p>
                 <p className="text-gray-400">
-                  {talent.birth_date && calculateAge(talent.birth_date)}
+                  {talent.birth_date &&
+                    mapAgeToAgeRange(calculateAge(talent.birth_date))}
                 </p>
               </div>
             </div>

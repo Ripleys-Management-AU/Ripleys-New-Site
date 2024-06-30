@@ -47,7 +47,7 @@ const Navbar = () => {
   return (
     <div className="fixed bg-black flex flex-row lg:flex-col justify-between lg:justify-center items-center pt-2 px-8 lg:px-0 pb-2 lg:pb-4 w-full lg:text-white top-0 z-[998]">
       <Image
-        src="/images/logo-with-text.svg"
+        src="/images/logo.png"
         alt="logo"
         height={isDesktopOrLaptop ? 80 : 55}
         width={isDesktopOrLaptop ? 80 : 55}
@@ -179,13 +179,13 @@ const Navbar = () => {
           </AnimatePresence>
         </div>
         <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
-          News
+          <Link href="/news">News</Link>
         </h1>
         <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
-          About
+          <Link href="/about"> About</Link>
         </h1>
         <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
-          Contact
+          <Link href="/contact">Contact</Link>
         </h1>
       </div>
 

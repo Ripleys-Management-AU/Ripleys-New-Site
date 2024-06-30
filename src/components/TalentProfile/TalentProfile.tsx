@@ -6,6 +6,7 @@ import {
 } from "@/data/talentProfileData";
 
 import { TalentType } from "@/model/types";
+import { Gallery } from "react-grid-gallery";
 
 interface props {
   talent: TalentType;
@@ -32,11 +33,19 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
     e.target.src = defaultImage;
   };
 
+  const talentImages = talent.talent_image?.map((item) => {
+    return {
+      src: `/uploads/${item.filename}`,
+      width: 210,
+      height: 320,
+    };
+  });
+
   return (
-    <div className="min-h-screen pt-20 lg:pt-48 flex flex-col items-center">
+    <div className="min-h-screen pt-20 lg:pt-52 flex flex-col items-center">
       <div className="w-4/5">
-        <div className="hidden lg:grid grid-cols-10">
-          <div className="col-span-3 flex justify-center">
+        <div className="hidden lg:grid grid-cols-12">
+          <div className="col-span-3 flex justify-start">
             <img
               className="w-[200px] h-[320px]"
               src={talentImage}
@@ -50,12 +59,12 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
               }}
             />
           </div>
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-9">
             <div className="w-full">
               <h1 className="text-3xl font-bold">
                 {talent.first_name} {talent.last_name}
               </h1>
-              <div className="mt-4">
+              <div className="mt-8">
                 <div className="w-full grid grid-cols-2 gap-8 text-white mb-4">
                   {talentProfileDataCols.map((item, index) => {
                     const itemData = item
@@ -78,6 +87,12 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="mt-4 w-full">
+          <h1 className="text-3xl font-bold">Photos</h1>
+          <div className="mt-4 max-w-[400px]">
+            <Gallery images={talentImages} />
           </div>
         </div>
       </div>

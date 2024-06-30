@@ -1,11 +1,11 @@
 import { TalentProfileColsDataType } from "@/data/types";
 
 export const femaleTalentProfileColsData: TalentProfileColsDataType[] = [
-  {
-    display: "Ethnicity",
-    dbAttribute: "ethnicity",
-    dbSubAttribute: "name",
-  },
+  // {
+  //   display: "Ethnicity",
+  //   dbAttribute: "ethnicity",
+  //   dbSubAttribute: "name",
+  // },
   {
     display: "Eye Colour",
     dbAttribute: "eye_colour",
@@ -26,11 +26,11 @@ export const femaleTalentProfileColsData: TalentProfileColsDataType[] = [
 ];
 
 export const maleTalentProfileColsData: TalentProfileColsDataType[] = [
-  {
-    display: "Ethnicity",
-    dbAttribute: "ethnicity",
-    dbSubAttribute: "name",
-  },
+  // {
+  //   display: "Ethnicity",
+  //   dbAttribute: "ethnicity",
+  //   dbSubAttribute: "name",
+  // },
   {
     display: "Eye Colour",
     dbAttribute: "eye_colour",

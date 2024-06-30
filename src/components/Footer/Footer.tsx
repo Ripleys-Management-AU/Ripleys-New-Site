@@ -16,7 +16,7 @@ const Footer = () => {
             {/*</div>*/}
             <div className="flex items-start justify-start flex-col gap-5 col-span-1 md:col-span-4">
               <Image
-                src="/images/logo-with-text.svg"
+                src="/images/logo.png"
                 alt="logo"
                 height={70}
                 width={70}
