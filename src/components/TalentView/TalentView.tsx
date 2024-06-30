@@ -89,7 +89,7 @@ const TalentView: React.FC<props> = ({
             />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center w-full  min-h-[40vh]">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center w-full  min-h-[50vh]">
             {talents?.map((talent) => (
               <div key={talent.id} className="w-full">
                 <TalentCard
