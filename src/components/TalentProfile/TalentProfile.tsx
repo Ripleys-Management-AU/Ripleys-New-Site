@@ -60,8 +60,10 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
                   {talentProfileDataCols.map((item, index) => {
                     const itemData = item
                       ? item.dbSubAttribute
-                        ? talent[item.dbAttribute]?.[item.dbSubAttribute]
-                        : talent[item.dbAttribute]
+                        ? (
+                            talent[item.dbAttribute as keyof TalentType] as any
+                          )?.[item.dbSubAttribute as keyof TalentType]
+                        : talent[item.dbAttribute as keyof TalentType]
                       : null;
                     if (!itemData) return;
                     return (
