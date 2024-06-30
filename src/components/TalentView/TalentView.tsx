@@ -122,17 +122,17 @@ const TalentView: React.FC<props> = ({
             forcePage={currentPage}
             previousLabel="<"
             nextLabel=">"
-            breakLabel="..."
+            breakLabel={isSmallScreen ? ".." : "..."}
             renderOnZeroPageCount={null}
             containerClassName="flex justify-center items-center gap-1 md:gap-2 font-mono"
             pageClassName="page-item"
-            pageLinkClassName="px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
+            pageLinkClassName="md:text-[15px] text-[12px] px-2 md:px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
             previousClassName="page-item"
-            previousLinkClassName="px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
+            previousLinkClassName="md:text-[15px] text-[12px] px-2 md:px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
             nextClassName="page-item"
-            nextLinkClassName="px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
+            nextLinkClassName="md:text-[15px] text-[12px] px-2 md:px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
             breakClassName="page-item"
-            breakLinkClassName="px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
+            breakLinkClassName="md:text-[15px] text-[12px] px-2 md:px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
             activeLinkClassName="!bg-primary-white"
           />
         </div>
