@@ -77,7 +77,7 @@ const TalentView: React.FC<props> = ({
     <div className="w-full flex flex-col items-center min-h-[60vh] pt-20 lg:pt-44">
       <div className="w-4/5">
         {loading ? (
-          <div className="w-full flex items-center justify-center">
+          <div className="w-full flex items-center justify-center min-h-[50vh]">
             <Blocks
               height="80"
               width="80"
