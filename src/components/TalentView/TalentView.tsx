@@ -77,7 +77,7 @@ const TalentView: React.FC<props> = ({
     <div className="w-full flex flex-col items-center min-h-[60vh] pt-20 lg:pt-44">
       <div className="w-4/5">
         {loading ? (
-          <div className="w-full min-h-[60vh] flex items-center justify-center">
+          <div className="w-full flex items-center justify-center">
             <Blocks
               height="80"
               width="80"
@@ -89,7 +89,7 @@ const TalentView: React.FC<props> = ({
             />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center w-full  min-h-[40vh]">
             {talents?.map((talent) => (
               <div key={talent.id} className="w-full">
                 <TalentCard

@@ -5,15 +5,15 @@ interface TalentImage {
   id: number;
   filename: string;
   title: string | null;
-  created_at: string;
-  updated_at: string;
+  created_at: Date | null;
+  updated_at: Date | null;
 }
 
 interface Ethnicity {
   name: string;
   id: number;
-  created_at: Date;
-  updated_at: Date;
+  created_at: Date | null;
+  updated_at: Date | null;
 }
 
 export interface TalentType {
@@ -44,7 +44,7 @@ export interface TalentType {
   abn: string | null;
   notes: string;
   gender: number;
-  birth_date: string;
+  birth_date?: Date | null;
   ethnicity_id: number;
   eye_colour: string;
   hair_colour: string;
@@ -65,14 +65,14 @@ export interface TalentType {
   showreel: string;
   skills_interests: string;
   artist_type: string;
-  date_joined: string;
-  date_expiry: string;
+  date_joined?: Date | null;
+  date_expiry?: Date | null;
   created_by: string | null;
   modified_by: string | null;
   id: number;
   slug: string;
-  created_at: string;
-  updated_at: string;
+  created_at: Date | null;
+  updated_at: Date | null;
   intensive_course: string | null;
   collar: string | null;
   talent_image?: TalentImage[];

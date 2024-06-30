@@ -33,7 +33,7 @@ const TalentCard: React.FC<props> = ({ talent, setShowFullImages }) => {
       <div className="flex w-full">
         <img
           src={talentImage}
-          // alt={`${talent.first_name} ${talent.last_name}`}
+          alt={`${talent.first_name} ${talent.last_name}`}
           className="h-[150px] w-[100px] rounded-lg duration-200"
           // style={{
           //   maskImage:
@@ -60,7 +60,7 @@ const TalentCard: React.FC<props> = ({ talent, setShowFullImages }) => {
               <div className="flex flex-col justify-center items-center">
                 <p>Age</p>
                 <p className="text-gray-400">
-                  {calculateAge(talent.birth_date)}
+                  {talent.birth_date && calculateAge(talent.birth_date)}
                 </p>
               </div>
             </div>
