@@ -16,3 +16,9 @@ export interface CompanyLogos {
   image: string;
   desc: string;
 }
+
+export interface TalentProfileDataType {
+  display: string;
+  dbAttribute: string;
+  dbSubAttribute?: string;
+}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Layout from "@/components/Layout/Layout";
-import TalentView from "@/components/TalentView/TalentView";
+import TalentsView from "@/components/TalentsView/TalentsView";
 
 import { TalentType } from "@/model/types";
 
@@ -12,7 +12,7 @@ const TalentPage: React.FC = () => {
 
   return (
     <Layout>
-      <TalentView
+      <TalentsView
         talentFullImage={talentFullImage}
         setTalentFullImage={setTalentFullImage}
       />

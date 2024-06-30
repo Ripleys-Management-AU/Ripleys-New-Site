@@ -5,7 +5,7 @@ import { Blocks } from "react-loader-spinner";
 import ReactPaginate from "react-paginate";
 import { useMediaQuery } from "react-responsive";
 
-import TalentCard from "@/components/TalentView/TalentCard/TalentCard";
+import TalentCard from "@/components/TalentsView/TalentCard/TalentCard";
 
 import config from "@/config/config";
 import { FEMALE, MALE } from "@/constants";
@@ -16,7 +16,7 @@ interface props {
   setTalentFullImage: Dispatch<TalentType | null>;
 }
 
-const TalentView: React.FC<props> = ({
+const TalentsView: React.FC<props> = ({
   talentFullImage,
   setTalentFullImage,
 }) => {
@@ -138,4 +138,4 @@ const TalentView: React.FC<props> = ({
   );
 };
 
-export default TalentView;
+export default TalentsView;
