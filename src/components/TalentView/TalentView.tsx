@@ -102,7 +102,7 @@ const TalentView: React.FC<props> = ({
         )}
       </div>
       {/*{talentFullImage && <div>{talentFullImage.first_name}</div>}*/}
-      {!loading && totalPage > 0 && (
+      {totalPage > 0 && (
         <div className="mt-20">
           <ReactPaginate
             onPageChange={handlePageChange}
