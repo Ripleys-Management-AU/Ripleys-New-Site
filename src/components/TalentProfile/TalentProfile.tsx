@@ -1,8 +1,8 @@
 import React from "react";
 
 import {
-  femaleTalentProfileData,
-  maleTalentProfileData,
+  femaleTalentProfileColsData,
+  maleTalentProfileColsData,
 } from "@/data/talentProfileData";
 
 import { TalentType } from "@/model/types";
@@ -24,7 +24,9 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
       : "/images/talent/default_person_man.jpeg";
 
   const talentProfileDataCols =
-    talent.gender === 1 ? femaleTalentProfileData : maleTalentProfileData;
+    talent.gender === 1
+      ? femaleTalentProfileColsData
+      : maleTalentProfileColsData;
 
   const handleImageError = (e) => {
     e.target.src = defaultImage;
