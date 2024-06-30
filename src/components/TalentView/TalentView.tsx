@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { Dispatch, useEffect, useState } from "react";
 import { Blocks } from "react-loader-spinner";
 import ReactPaginate from "react-paginate";
+import { useMediaQuery } from "react-responsive";
 
 import TalentCard from "@/components/TalentView/TalentCard/TalentCard";
 
@@ -26,6 +27,16 @@ const TalentView: React.FC<props> = ({
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   const router = useRouter();
+
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 639px)" });
+  const isMediumScreen = useMediaQuery({
+    query: "(min-width: 640px) and (max-width: 767px)",
+  });
+
+  const pageRangeDisplayed = isSmallScreen ? 1 : isMediumScreen ? 3 : 5;
+
+  console.log(isSmallScreen);
+  console.log(pageRangeDisplayed);
 
   const handlePageChange = (selectedItem: { selected: number }) => {
     const { selected } = selectedItem;
@@ -75,9 +86,9 @@ const TalentView: React.FC<props> = ({
 
   return (
     <div className="w-full flex flex-col items-center min-h-[60vh] pt-20 lg:pt-44">
-      <div className="w-4/5">
+      <div className="w-4/5 min-h-[63vh]">
         {loading ? (
-          <div className="w-full flex items-center justify-center min-h-[50vh]">
+          <div className="w-full flex items-center justify-center">
             <Blocks
               height="80"
               width="80"
@@ -89,7 +100,7 @@ const TalentView: React.FC<props> = ({
             />
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center w-full  min-h-[50vh]">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center w-full">
             {talents?.map((talent) => (
               <div key={talent.id} className="w-full">
                 <TalentCard
@@ -106,14 +117,14 @@ const TalentView: React.FC<props> = ({
         <div className="mt-20">
           <ReactPaginate
             onPageChange={handlePageChange}
-            pageRangeDisplayed={5}
+            pageRangeDisplayed={pageRangeDisplayed}
             pageCount={totalPage}
             forcePage={currentPage}
             previousLabel="<"
             nextLabel=">"
             breakLabel="..."
             renderOnZeroPageCount={null}
-            containerClassName="flex justify-center items-center gap-2 font-mono"
+            containerClassName="flex justify-center items-center gap-1 md:gap-2 font-mono"
             pageClassName="page-item"
             pageLinkClassName="px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
             previousClassName="page-item"
