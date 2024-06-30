@@ -48,7 +48,7 @@ const ImageWindow: React.FC<props> = ({
           setCurrentImageIndex(null);
         }}
       >
-        <IoCloseSharp size={40} />
+        <IoCloseSharp size={40} color={"white"} />
       </div>
       <div
         className="fixed top-[50%] left-4 cursor-pointer z-[1000]"
@@ -56,7 +56,7 @@ const ImageWindow: React.FC<props> = ({
           scrollPrev();
         }}
       >
-        <GrPrevious size={40} />
+        <GrPrevious size={40} color={"white"} />
       </div>
       <div
         className="fixed top-[50%] right-4 cursor-pointer z-[1000]"
@@ -64,7 +64,7 @@ const ImageWindow: React.FC<props> = ({
           scrollNext();
         }}
       >
-        <GrNext size={40} />
+        <GrNext size={40} color={"white"} />
       </div>
       <div className="bg-black bg-opacity-50 fixed bottom-4 left-[50%] z-[1000] py-1 px-2 rounded-lg w-[80px] text-center">
         {currentImageIndex + 1} / {imagePaths.length}
