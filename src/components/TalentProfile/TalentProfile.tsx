@@ -48,7 +48,7 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
   };
 
   return (
-    <div className="min-h-screen pt-20 lg:pt-52 flex flex-col items-center">
+    <div className="min-h-screen pt-20 lg:pt-52 flex flex-col items-center text-white">
       <AnimatePresence>
         {currentImageIndex !== null && (
           <ImageWindow

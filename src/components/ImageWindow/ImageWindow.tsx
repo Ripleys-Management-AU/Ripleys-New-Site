@@ -74,8 +74,8 @@ const ImageWindow: React.FC<props> = ({
       >
         <GrNext size={40} color={"white"} />
       </div>
-      <div className="bg-black bg-opacity-50 fixed bottom-4 left-[50%] z-[1000] py-1 px-2 rounded-lg w-[80px] text-center text-white">
-        {currentImageIndex !== null && currentImageIndex + 1} /
+      <div className="lg:bg-black lg:bg-opacity-50 fixed bottom-8 lg:bottom-4 left-[50%] -translate-x-1/2 z-[1000] py-1 px-2 rounded-lg w-[80px] text-center text-white">
+        {currentImageIndex !== null && currentImageIndex + 1} /{" "}
         {imagePaths.length}
       </div>
       <div className="embla w-full h-screen" ref={emblaRef}>
