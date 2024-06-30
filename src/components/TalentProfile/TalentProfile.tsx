@@ -58,9 +58,23 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
           />
         )}
       </AnimatePresence>
+      <div className="lg:hidden block">
+        <img
+          src={talentImage}
+          alt={`${talent.first_name} ${talent.last_name}`}
+          onError={handleImageError}
+          className="w-[100vw]"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, black 50%, transparent 100%)",
+            webkitMaskImage:
+              "linear-gradient(to bottom, black 50%, transparent 100%)",
+          }}
+        />
+      </div>
       <div className="w-4/5">
-        <div className="hidden lg:grid grid-cols-12">
-          <div className="col-span-3 flex justify-start">
+        <div className="lg:grid lg:grid-cols-12">
+          <div className="hidden lg:flex lg:col-span-3 justify-start">
             <img
               className="w-[200px] h-[320px]"
               src={talentImage}
@@ -76,7 +90,7 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
           </div>
           <div className="lg:col-span-9">
             <div className="w-full">
-              <h1 className="text-3xl font-bold">
+              <h1 className="mt-12 lg:mt-0 text-3xl font-bold">
                 {talent.first_name} {talent.last_name}
               </h1>
               <div className="mt-8">
@@ -105,7 +119,7 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
           </div>
         </div>
         <div className="mt-4 w-full">
-          <h1 className="text-3xl font-bold">Photos</h1>
+          <h1 className="mt-12 lg:mt-0 text-3xl font-bold">Photos</h1>
           <div className="mt-8 w-full flex flex-wrap gap-1">
             {talent.talent_image?.map((item, index) => (
               <img
