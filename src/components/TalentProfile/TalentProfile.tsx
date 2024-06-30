@@ -67,7 +67,7 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
           style={{
             maskImage:
               "linear-gradient(to bottom, black 50%, transparent 100%)",
-            webkitMaskImage:
+            WebkitMaskImage:
               "linear-gradient(to bottom, black 50%, transparent 100%)",
           }}
         />
