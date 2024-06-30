@@ -109,7 +109,6 @@ const TalentsView: React.FC<props> = ({
           </div>
         )}
       </div>
-      {/*{talentFullImage && <div>{talentFullImage.first_name}</div>}*/}
       {totalPage > 0 && (
         <div className="mt-20">
           <ReactPaginate
