@@ -35,9 +35,6 @@ const TalentView: React.FC<props> = ({
 
   const pageRangeDisplayed = isSmallScreen ? 1 : isMediumScreen ? 3 : 5;
 
-  console.log(isSmallScreen);
-  console.log(pageRangeDisplayed);
-
   const handlePageChange = (selectedItem: { selected: number }) => {
     const { selected } = selectedItem;
     setCurrentPage(selected);

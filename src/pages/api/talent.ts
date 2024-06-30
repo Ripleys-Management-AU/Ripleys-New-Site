@@ -1,40 +1,62 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-import { queryAllTalent, queryTalentByGender } from "@/model/talent";
+import { TALENT_ACTIVE } from "@/constants";
+import {
+  queryAllTalents,
+  queryTalentById,
+  queryTalentsByGender,
+} from "@/model/talent";
 
 export default async function talent(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
   try {
-    const { gender, type, skip, take } = req.query;
+    const { gender, type, skip, take, action } = req.query;
     if (req.method === "GET") {
-      if (!gender && !type) {
-        if (!skip || !take) {
-          const { talents, count } = await queryAllTalent();
-          return res.status(200).json({ talents, count });
-        } else {
-          const { talents, count } = await queryAllTalent(
-            Number(skip),
-            Number(take),
-          );
-          return res.status(200).json({ talents, count });
+      if (!action) {
+        if (!gender && !type) {
+          if (!skip || !take) {
+            const { talents, count } = await queryAllTalents();
+            return res.status(200).json({ talents, count });
+          } else {
+            const { talents, count } = await queryAllTalents(
+              Number(skip),
+              Number(take),
+            );
+            return res.status(200).json({ talents, count });
+          }
+        }
+
+        if (gender) {
+          if (!skip || !take) {
+            const { talents, count } = await queryTalentsByGender(
+              Number(gender),
+            );
+            return res.status(200).json({ talents, count });
+          } else {
+            const { talents, count } = await queryTalentsByGender(
+              Number(gender),
+              Number(skip),
+              Number(take),
+            );
+            return res.status(200).json({ talents, count });
+          }
         }
       }
-      if (gender) {
-        if (!skip || !take) {
-          const { talents, count } = await queryTalentByGender(Number(gender));
-          return res.status(200).json({ talents, count });
-        } else {
-          const { talents, count } = await queryTalentByGender(
-            Number(gender),
-            Number(skip),
-            Number(take),
-          );
-          return res.status(200).json({ talents, count });
+
+      if (action) {
+        if (action === "queryTalentById") {
+          const { talentId } = req.query;
+          const talent = await queryTalentById(Number(talentId));
+          if (!talent)
+            return res.status(404).json({ error: "talent not found" });
+          if (talent.status !== TALENT_ACTIVE)
+            return res.status(404).json({ error: "talent not active" });
+          return res.status(200).json({ talent });
         }
       }
-      return res.status(200).json({ talents: [], count: 0 });
+      return res.status(404).json({ error: "query not supported" });
     }
   } catch (e) {
     console.error(e);
