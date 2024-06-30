@@ -5,7 +5,7 @@ import Layout from "@/components/Layout/Layout";
 const ContactPage = () => {
   const formContext = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     console.log(data);
   };
 

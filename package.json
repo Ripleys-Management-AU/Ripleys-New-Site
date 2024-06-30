@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.21",
     "@prisma/client": "5.11.0",
     "axios": "^1.7.2",
+    "daisyui": "^4.12.10",
     "embla-carousel-autoplay": "^8.1.5",
     "embla-carousel-react": "^8.1.5",
     "framer-motion": "^11.2.12",

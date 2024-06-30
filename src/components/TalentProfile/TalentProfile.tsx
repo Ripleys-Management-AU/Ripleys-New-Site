@@ -1,18 +1,32 @@
-import React from "react";
+import { AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
 
 import {
   femaleTalentProfileColsData,
   maleTalentProfileColsData,
 } from "@/data/talentProfileData";
 
+import ImageWindow from "@/components/ImageWindow/ImageWindow";
+
 import { TalentType } from "@/model/types";
-import { Gallery } from "react-grid-gallery";
 
 interface props {
   talent: TalentType;
 }
 
 const TalentProfile: React.FC<props> = ({ talent }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState<number | null>(
+    null,
+  );
+  const imagePaths = talent?.talent_image
+    ? talent.talent_image
+        .map((item) => {
+          if (!item.filename) return;
+          return item.filename;
+        })
+        .filter((filename): filename is string => !!filename)
+    : [];
+
   const talentImage = talent?.talent_image
     ? `/uploads/thumbs/200x320-crop_${talent?.talent_image[0].filename}`
     : talent.gender === 1
@@ -33,16 +47,17 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
     e.target.src = defaultImage;
   };
 
-  const talentImages = talent.talent_image?.map((item) => {
-    return {
-      src: `/uploads/${item.filename}`,
-      width: 210,
-      height: 320,
-    };
-  });
-
   return (
     <div className="min-h-screen pt-20 lg:pt-52 flex flex-col items-center">
+      <AnimatePresence>
+        {currentImageIndex !== null && (
+          <ImageWindow
+            imagePaths={imagePaths}
+            currentImageIndex={currentImageIndex}
+            setCurrentImageIndex={setCurrentImageIndex}
+          />
+        )}
+      </AnimatePresence>
       <div className="w-4/5">
         <div className="hidden lg:grid grid-cols-12">
           <div className="col-span-3 flex justify-start">
@@ -91,8 +106,17 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
         </div>
         <div className="mt-4 w-full">
           <h1 className="text-3xl font-bold">Photos</h1>
-          <div className="mt-4 max-w-[400px]">
-            <Gallery images={talentImages} />
+          <div className="mt-8 w-full flex flex-wrap gap-1">
+            {talent.talent_image?.map((item, index) => (
+              <img
+                key={index}
+                src={`/uploads/${item.filename}`}
+                className="w-[95px] h-[150px] lg:w-[210px] lg:h-[320px] rounded-[5px] cursor-pointer hover:filter hover:brightness-75 duration-200"
+                onClick={() => {
+                  setCurrentImageIndex(index);
+                }}
+              />
+            ))}
           </div>
         </div>
       </div>
