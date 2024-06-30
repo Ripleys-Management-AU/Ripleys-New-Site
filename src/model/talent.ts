@@ -2,25 +2,37 @@ import { TALENT_ACTIVE } from "@/constants";
 import prisma from "@/model/client";
 
 export const queryAllTalent = async (skip?: number, take?: number) => {
+  let talents = [];
+  let total = 0;
+
   try {
-    let talents;
     if (skip === null || take === null) {
-      talents = await prisma.talent.findMany({
-        where: { status: TALENT_ACTIVE },
-        include: { talent_image: true, ethnicity: true },
-      });
+      [talents, total] = await Promise.all([
+        prisma.talent.findMany({
+          where: { status: TALENT_ACTIVE },
+          include: { talent_image: true, ethnicity: true },
+        }),
+        prisma.talent.count({
+          where: { status: TALENT_ACTIVE },
+        }),
+      ]);
     } else {
-      talents = await prisma.talent.findMany({
-        where: { status: TALENT_ACTIVE },
-        include: { talent_image: true, ethnicity: true },
-        skip,
-        take,
-      });
+      [talents, total] = await Promise.all([
+        prisma.talent.findMany({
+          where: { status: TALENT_ACTIVE },
+          include: { talent_image: true, ethnicity: true },
+          skip,
+          take,
+        }),
+        prisma.talent.count({
+          where: { status: TALENT_ACTIVE },
+        }),
+      ]);
     }
-    return talents;
+    return { talents, count: total };
   } catch (e) {
     console.error(`error find all talent: ${e}`);
-    return [];
+    return { talents, count: total };
   }
 };
 
@@ -29,25 +41,36 @@ export const queryTalentByGender = async (
   skip?: number,
   take?: number,
 ) => {
-  let talents;
+  let talents = [];
+  let total = 0;
+
   try {
     if (skip === null || take === null) {
-      talents = await prisma.talent.findMany({
-        where: { gender, status: TALENT_ACTIVE },
-        include: { talent_image: true, ethnicity: true },
-      });
+      [talents, total] = await Promise.all([
+        prisma.talent.findMany({
+          where: { gender, status: TALENT_ACTIVE },
+          include: { talent_image: true, ethnicity: true },
+        }),
+        prisma.talent.count({
+          where: { status: TALENT_ACTIVE, gender },
+        }),
+      ]);
     } else {
-      talents = await prisma.talent.findMany({
-        where: { gender, status: TALENT_ACTIVE },
-        include: { talent_image: true, ethnicity: true },
-        skip,
-        take,
-      });
+      [talents, total] = await Promise.all([
+        prisma.talent.findMany({
+          where: { gender, status: TALENT_ACTIVE },
+          include: { talent_image: true, ethnicity: true },
+          skip,
+          take,
+        }),
+        prisma.talent.count({
+          where: { status: TALENT_ACTIVE, gender },
+        }),
+      ]);
     }
-
-    return talents;
+    return { talents, count: total };
   } catch (e) {
     console.error(`error find all talent: ${e}`);
-    return [];
+    return { talents, count: total };
   }
 };

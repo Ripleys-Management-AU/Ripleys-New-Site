@@ -16,6 +16,13 @@
   }
 }
 
+@font-face {
+  font-family: "pixelfont";
+  src: url("/fonts/MonoRegular.woff2") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

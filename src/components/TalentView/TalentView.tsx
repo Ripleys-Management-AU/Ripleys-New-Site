@@ -22,38 +22,48 @@ const TalentView: React.FC<props> = ({
   const [talents, setTalents] = useState<TalentType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const [currentPage, SetCurrentPage] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(0);
 
   const router = useRouter();
 
-  const handlePageChange = async () => {};
+  const handlePageChange = (selectedItem) => {
+    const { selected } = selectedItem;
+    setCurrentPage(selected);
+  };
 
   useEffect(() => {
     const fetchTalents = async () => {
+      console.log("current page", currentPage);
       try {
         setLoading(true);
         let data = [];
+        let count = 0;
         if (!router.query.gender && !router.query.type) {
           const res = await axios.get(
-            `${config.baseUrl}/api/talent?skip=0&&take=9`,
+            `${config.baseUrl}/api/talent?skip=${currentPage * config.talentPerPage}&&take=9`,
           );
           data = res.data.talents;
+          count = res.data.count;
         }
         if (router.query.gender) {
           const res = await axios.get(
-            `${config.baseUrl}/api/talent?skip=0&&take=9&&gender=${router.query.gender === "female" ? FEMALE : MALE}`,
+            `${config.baseUrl}/api/talent?skip=${currentPage * config.talentPerPage}&&take=9&&gender=${router.query.gender === "female" ? FEMALE : MALE}`,
           );
           data = res.data.talents;
+          count = res.data.count;
         }
 
         if (router.query.type) {
           const res = await axios.get(
-            `${config.baseUrl}/api/talent?skip=0&&take=9&&type=${router.query.type}`,
+            `${config.baseUrl}/api/talent?skip=${currentPage * config.talentPerPage}&&take=9&&type=${router.query.type}`,
           );
           data = res.data.talents;
+          count = res.data.count;
         }
         setTalents(data);
         setLoading(false);
+        setTotalPage(Math.ceil(count / config.talentPerPage));
       } catch (err) {
         setError("Failed to load talents");
         setLoading(false);
@@ -61,7 +71,7 @@ const TalentView: React.FC<props> = ({
     };
 
     fetchTalents();
-  }, [router.query.gender, router.query.type]);
+  }, [router.query.gender, router.query.type, currentPage]);
 
   return (
     <div className="w-full flex flex-col items-center min-h-[60vh] pt-20 lg:pt-44">
@@ -92,18 +102,30 @@ const TalentView: React.FC<props> = ({
         )}
       </div>
       {/*{talentFullImage && <div>{talentFullImage.first_name}</div>}*/}
-      {/*<div>*/}
-      {/*  <ReactPaginate*/}
-      {/*    breakLabel="..."*/}
-      {/*    nextLabel="next >"*/}
-      {/*    onPageChange={() => {}}*/}
-      {/*    pageRangeDisplayed={5}*/}
-      {/*    pageCount={100}*/}
-      {/*    previousLabel="< previous"*/}
-      {/*    renderOnZeroPageCount={null}*/}
-      {/*    className="bg-button-bg-hover"*/}
-      {/*  />*/}
-      {/*</div>*/}
+      {!loading && totalPage > 0 && (
+        <div className="mt-20">
+          <ReactPaginate
+            onPageChange={handlePageChange}
+            pageRangeDisplayed={5}
+            pageCount={totalPage}
+            forcePage={currentPage}
+            previousLabel="<"
+            nextLabel=">"
+            breakLabel="..."
+            renderOnZeroPageCount={null}
+            containerClassName="flex justify-center items-center gap-2 font-mono"
+            pageClassName="page-item"
+            pageLinkClassName="px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
+            previousClassName="page-item"
+            previousLinkClassName="px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
+            nextClassName="page-item"
+            nextLinkClassName="px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
+            breakClassName="page-item"
+            breakLinkClassName="px-3 py-1 bg-secondary-white border border-tertiary-white text-white hover:bg-primary-white duration-200 font-semibold rounded"
+            activeLinkClassName="!bg-primary-white"
+          />
+        </div>
+      )}
     </div>
   );
 };

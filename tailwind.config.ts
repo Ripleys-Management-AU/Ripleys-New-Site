@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        mono: ["pixelfont", "Helvetica Neue", "Helvetica", "Arial", "sans"],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -18,6 +21,9 @@ const config: Config = {
         "card-bg": "#111217",
         "button-bg": "#23232b",
         "button-bg-hover": "#35373e",
+        "tertiary-white": "hsla(0, 0%, 100%, .05)",
+        "secondary-white": "hsla(0, 0%, 100%, .1)",
+        "primary-white": "#4e4c4d",
       },
     },
   },

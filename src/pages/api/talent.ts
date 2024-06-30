@@ -11,27 +11,30 @@ export default async function talent(
     if (req.method === "GET") {
       if (!gender && !type) {
         if (!skip || !take) {
-          const talents = await queryAllTalent();
-          return res.status(200).json({ talents });
+          const { talents, count } = await queryAllTalent();
+          return res.status(200).json({ talents, count });
         } else {
-          const talents = await queryAllTalent(Number(skip), Number(take));
-          return res.status(200).json({ talents });
+          const { talents, count } = await queryAllTalent(
+            Number(skip),
+            Number(take),
+          );
+          return res.status(200).json({ talents, count });
         }
       }
       if (gender) {
         if (!skip || !take) {
-          const talents = await queryTalentByGender(Number(gender));
-          return res.status(200).json({ talents });
+          const { talents, count } = await queryTalentByGender(Number(gender));
+          return res.status(200).json({ talents, count });
         } else {
-          const talents = await queryTalentByGender(
+          const { talents, count } = await queryTalentByGender(
             Number(gender),
             Number(skip),
             Number(take),
           );
-          return res.status(200).json({ talents });
+          return res.status(200).json({ talents, count });
         }
       }
-      return res.status(200).json({ talents: [] });
+      return res.status(200).json({ talents: [], count: 0 });
     }
   } catch (e) {
     console.error(e);
