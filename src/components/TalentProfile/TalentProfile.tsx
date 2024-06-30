@@ -28,7 +28,7 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
       ? femaleTalentProfileColsData
       : maleTalentProfileColsData;
 
-  const handleImageError = (e) => {
+  const handleImageError = (e: any) => {
     e.target.src = defaultImage;
   };
 
