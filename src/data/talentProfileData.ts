@@ -1,6 +1,6 @@
-import { TalentProfileDataType } from "@/data/types";
+import { TalentProfileColsDataType } from "@/data/types";
 
-export const femaleTalentProfileData: TalentProfileDataType[] = [
+export const femaleTalentProfileColsData: TalentProfileColsDataType[] = [
   {
     display: "Ethnicity",
     dbAttribute: "ethnicity",
@@ -25,7 +25,7 @@ export const femaleTalentProfileData: TalentProfileDataType[] = [
   { display: "Hips", dbAttribute: "hips" },
 ];
 
-export const maleTalentProfileData: TalentProfileDataType[] = [
+export const maleTalentProfileColsData: TalentProfileColsDataType[] = [
   {
     display: "Ethnicity",
     dbAttribute: "ethnicity",
