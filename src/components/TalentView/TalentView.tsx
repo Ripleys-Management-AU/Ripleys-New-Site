@@ -27,7 +27,7 @@ const TalentView: React.FC<props> = ({
 
   const router = useRouter();
 
-  const handlePageChange = (selectedItem) => {
+  const handlePageChange = (selectedItem: { selected: number }) => {
     const { selected } = selectedItem;
     setCurrentPage(selected);
   };
