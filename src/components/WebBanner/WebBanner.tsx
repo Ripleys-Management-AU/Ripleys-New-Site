@@ -29,7 +29,7 @@ const WebBanner = () => {
   };
 
   return (
-    <section className="w-full overflow-hidden mt-16 lg:mt-32">
+    <section className="w-full overflow-hidden pt-16 lg:pt-32">
       <div className="embla w-full" ref={emblaRef}>
         <div className="embla__container">
           {webBannerImages.map((item) => (
