@@ -26,7 +26,7 @@ const SectionCards = () => {
               </div>
             )}
             {item.id === 2 && (
-              <div className="absolute bottom-[-35px] right-[-45px] z-[100] rotate-[-50deg]">
+              <div className="hidden md:block absolute bottom-[-35px] right-[-45px] z-[100] rotate-[-50deg]">
                 <div className="relative">
                   <Image
                     src="/images/logo.png"
