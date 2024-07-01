@@ -78,3 +78,16 @@ export interface TalentType {
   talent_image?: TalentImage[];
   ethnicity: Ethnicity;
 }
+
+export interface EnquiryFormData {
+  name: string;
+  email_address: string;
+  phone: string;
+  enquiry: string;
+}
+
+export interface EnquiryType extends EnquiryFormData {
+  id?: number;
+  created_at: Date | null;
+  updated_at: Date | null;
+}

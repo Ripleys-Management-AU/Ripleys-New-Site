@@ -1,7 +1,7 @@
 import React from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
-interface InputProps {
+interface Props {
   label: string;
   register: UseFormRegisterReturn;
   error?: any;
@@ -9,7 +9,7 @@ interface InputProps {
   disabled: boolean;
 }
 
-const FormInput: React.FC<InputProps> = ({
+const FormTextArea: React.FC<Props> = ({
   label,
   register,
   error,
@@ -17,23 +17,23 @@ const FormInput: React.FC<InputProps> = ({
   disabled,
 }) => {
   return (
-    <div className="w-full">
+    <div className="w-full mt-2">
       <div className="label">
         <span
           className={`label-text font-semibold ${error ? "text-error" : ""}`}
         >
           {label}
-          {required && "*"}
+          {required && `*`}
         </span>
       </div>
-      <div className="w-full flex flex-col">
-        <input
-          className={`input input-info bg-white text-black ${error ? "input-error" : ""}`}
+      <div className="w-full">
+        <textarea
+          className={`textarea bg-white text-black w-full min-h-[200px] text-md ${error ? "textarea-error" : ""}`}
           disabled={disabled}
           {...register}
         />
         {error && (
-          <span className="text-error font-semibold mt-1 text-sm">
+          <span className="text-error font-semibold text-sm">
             {error.message}
           </span>
         )}
@@ -42,4 +42,4 @@ const FormInput: React.FC<InputProps> = ({
   );
 };
 
-export default FormInput;
+export default FormTextArea;

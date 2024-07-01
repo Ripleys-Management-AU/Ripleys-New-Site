@@ -215,6 +215,16 @@ model country {
   talent     talent[]
 }
 
+model enquiry {
+  id            Int       @id @default(autoincrement())
+  name          String    @db.VarChar(100)
+  email_address String    @db.VarChar(100)
+  phone         String    @db.VarChar(255)
+  enquiry       String    @db.VarChar(500)
+  created_at    DateTime? @db.DateTime(0)
+  updated_at    DateTime? @db.DateTime(0)
+}
+
 model ethnicity {
   name       String    @unique(map: "ethnicity_U_1") @db.VarChar(100)
   id         Int       @id @default(autoincrement())
