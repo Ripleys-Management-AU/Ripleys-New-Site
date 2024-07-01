@@ -14,7 +14,11 @@ export default function Home() {
     <main className="bg-black min-h-screen">
       <Layout>
         <WebBanner />
-        <CompanyMarquee direction="right" logos={filmCompanyLogosSectionOne} />
+        <CompanyMarquee
+          title="Casting Companies We Work With"
+          direction="right"
+          logos={filmCompanyLogosSectionOne}
+        />
         <SectionCards />
         <CompanyMarquee
           title="Who We'Re Working With"
