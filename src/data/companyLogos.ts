@@ -1,6 +1,69 @@
-import { CompanyLogos } from "@/data/types";
+import { LogoType } from "@/data/types";
 
-export const companyLogos: CompanyLogos[] = [
+export const filmCompanyLogosSectionOne: LogoType[] = [
+  {
+    id: 1,
+    image: "/images/movieCompany/bc.jpeg",
+    desc: "bc",
+  },
+  {
+    id: 2,
+    image: "/images/movieCompany/chameleon.jpeg",
+    desc: "chameleon",
+  },
+  {
+    id: 3,
+    image: "/images/movieCompany/highway.jpeg",
+    desc: "highway",
+  },
+  {
+    id: 4,
+    image: "/images/movieCompany/nhc.jpeg",
+    desc: "nhc",
+  },
+  {
+    id: 5,
+    image: "/images/movieCompany/nlc.jpeg",
+    desc: "nlc",
+  },
+  {
+    id: 6,
+    image: "/images/movieCompany/northside.jpeg",
+    desc: "northside",
+  },
+  {
+    id: 7,
+    image: "/images/movieCompany/bc.jpeg",
+    desc: "bc",
+  },
+  {
+    id: 8,
+    image: "/images/movieCompany/chameleon.jpeg",
+    desc: "chameleon",
+  },
+  {
+    id: 9,
+    image: "/images/movieCompany/highway.jpeg",
+    desc: "highway",
+  },
+  {
+    id: 10,
+    image: "/images/movieCompany/nhc.jpeg",
+    desc: "nhc",
+  },
+  {
+    id: 11,
+    image: "/images/movieCompany/nlc.jpeg",
+    desc: "nlc",
+  },
+  {
+    id: 12,
+    image: "/images/movieCompany/northside.jpeg",
+    desc: "northside",
+  },
+];
+
+export const filmCompanyLogosSectionTwo: LogoType[] = [
   {
     id: 1,
     image: "/images/movieCompany/dreamworks-animation.svg",
@@ -43,3 +106,5 @@ export const companyLogos: CompanyLogos[] = [
     desc: "Relativity Media",
   },
 ];
+
+export const entertainmentCompanyLogos: LogoType[] = [];

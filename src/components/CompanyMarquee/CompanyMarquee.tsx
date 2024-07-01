@@ -1,15 +1,23 @@
 import Marquee from "react-fast-marquee";
+import { LogoType } from "@/data/types";
+import React from "react";
 
-import { companyLogos } from "@/data/companyLogos";
+interface Props {
+  logos: LogoType[];
+  direction?: "left" | "right" | "up" | "down";
+  title: string;
+}
 
-const CompanyMarquee = () => {
+const CompanyMarquee: React.FC<Props> = ({ logos, direction, title }) => {
   return (
     <div className="text-center mt-4">
-      <h1 className="uppercase text-4xl font-semibold text-gray-300 mb-12">
-        Who We&apos;Re Working With
-      </h1>
-      <Marquee>
-        {companyLogos.map((item) => (
+      {title && (
+        <h1 className="uppercase text-4xl font-semibold text-gray-300 mb-12">
+          {title}
+        </h1>
+      )}
+      <Marquee direction={direction ? direction : "left"}>
+        {logos.map((item) => (
           <img
             key={item.id}
             src={item.image}

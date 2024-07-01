@@ -11,7 +11,7 @@ export interface SectionCardData {
   link: string;
 }
 
-export interface CompanyLogos {
+export interface LogoType {
   id: number;
   image: string;
   desc: string;

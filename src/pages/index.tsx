@@ -1,3 +1,8 @@
+import {
+  filmCompanyLogosSectionOne,
+  filmCompanyLogosSectionTwo,
+} from "@/data/companyLogos";
+
 import CompanyMarquee from "@/components/CompanyMarquee/CompanyMarquee";
 import Layout from "@/components/Layout/Layout";
 import SectionCards from "@/components/SectionCards/SectionCards";
@@ -9,8 +14,12 @@ export default function Home() {
     <main className="bg-black min-h-screen">
       <Layout>
         <WebBanner />
+        <CompanyMarquee direction="right" logos={filmCompanyLogosSectionOne} />
         <SectionCards />
-        <CompanyMarquee />
+        <CompanyMarquee
+          title="Who We'Re Working With"
+          logos={filmCompanyLogosSectionTwo}
+        />
       </Layout>
     </main>
   );
