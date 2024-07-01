@@ -5,7 +5,7 @@ import React from "react";
 interface Props {
   logos: LogoType[];
   direction?: "left" | "right" | "up" | "down";
-  title: string;
+  title?: string;
 }
 
 const CompanyMarquee: React.FC<Props> = ({ logos, direction, title }) => {
