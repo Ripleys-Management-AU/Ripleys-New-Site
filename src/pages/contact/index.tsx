@@ -1,13 +1,17 @@
+import axios from "axios";
+import { AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { RotatingLines } from "react-loader-spinner";
 
 import FormInput from "@/components/Form/FormInput/FormInput";
 import FormTextArea from "@/components/Form/FormTextArea/FormTextArea";
 import Layout from "@/components/Layout/Layout";
-import { useEffect, useState } from "react";
-import { InfoType } from "@/types/InfoType";
-import axios from "axios";
+import Toast from "@/components/Toast/Toast";
+
 import config from "@/config/config";
-import { RotatingLines } from "react-loader-spinner";
+
+import { InfoType } from "@/types/InfoType";
 
 const ContactPage = () => {
   const {
@@ -40,7 +44,7 @@ const ContactPage = () => {
 
       setInfo({
         message: "Your enquiry has been submitted successfully",
-        type: "info",
+        type: "success",
       });
     } catch (e) {
       console.error(e);
@@ -68,6 +72,7 @@ const ContactPage = () => {
     <Layout>
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">
         <div className="w-4/5">
+          <AnimatePresence>{info && <Toast info={info} />}</AnimatePresence>
           <h1 className="text-white text-3xl">Contact Us</h1>
           <div className="text-center mt-4 text-light-grey text-md leading-8">
             <p>
