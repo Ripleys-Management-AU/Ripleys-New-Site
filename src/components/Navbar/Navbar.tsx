@@ -46,16 +46,26 @@ const Navbar = () => {
 
   return (
     <div className="fixed bg-black flex flex-row lg:flex-col justify-between lg:justify-center items-center pt-2 px-8 lg:px-0 pb-2 lg:pb-4 w-full lg:text-white top-0 z-[998]">
-      <Image
-        src="/images/logo.png"
-        alt="logo"
-        height={isDesktopOrLaptop ? 80 : 55}
-        width={isDesktopOrLaptop ? 80 : 55}
-        className="cursor-pointer relative z-[999]"
+      <div
+        className="flex items-center gap-2 cursor-pointer"
         onClick={() => {
           router.push("/");
         }}
-      />
+      >
+        <Image
+          src="/images/logo.png"
+          alt="logo"
+          height={isDesktopOrLaptop ? 70 : 50}
+          width={isDesktopOrLaptop ? 70 : 50}
+          className="relative z-[999]"
+        />
+        <h1 className="hidden md:block font-msb-bold text-lg lg:text-2xl uppercase">
+          Ripleys Management
+        </h1>
+        <h1 className="md:hidden font-msb-bold text-lg uppercase">
+          Ripleys Mgmt
+        </h1>
+      </div>
       <div className="hidden lg:flex flex-col lg:flex-row justify-center gap-20 pt-2 lg:w-4/5">
         <div
           className="relative"

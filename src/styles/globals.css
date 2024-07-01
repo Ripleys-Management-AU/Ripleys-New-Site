@@ -23,6 +23,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "alleyfont";
+  src: url("/fonts/MSBee-Bold.woff2") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

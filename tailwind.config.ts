@@ -11,6 +11,13 @@ const config: Config = {
     extend: {
       fontFamily: {
         mono: ["pixelfont", "Helvetica Neue", "Helvetica", "Arial", "sans"],
+        "msb-bold": [
+          "alleyfont",
+          "Helvetica Neue",
+          "Helvetica",
+          "Arial",
+          "sans",
+        ],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
