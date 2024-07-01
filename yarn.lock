@@ -715,6 +715,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-loader-spinner@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-loader-spinner/-/react-loader-spinner-4.0.0.tgz#20e58530c120529f3e7d9c26f950b9c80575f080"
+  integrity sha512-FKW/yD3KwpydC8gsLmdWCOW0v/aezTvxcqqU0umNHa4QNkVF37UgOeh6DgXIPkxRm/m+6fcgW9XYK6Ff+HCd3A==
+  dependencies:
+    react-loader-spinner "*"
+
 "@types/react-transition-group@^4.2.0", "@types/react-transition-group@^4.4.10":
   version "4.4.10"
   resolved "https://registry.yarnpkg.com/@types/react-transition-group/-/react-transition-group-4.4.10.tgz#6ee71127bdab1f18f11ad8fb3322c6da27c327ac"
@@ -3217,7 +3224,7 @@ react-is@^18.2.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.3.1.tgz#e83557dc12eae63a99e003a46388b1dcbb44db7e"
   integrity sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==
 
-react-loader-spinner@^6.1.6:
+react-loader-spinner@*, react-loader-spinner@^6.1.6:
   version "6.1.6"
   resolved "https://registry.yarnpkg.com/react-loader-spinner/-/react-loader-spinner-6.1.6.tgz#744d84a9763e963b565054f4f281dadfbd17e9e9"
   integrity sha512-x5h1Jcit7Qn03MuKlrWcMG9o12cp9SNDVHVJTNRi9TgtGPKcjKiXkou4NRfLAtXaFB3+Z8yZsVzONmPzhv2ErA==

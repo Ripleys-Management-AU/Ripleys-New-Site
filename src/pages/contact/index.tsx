@@ -142,13 +142,16 @@ const ContactPage = () => {
               {loading ? (
                 <RotatingLines
                   visible={true}
+                  //eslint-disable-next-line
+                  // @ts-ignore
                   height="24"
+                  //eslint-disable-next-line
+                  // @ts-ignore
                   width="24"
                   strokeColor="white"
                   strokeWidth="5"
                   animationDuration="0.75"
                   ariaLabel="rotating-lines-loading"
-                  wrapperClass=""
                 />
               ) : (
                 "Submit"
