@@ -59,10 +59,10 @@ const Navbar = () => {
           width={isDesktopOrLaptop ? 70 : 50}
           className="relative z-[999]"
         />
-        <h1 className="hidden md:block font-msb-bold text-lg lg:text-2xl uppercase">
+        <h1 className="hidden md:block font-msb-bold text-white text-lg lg:text-2xl uppercase">
           Ripleys Management Australia
         </h1>
-        <h1 className="md:hidden font-msb-bold text-lg uppercase">
+        <h1 className="md:hidden text-white font-msb-bold text-lg uppercase">
           Ripleys Mgmt AU
         </h1>
       </div>

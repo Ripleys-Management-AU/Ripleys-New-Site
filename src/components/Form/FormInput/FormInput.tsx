@@ -20,7 +20,7 @@ const FormInput: React.FC<InputProps> = ({
     <div className="w-full">
       <div className="label">
         <span
-          className={`label-text font-semibold ${error ? "text-error" : ""}`}
+          className={`label-text font-semibold ${error ? "text-error" : "text-neutral-content"}`}
         >
           {label}
           {required && "*"}

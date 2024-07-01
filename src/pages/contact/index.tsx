@@ -43,13 +43,13 @@ const ContactPage = () => {
       });
 
       setInfo({
-        message: "Your enquiry has been submitted successfully",
+        message: "Enquiry has been submitted successfully",
         type: "success",
       });
     } catch (e) {
       console.error(e);
       setInfo({
-        message: "An error happened,please try again later",
+        message: "An error happened, please try again later",
         type: "error",
       });
     } finally {

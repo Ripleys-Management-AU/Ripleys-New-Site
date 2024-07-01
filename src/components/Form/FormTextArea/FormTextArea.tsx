@@ -20,7 +20,7 @@ const FormTextArea: React.FC<Props> = ({
     <div className="w-full mt-2">
       <div className="label">
         <span
-          className={`label-text font-semibold ${error ? "text-error" : ""}`}
+          className={`label-text font-semibold ${error ? "text-error" : "text-neutral-content"}`}
         >
           {label}
           {required && `*`}
