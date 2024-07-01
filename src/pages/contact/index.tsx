@@ -135,6 +135,7 @@ const ContactPage = () => {
             </div>
             <button
               className="btn w-full mt-8 duration-200 bg-button-grey hover:bg-button-grey-light text-white"
+              disabled={loading}
               onClick={() => {
                 handleSubmit();
               }}

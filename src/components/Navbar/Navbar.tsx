@@ -60,10 +60,10 @@ const Navbar = () => {
           className="relative z-[999]"
         />
         <h1 className="hidden md:block font-msb-bold text-lg lg:text-2xl uppercase">
-          Ripleys Management
+          Ripleys Management Australia
         </h1>
         <h1 className="md:hidden font-msb-bold text-lg uppercase">
-          Ripleys Mgmt
+          Ripleys Mgmt AU
         </h1>
       </div>
       <div className="hidden lg:flex flex-col lg:flex-row justify-center gap-20 pt-2 lg:w-4/5">
