@@ -97,17 +97,17 @@ const Navbar = () => {
                   <li className="hover:text-gray-500 duration-200">
                     <Link href="/talent?gender=male">Men</Link>
                   </li>
-                  <li className="hover:text-gray-500 duration-200">
-                    <Link href="/talent?type=children-teens">
-                      Children & Teens
-                    </Link>
-                  </li>
-                  <li className="hover:text-gray-500 duration-200">
-                    <Link href="/talent?type=couples">Couples</Link>
-                  </li>
-                  <li className="hover:text-gray-500 duration-200">
-                    <Link href="/talent?type=families">Families</Link>
-                  </li>
+                  {/*<li className="hover:text-gray-500 duration-200">*/}
+                  {/*  <Link href="/talent?type=children-teens">*/}
+                  {/*    Children & Teens*/}
+                  {/*  </Link>*/}
+                  {/*</li>*/}
+                  {/*<li className="hover:text-gray-500 duration-200">*/}
+                  {/*  <Link href="/talent?type=couples">Couples</Link>*/}
+                  {/*</li>*/}
+                  {/*<li className="hover:text-gray-500 duration-200">*/}
+                  {/*  <Link href="/talent?type=families">Families</Link>*/}
+                  {/*</li>*/}
                 </ul>
               </motion.div>
             )}
@@ -173,7 +173,9 @@ const Navbar = () => {
                     <Link href="/forTalents/subpage2">FAQ</Link>
                   </li>
                   <li className="hover:text-gray-500 duration-200">
-                    <Link href="/forTalents/subpage3">Registration Form</Link>
+                    <Link href="/forTalents/registration">
+                      Registration Form
+                    </Link>
                   </li>
                   <li className="hover:text-gray-500 duration-200">
                     <Link href="/forTalents/subpage3">
