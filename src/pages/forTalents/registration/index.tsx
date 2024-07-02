@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 import TalentDetailsForm from "@/components/Form/TalentDetailsForm";
+import TalentTraitsForm from "@/components/Form/TalentTraitsForm";
 import Layout from "@/components/Layout/Layout";
-import { useForm } from "react-hook-form";
 
 const TalentRegistrationPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -30,7 +31,27 @@ const TalentRegistrationPage = () => {
       birth_date: "",
     },
   });
-  const traitsFormMethod = useForm();
+  const traitsFormMethod = useForm({
+    defaultValues: {
+      ethnicity_id: "",
+      eye_colour: "",
+      hair_colour: "",
+      height: "",
+      waist: "",
+      bust: "",
+      hips: "",
+      shoe: "",
+      dress_size: "",
+      chest: "",
+      suit: "",
+      suit_length: "",
+      shirt: "",
+      collar: "",
+      inside_leg: "",
+      smoker: "",
+      distinctive_marks: "",
+    },
+  });
 
   return (
     <Layout>
@@ -78,10 +99,10 @@ const TalentRegistrationPage = () => {
               />
             )}
             {currentStep === 2 && (
-              <TalentDetailsForm
+              <TalentTraitsForm
                 currentStep={currentStep}
                 setCurrentStep={setCurrentStep}
-                formMethod={detailsFormMethod}
+                formMethod={traitsFormMethod}
                 loading={loading}
               />
             )}

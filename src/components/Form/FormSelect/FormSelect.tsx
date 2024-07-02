@@ -1,13 +1,15 @@
 import React from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
+import { SelectionValueType } from "@/types/Form";
+
 interface InputProps {
   label: string;
   register: UseFormRegisterReturn;
   error?: any;
   required?: boolean;
   disabled: boolean;
-  values: { value: string | number; label: string }[]; // 定义选项值的类型
+  values: SelectionValueType[]; // 定义选项值的类型
 }
 
 const FormSelect: React.FC<InputProps> = ({

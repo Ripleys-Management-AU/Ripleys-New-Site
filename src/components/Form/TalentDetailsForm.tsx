@@ -1,4 +1,5 @@
 import React, { Dispatch, useState } from "react";
+import { MdKeyboardArrowRight } from "react-icons/md";
 
 import FormDatepicker from "@/components/Form/FormDatepicker/FormDatepicker";
 import FormInput from "@/components/Form/FormInput/FormInput";
@@ -141,10 +142,11 @@ const TalentDetailsForm: React.FC<Props> = ({
           values={stateValues}
         />
         <FormInput
-          label="Postcode*"
+          label="Postcode"
           register={register("postcode", { required: "Postcode is required" })}
           error={errors.postcode}
           disabled={loading}
+          required
         />
         <FormInput
           label="Phone Home"
@@ -207,7 +209,7 @@ const TalentDetailsForm: React.FC<Props> = ({
       <div className="w-full mt-8">
         <div className="flex justify-end">
           <button className="btn" onClick={handleNext} disabled={loading}>
-            Next
+            <MdKeyboardArrowRight size={20} />
           </button>
         </div>
       </div>

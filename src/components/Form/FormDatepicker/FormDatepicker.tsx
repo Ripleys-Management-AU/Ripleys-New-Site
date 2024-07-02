@@ -37,13 +37,14 @@ const FormDatepicker: React.FC<Props> = ({
         name={name}
         control={control}
         rules={rules}
+        disabled={disabled}
         render={({ field: { onChange, onBlur, value, ref } }) => {
           return (
             <div className="w-full text-black">
               <Datepicker
                 onSelectedDateChanged={onChange}
                 style={{ height: "48px !important" }}
-                sizing={"md"}
+                sizing="md"
               />
             </div>
           );
