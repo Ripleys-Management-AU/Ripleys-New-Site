@@ -4,6 +4,7 @@ import { TALENT_ACTIVE } from "@/constants";
 import {
   queryAllTalents,
   queryTalentById,
+  queryTalentFormExp,
   queryTalentsByGender,
 } from "@/model/talent";
 
@@ -55,6 +56,14 @@ export default async function talent(
             return res.status(404).json({ error: "talent not active" });
           return res.status(200).json({ talent });
         }
+      }
+
+      if (action === "queryTalentFormExp") {
+        const { accents, languages, licenses, unions } =
+          await queryTalentFormExp();
+        if (!accents || !languages || !licenses || !unions)
+          return res.status(404).json({ error: "results not found" });
+        return res.status(200).json({ accents, languages, licenses, unions });
       }
       return res.status(404).json({ error: "query not supported" });
     }

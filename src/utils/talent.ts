@@ -1,6 +1,7 @@
 import moment from "moment";
 
 import { SelectionValueType } from "@/types/Form";
+import { ExpAttributesDataType } from "@/model/types";
 
 export const calculateAge = (birthDate: Date) => {
   const birthMoment = moment(birthDate);
@@ -30,3 +31,5 @@ export const generateSelectionValues = (
   }
   return values;
 };
+
+export const mapExpDataToOptions = (data: ExpAttributesDataType) => {};

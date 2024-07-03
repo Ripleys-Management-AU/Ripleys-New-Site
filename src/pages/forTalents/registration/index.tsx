@@ -4,9 +4,12 @@ import { useForm } from "react-hook-form";
 import TalentDetailsForm from "@/components/Form/TalentDetailsForm";
 import TalentTraitsForm from "@/components/Form/TalentTraitsForm";
 import Layout from "@/components/Layout/Layout";
+import TalentExperienceForm from "@/components/Form/TalentExperienceForm";
+import axios from "axios";
+import config from "@/config/config";
 
 const TalentRegistrationPage = () => {
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(3);
   const [loading, setLoading] = useState(false);
 
   const detailsFormMethod = useForm({
@@ -52,6 +55,33 @@ const TalentRegistrationPage = () => {
       distinctive_marks: "",
     },
   });
+  const experienceFormMethod = useForm({
+    defaultValues: {
+      experience: "",
+      showreel: "",
+      skills_interests: "",
+      artist_type: "",
+      languages: [],
+      accent_id: "",
+      license_id: "",
+      union_id: "",
+    },
+  });
+
+  useEffect(() => {
+    const fetchExpAttrValues = async () => {
+      try {
+        const res = await axios.get(
+          `${config.baseUrl}/api/talent?action=queryTalentFormExp`,
+        );
+        const { accents, languages, licenses, unions } = res.data;
+      } catch (e) {
+        console.error("error get experience attributes values");
+      }
+    };
+
+    fetchExpAttrValues();
+  }, []);
 
   return (
     <Layout>
@@ -104,6 +134,14 @@ const TalentRegistrationPage = () => {
                 setCurrentStep={setCurrentStep}
                 formMethod={traitsFormMethod}
                 loading={loading}
+              />
+            )}
+            {currentStep === 3 && (
+              <TalentExperienceForm
+                currentStep={currentStep}
+                loading={loading}
+                setCurrentStep={setCurrentStep}
+                formMethod={experienceFormMethod}
               />
             )}
           </div>

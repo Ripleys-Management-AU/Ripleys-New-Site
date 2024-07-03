@@ -1,6 +1,10 @@
 import { TALENT_ACTIVE } from "@/constants";
 import prisma from "@/model/client";
-import { TalentType } from "@/model/types";
+import {
+  ExpAttributesDataType,
+  TalentFormExpAttrType,
+  TalentType,
+} from "@/model/types";
 
 export const queryAllTalents = async (skip?: number, take?: number) => {
   let talents: TalentType[] = [];
@@ -95,5 +99,34 @@ export const queryTalentById = async (id: number) => {
   } catch (e) {
     console.error(`error find talent by id: ${e}`);
     return talent;
+  }
+};
+
+export const queryTalentFormExp = async () => {
+  try {
+    const results = await Promise.all([
+      prisma.accent.findMany(),
+      prisma.language.findMany(),
+      prisma.license.findMany(),
+      prisma.union.findMany(),
+    ]);
+    const accents: ExpAttributesDataType[] = results[0];
+    const languages: ExpAttributesDataType[] = results[1];
+    const licenses: ExpAttributesDataType[] = results[2];
+    const unions: ExpAttributesDataType[] = results[3];
+    return {
+      accents: accents ? accents : [],
+      languages: languages ? languages : [],
+      licenses: licenses ? licenses : [],
+      unions: unions ? unions : [],
+    } as TalentFormExpAttrType;
+  } catch (e) {
+    console.error(`error query talent form experience attributes: ${e}`);
+    return {
+      accents: [],
+      languages: [],
+      licenses: [],
+      unions: [],
+    } as TalentFormExpAttrType;
   }
 };

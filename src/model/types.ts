@@ -91,3 +91,17 @@ export interface EnquiryType extends EnquiryFormData {
   created_at: Date | null;
   updated_at: Date | null;
 }
+
+export interface ExpAttributesDataType {
+  id: number;
+  name: string;
+  created_at: Date | null;
+  updated_at: Date | null;
+}
+
+export interface TalentFormExpAttrType {
+  accents: ExpAttributesDataType[];
+  languages: ExpAttributesDataType[];
+  licenses: ExpAttributesDataType[];
+  unions: ExpAttributesDataType[];
+}

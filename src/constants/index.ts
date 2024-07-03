@@ -11,3 +11,8 @@ export const TALENT_PENDING = 2;
 export const ERROR = "error";
 export const INFO = "info";
 export const SUCCESS = "success";
+
+export const EXTRA_COMMERCIAL = 0;
+export const EXTRA_COMMERCIAL_W_EXP = 1;
+export const ACTOR = 2;
+export const WEB_PRESENTER = 3;
