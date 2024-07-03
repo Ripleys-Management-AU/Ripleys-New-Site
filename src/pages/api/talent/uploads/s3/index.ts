@@ -16,10 +16,10 @@ const upload = multer({
     key: (req, file, cb) => {
       const filepath = `uploads/test`;
       const fileFormat = path.extname(file.originalname).slice(1);
-      cb(
-        null,
-        `${filepath}/${uuidv4().replace(/-/g, "").substring(0, 12)}.${fileFormat}`,
-      );
+      const newFileName = uuidv4().replace(/-/g, "").substring(0, 12);
+      const newFileNameWithFormat = `${newFileName}.${fileFormat}`;
+      (req as any).newFileNameWithFormat = newFileNameWithFormat;
+      cb(null, `${filepath}/${newFileNameWithFormat}`);
     },
   }),
 });
@@ -45,9 +45,11 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         .status(501)
         .json({ error: `Sorry something happened! ${err.message}` });
     }
+    const newFileNameWithFormat = (req as any).newFileNameWithFormat;
     return res.status(200).json({
       message: "File uploaded successfully",
       fileUrl: (req as any).file.location,
+      fileName: newFileNameWithFormat,
     });
   });
 }
