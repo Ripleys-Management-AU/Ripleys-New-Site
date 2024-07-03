@@ -32,4 +32,12 @@ export const generateSelectionValues = (
   return values;
 };
 
-export const mapExpDataToOptions = (data: ExpAttributesDataType) => {};
+export const mapExpDataToOptions = (data: ExpAttributesDataType[]) => {
+  const mappedData = data.map((item) => {
+    return {
+      value: item.id,
+      label: item.name,
+    };
+  });
+  return mappedData;
+};

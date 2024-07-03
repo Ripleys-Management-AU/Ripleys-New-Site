@@ -67,7 +67,7 @@ const FormMultiSelect: React.FC<InputProps> = ({
                 }}
                 renderValue={(selected) => {
                   if (!selected.length) {
-                    return <em>Select {label}</em>;
+                    return <em className="text-gray-500">Select {label}</em>;
                   }
                   return selected
                     .map(

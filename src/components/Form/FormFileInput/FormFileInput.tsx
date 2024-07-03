@@ -1,6 +1,5 @@
 import React from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
-
 import { SelectionValueType } from "@/types/Form";
 
 interface InputProps {
@@ -9,16 +8,16 @@ interface InputProps {
   error?: any;
   required?: boolean;
   disabled: boolean;
-  values: SelectionValueType[];
+  accept: string;
 }
 
-const FormSelect: React.FC<InputProps> = ({
+const FormFileInput: React.FC<InputProps> = ({
   label,
   register,
   error,
   required,
   disabled,
-  values,
+  accept,
 }) => {
   return (
     <div className="w-full">
@@ -31,17 +30,12 @@ const FormSelect: React.FC<InputProps> = ({
         </span>
       </div>
       <div className="w-full flex flex-col">
-        <select
-          className={`select select-info bg-white text-black ${error ? "select-error" : ""}`}
-          disabled={disabled}
+        <input
+          type="file"
+          className={`file-input input-bordered ${error ? "file-input-error" : ""}`}
+          accept={accept}
           {...register}
-        >
-          {values.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
+        />
         {error && (
           <span className="text-error font-semibold mt-1 text-sm">
             {error.message}
@@ -52,4 +46,4 @@ const FormSelect: React.FC<InputProps> = ({
   );
 };
 
-export default FormSelect;
+export default FormFileInput;

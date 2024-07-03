@@ -10,11 +10,11 @@ import {
   EXTRA_COMMERCIAL_W_EXP,
   WEB_PRESENTER,
 } from "@/constants";
-import Select from "react-select";
-import { Controller } from "react-hook-form";
 import FormMultiSelect from "@/components/Form/FormMultiSelect/FormMultiSelect";
+import { TalentExpFormAttrType } from "@/types/Form";
 
 interface Props {
+  allExpOptions: TalentExpFormAttrType;
   currentStep: number;
   loading: boolean;
   setCurrentStep: Dispatch<number>;
@@ -22,6 +22,7 @@ interface Props {
 }
 
 const TalentExperienceForm: React.FC<Props> = ({
+  allExpOptions,
   currentStep,
   loading,
   setCurrentStep,
@@ -38,8 +39,6 @@ const TalentExperienceForm: React.FC<Props> = ({
     setCurrentStep(2);
   };
 
-  const [selected, setSelected] = useState([]);
-
   const handleNext = async () => {
     console.log(getValues());
 
@@ -55,12 +54,7 @@ const TalentExperienceForm: React.FC<Props> = ({
     { value: WEB_PRESENTER, label: "Web Presenter" },
   ];
 
-  const options = [
-    { label: "Grapes 🍇", value: "grapes" },
-    { label: "Mango 🥭", value: "mango" },
-    { label: "Strawberry 🍓", value: "strawberry" },
-  ];
-
+  const accentsRules = { required: "Accents is required" } as any;
   const languageRules = { required: "Language is required" } as any;
 
   return (
@@ -77,23 +71,68 @@ const TalentExperienceForm: React.FC<Props> = ({
           required
         />
         <FormMultiSelect
+          name="accents"
+          label="Accents"
+          control={formMethod.control}
+          values={allExpOptions.accentOptions}
+          disabled={loading}
+          rules={accentsRules}
+          error={errors.accents}
+          required
+        />
+        <FormMultiSelect
           name="languages"
           label="Languages"
           control={formMethod.control}
-          values={options}
+          values={allExpOptions.languageOptions}
           disabled={loading}
           rules={languageRules}
           error={errors.languages}
+          required
+        />
+        <FormMultiSelect
+          name="licenses"
+          label="Licenses"
+          control={formMethod.control}
+          values={allExpOptions.licenseOptions}
+          disabled={loading}
+          rules={languageRules}
+          error={errors.licenses}
+          required
+        />
+        <FormMultiSelect
+          name="unions"
+          label="Unions"
+          control={formMethod.control}
+          values={allExpOptions.unionOptions}
+          disabled={loading}
+          rules={languageRules}
+          error={errors.unions}
           required
         />
       </div>
       <div className="w-full">
         <FormTextArea
           label="Experience"
-          register={register("eye_colour", {
+          register={register("experience", {
             required: "Experience is required",
           })}
-          error={errors.eye_colour}
+          error={errors.experience}
+          disabled={loading}
+          required
+        />
+        <FormTextArea
+          label="Showreel"
+          register={register("showreel")}
+          error={errors.showreel}
+          disabled={loading}
+        />
+        <FormTextArea
+          label="Skill&Interests"
+          register={register("skills_interests", {
+            required: "Skill&Interests is required",
+          })}
+          error={errors.skills_interests}
           disabled={loading}
           required
         />

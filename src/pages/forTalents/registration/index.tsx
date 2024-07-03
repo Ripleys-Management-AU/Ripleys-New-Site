@@ -7,10 +7,15 @@ import Layout from "@/components/Layout/Layout";
 import TalentExperienceForm from "@/components/Form/TalentExperienceForm";
 import axios from "axios";
 import config from "@/config/config";
+import { mapExpDataToOptions } from "@/utils/talent";
+import { TalentExpFormAttrType } from "@/types/Form";
+import TalentDocsForm from "@/components/Form/TalentDocsForm";
 
 const TalentRegistrationPage = () => {
-  const [currentStep, setCurrentStep] = useState(3);
+  const [currentStep, setCurrentStep] = useState(4);
   const [loading, setLoading] = useState(false);
+  const [allExpOptions, setAllExpOptions] =
+    useState<TalentExpFormAttrType | null>(null);
 
   const detailsFormMethod = useForm({
     defaultValues: {
@@ -62,9 +67,18 @@ const TalentRegistrationPage = () => {
       skills_interests: "",
       artist_type: "",
       languages: [],
-      accent_id: "",
-      license_id: "",
-      union_id: "",
+      accents: [],
+      licenses: [],
+      unions: [],
+    },
+  });
+
+  const docsFormMethod = useForm({
+    defaultValues: {
+      image: "",
+      image_title: "",
+      doc: "",
+      doc_title: "",
     },
   });
 
@@ -75,6 +89,16 @@ const TalentRegistrationPage = () => {
           `${config.baseUrl}/api/talent?action=queryTalentFormExp`,
         );
         const { accents, languages, licenses, unions } = res.data;
+        const accentOptions = mapExpDataToOptions(accents);
+        const languageOptions = mapExpDataToOptions(languages);
+        const licenseOptions = mapExpDataToOptions(licenses);
+        const unionOptions = mapExpDataToOptions(unions);
+        setAllExpOptions({
+          accentOptions,
+          languageOptions,
+          licenseOptions,
+          unionOptions,
+        });
       } catch (e) {
         console.error("error get experience attributes values");
       }
@@ -136,12 +160,24 @@ const TalentRegistrationPage = () => {
                 loading={loading}
               />
             )}
-            {currentStep === 3 && (
+            {allExpOptions && currentStep === 3 && (
               <TalentExperienceForm
                 currentStep={currentStep}
                 loading={loading}
                 setCurrentStep={setCurrentStep}
                 formMethod={experienceFormMethod}
+                allExpOptions={allExpOptions}
+              />
+            )}
+            {currentStep === 4 && (
+              <TalentDocsForm
+                currentStep={currentStep}
+                detailsFormMethod={detailsFormMethod}
+                traitsFormMethod={traitsFormMethod}
+                experienceFormMethod={experienceFormMethod}
+                formMethod={docsFormMethod}
+                setCurrentStep={setCurrentStep}
+                loading={loading}
               />
             )}
           </div>

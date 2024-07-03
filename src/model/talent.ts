@@ -2,7 +2,7 @@ import { TALENT_ACTIVE } from "@/constants";
 import prisma from "@/model/client";
 import {
   ExpAttributesDataType,
-  TalentFormExpAttrType,
+  AllExpAttributesType,
   TalentType,
 } from "@/model/types";
 
@@ -119,7 +119,7 @@ export const queryTalentFormExp = async () => {
       languages: languages ? languages : [],
       licenses: licenses ? licenses : [],
       unions: unions ? unions : [],
-    } as TalentFormExpAttrType;
+    } as AllExpAttributesType;
   } catch (e) {
     console.error(`error query talent form experience attributes: ${e}`);
     return {
@@ -127,6 +127,6 @@ export const queryTalentFormExp = async () => {
       languages: [],
       licenses: [],
       unions: [],
-    } as TalentFormExpAttrType;
+    } as AllExpAttributesType;
   }
 };

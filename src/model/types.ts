@@ -99,7 +99,7 @@ export interface ExpAttributesDataType {
   updated_at: Date | null;
 }
 
-export interface TalentFormExpAttrType {
+export interface AllExpAttributesType {
   accents: ExpAttributesDataType[];
   languages: ExpAttributesDataType[];
   licenses: ExpAttributesDataType[];
