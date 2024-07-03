@@ -20,7 +20,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
 
     form.parse(req, (err: any, fields: any, files: any) => {
       if (err) {
-        return res.status(500).json({ error: "File upload error" });
+        return res.status(500).json({ error: `File upload error: ${err}` });
       }
 
       const uploadedFiles = Array.isArray(files.file)
