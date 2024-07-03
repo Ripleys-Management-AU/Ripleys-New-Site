@@ -49,14 +49,14 @@ const TalentsView: React.FC<props> = ({
         let count = 0;
         if (!router.query.gender && !router.query.type) {
           const res = await axios.get(
-            `${config.baseUrl}/api/talent?skip=${currentPage * config.talentPerPage}&&take=9`,
+            `/api/talent?skip=${currentPage * config.talentPerPage}&&take=9`,
           );
           data = res.data.talents;
           count = res.data.count;
         }
         if (router.query.gender) {
           const res = await axios.get(
-            `${config.baseUrl}/api/talent?skip=${currentPage * config.talentPerPage}&&take=9&&gender=${router.query.gender === "female" ? FEMALE : MALE}`,
+            `/api/talent?skip=${currentPage * config.talentPerPage}&&take=9&&gender=${router.query.gender === "female" ? FEMALE : MALE}`,
           );
           data = res.data.talents;
           count = res.data.count;
@@ -64,7 +64,7 @@ const TalentsView: React.FC<props> = ({
 
         if (router.query.type) {
           const res = await axios.get(
-            `${config.baseUrl}/api/talent?skip=${currentPage * config.talentPerPage}&&take=9&&type=${router.query.type}`,
+            `/api/talent?skip=${currentPage * config.talentPerPage}&&take=9&&type=${router.query.type}`,
           );
           data = res.data.talents;
           count = res.data.count;

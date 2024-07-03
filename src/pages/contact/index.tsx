@@ -38,7 +38,7 @@ const ContactPage = () => {
     const data = getValues();
     try {
       setLoading(true);
-      await axios.post(`${config.baseUrl}/api/enquiry?action=submitForm`, {
+      await axios.post(`/api/enquiry?action=submitForm`, {
         data,
       });
 

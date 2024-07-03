@@ -8,6 +8,7 @@ import {
 
 import ImageWindow from "@/components/ImageWindow/ImageWindow";
 
+import config from "@/config/config";
 import { TalentType } from "@/model/types";
 
 interface props {
@@ -28,7 +29,7 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
     : [];
 
   const talentImage = talent?.talent_image
-    ? `/uploads/thumbs/200x320-crop_${talent?.talent_image[0].filename}`
+    ? `${config.uploadPrefix}/thumbs/200x320-crop_${talent?.talent_image[0].filename}`
     : talent.gender === 1
       ? "/images/talent/default_person_women.jpeg"
       : "/images/talent/default_person_man.jpeg";
@@ -124,7 +125,7 @@ const TalentProfile: React.FC<props> = ({ talent }) => {
             {talent.talent_image?.map((item, index) => (
               <img
                 key={index}
-                src={`/uploads/${item.filename}`}
+                src={`${config.uploadPrefix}/${item.filename}`}
                 className="h-[150px] lg:h-[320px] rounded-[5px] cursor-pointer hover:filter hover:brightness-75 duration-200"
                 onClick={() => {
                   setCurrentImageIndex(index);

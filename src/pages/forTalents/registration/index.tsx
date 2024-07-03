@@ -1,15 +1,16 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import TalentDetailsForm from "@/components/Form/TalentDetailsForm";
+import TalentDocsForm from "@/components/Form/TalentDocsForm";
+import TalentExperienceForm from "@/components/Form/TalentExperienceForm";
 import TalentTraitsForm from "@/components/Form/TalentTraitsForm";
 import Layout from "@/components/Layout/Layout";
-import TalentExperienceForm from "@/components/Form/TalentExperienceForm";
-import axios from "axios";
-import config from "@/config/config";
+
 import { mapExpDataToOptions } from "@/utils/talent";
+
 import { TalentExpFormAttrType } from "@/types/Form";
-import TalentDocsForm from "@/components/Form/TalentDocsForm";
 
 const TalentRegistrationPage = () => {
   const [currentStep, setCurrentStep] = useState(4);
@@ -85,9 +86,7 @@ const TalentRegistrationPage = () => {
   useEffect(() => {
     const fetchExpAttrValues = async () => {
       try {
-        const res = await axios.get(
-          `${config.baseUrl}/api/talent?action=queryTalentFormExp`,
-        );
+        const res = await axios.get(`/api/talent?action=queryTalentFormExp`);
         const { accents, languages, licenses, unions } = res.data;
         const accentOptions = mapExpDataToOptions(accents);
         const languageOptions = mapExpDataToOptions(languages);

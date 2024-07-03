@@ -6,6 +6,7 @@ import { MdMail } from "react-icons/md";
 
 import GrayButton from "@/components/GrayButton/GrayButton";
 
+import config from "@/config/config";
 import { TalentType } from "@/model/types";
 import { calculateAge, mapAgeToAgeRange } from "@/utils/talent";
 
@@ -16,7 +17,7 @@ interface props {
 
 const TalentCard: React.FC<props> = ({ talent, setShowFullImages }) => {
   const talentImage = talent?.talent_image
-    ? `/uploads/${talent?.talent_image[0].filename}`
+    ? `${config.uploadPrefix}/${talent?.talent_image[0].filename}`
     : talent.gender === 1
       ? "/images/talent/default_person_women.jpeg"
       : "/images/talent/default_person_man.jpeg";

@@ -5,6 +5,8 @@ import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import { IoCloseSharp } from "react-icons/io5";
 
+import config from "@/config/config";
+
 interface props {
   imagePaths: string[];
   currentImageIndex: number | null;
@@ -86,7 +88,7 @@ const ImageWindow: React.FC<props> = ({
               className="embla__slide h-screen flex items-center justify-center"
             >
               <img
-                src={`/uploads/${item}`}
+                src={`${config.uploadPrefix}/${item}`}
                 alt={item}
                 className="max-h-[50vh] lg:max-h-full"
               />
