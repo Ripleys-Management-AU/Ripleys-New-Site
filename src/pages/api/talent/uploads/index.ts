@@ -40,6 +40,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
             fileName: newFilename,
           });
         } catch (err) {
+          console.error(err);
           return res.status(500).json({ error: `error upload files: ${err}` });
         }
       });
