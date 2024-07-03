@@ -2,6 +2,7 @@ import React, { Dispatch } from "react";
 import FormFileInput from "@/components/Form/FormFileInput/FormFileInput";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import FormInput from "@/components/Form/FormInput/FormInput";
+import axios from "axios";
 
 interface Props {
   currentStep: number;
@@ -37,6 +38,33 @@ const TalentDocsForm: React.FC<Props> = ({
     const isValid = await trigger();
 
     if (!isValid) return;
+
+    const docsFormData = getValues();
+
+    try {
+      const imageFile = docsFormData.image[0];
+      console.log(imageFile);
+
+      const docFile = docsFormData.doc[0];
+      console.log(docFile);
+
+      const formData = new FormData();
+      formData.append("file", imageFile);
+
+      const res = await axios.post(
+        "/api/talent/uploads?action=uploadTalentDoc",
+        formData,
+        {
+          // headers: {
+          //   "Content-Type": "multipart/form-data",
+          // },
+        },
+      );
+
+      console.log(res.data);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

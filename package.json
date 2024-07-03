@@ -16,13 +16,16 @@
     "@mui/icons-material": "^5.15.21",
     "@mui/material": "^5.15.21",
     "@prisma/client": "5.11.0",
+    "@types/formidable": "^3.4.5",
     "@types/react-loader-spinner": "^4.0.0",
+    "@types/uuid": "^10.0.0",
     "axios": "^1.7.2",
     "daisyui": "^4.12.10",
     "embla-carousel-autoplay": "^8.1.5",
     "embla-carousel-react": "^8.1.5",
     "flowbite": "^2.4.1",
     "flowbite-react": "^0.10.1",
+    "formidable": "^3.5.1",
     "framer-motion": "^11.2.12",
     "gsap": "^3.12.5",
     "lodash": "^4.17.21",
@@ -42,7 +45,8 @@
     "react-multi-select-component": "^4.3.4",
     "react-paginate": "^8.2.0",
     "react-responsive": "^10.0.0",
-    "react-select": "^5.8.0"
+    "react-select": "^5.8.0",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
