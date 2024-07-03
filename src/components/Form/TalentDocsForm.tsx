@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Dispatch } from "react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { RotatingLines } from "react-loader-spinner";
 
 import FormFileInput from "@/components/Form/FormFileInput/FormFileInput";
 import FormInput from "@/components/Form/FormInput/FormInput";
@@ -8,6 +9,7 @@ import FormInput from "@/components/Form/FormInput/FormInput";
 interface Props {
   currentStep: number;
   loading: boolean;
+  setLoading: Dispatch<boolean>;
   setCurrentStep: Dispatch<number>;
   formMethod: any;
   detailsFormMethod: any;
@@ -18,6 +20,7 @@ interface Props {
 const TalentDocsForm: React.FC<Props> = ({
   currentStep,
   loading,
+  setLoading,
   setCurrentStep,
   detailsFormMethod,
   traitsFormMethod,
@@ -43,6 +46,8 @@ const TalentDocsForm: React.FC<Props> = ({
     const docsFormData = getValues();
 
     try {
+      setLoading(true);
+
       const imageFile = docsFormData.image[0];
       const docFile = docsFormData.doc[0];
 
@@ -59,6 +64,8 @@ const TalentDocsForm: React.FC<Props> = ({
         throw new Error("failed to upload file to s3");
     } catch (e) {
       console.error(e);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -124,7 +131,23 @@ const TalentDocsForm: React.FC<Props> = ({
             <MdKeyboardArrowLeft size={20} />
           </button>
           <button className="btn" onClick={handleSubmit} disabled={loading}>
-            Submit
+            {loading ? (
+              <RotatingLines
+                visible={true}
+                //eslint-disable-next-line
+                // @ts-ignore
+                height="24"
+                //eslint-disable-next-line
+                // @ts-ignore
+                width="24"
+                strokeColor="white"
+                strokeWidth="5"
+                animationDuration="0.75"
+                ariaLabel="rotating-lines-loading"
+              />
+            ) : (
+              "Submit"
+            )}
           </button>
         </div>
       </div>

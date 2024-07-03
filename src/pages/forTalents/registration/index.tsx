@@ -177,6 +177,7 @@ const TalentRegistrationPage = () => {
                 formMethod={docsFormMethod}
                 setCurrentStep={setCurrentStep}
                 loading={loading}
+                setLoading={setLoading}
               />
             )}
           </div>

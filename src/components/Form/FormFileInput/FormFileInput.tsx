@@ -1,6 +1,5 @@
 import React from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
-import { SelectionValueType } from "@/types/Form";
 
 interface InputProps {
   label: string;
@@ -34,6 +33,7 @@ const FormFileInput: React.FC<InputProps> = ({
           type="file"
           className={`file-input input-bordered ${error ? "file-input-error" : ""}`}
           accept={accept}
+          disabled={disabled}
           {...register}
         />
         {error && (
