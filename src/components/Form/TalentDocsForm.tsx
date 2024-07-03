@@ -1,8 +1,9 @@
-import React, { Dispatch } from "react";
-import FormFileInput from "@/components/Form/FormFileInput/FormFileInput";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
-import FormInput from "@/components/Form/FormInput/FormInput";
 import axios from "axios";
+import React, { Dispatch } from "react";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+
+import FormFileInput from "@/components/Form/FormFileInput/FormFileInput";
+import FormInput from "@/components/Form/FormInput/FormInput";
 
 interface Props {
   currentStep: number;
@@ -44,27 +45,32 @@ const TalentDocsForm: React.FC<Props> = ({
     try {
       const imageFile = docsFormData.image[0];
       console.log(imageFile);
-
       const docFile = docsFormData.doc[0];
       console.log(docFile);
-
       const formData = new FormData();
-      formData.append("file", imageFile);
-
-      const res = await axios.post(
-        "/api/talent/uploads?action=uploadTalentDoc",
-        formData,
-        {
-          // headers: {
-          //   "Content-Type": "multipart/form-data",
-          // },
-        },
-      );
-
-      console.log(res.data);
+      formData.set("file", imageFile);
+      const resImg = await axios.post("/api/talent/uploads/s3", formData);
+      console.log(resImg.data);
+      formData.set("file", docFile);
+      const resDoc = await axios.post("/api/talent/uploads/s3", formData);
+      console.log(resDoc.data);
     } catch (e) {
       console.error(e);
     }
+  };
+
+  const localUpload = async () => {
+    const docsFormData = getValues();
+    const imageFile = docsFormData.image[0];
+    console.log(imageFile);
+    const docFile = docsFormData.doc[0];
+    console.log(docFile);
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    const res = await axios.post(
+      "/api/talent/uploads?action=uploadTalentDoc",
+      formData,
+    );
   };
 
   return (
