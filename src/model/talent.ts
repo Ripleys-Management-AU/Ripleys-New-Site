@@ -136,7 +136,7 @@ export const queryTalentFormExp = async () => {
 export const addTalent = async (data: TalentFormAllDataType) => {
   try {
     const newTalentData = {
-      status: 0,
+      status: 1,
       first_name: data.firstName,
       last_name: data.lastName,
       gender: Number(data.gender),
