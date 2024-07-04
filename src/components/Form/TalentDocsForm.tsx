@@ -102,7 +102,7 @@ const TalentDocsForm: React.FC<Props> = ({
 
       const resEmail = await axios.post(
         "/api/email/talent/registration/notify",
-        { talentFinalData },
+        { talent: talentFinalData },
       );
 
       setInfo({ message: "Thanks for registration!", type: "success" });

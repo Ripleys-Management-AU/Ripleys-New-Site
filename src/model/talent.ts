@@ -137,8 +137,8 @@ export const addTalent = async (data: TalentFormAllDataType) => {
   try {
     const newTalentData = {
       status: 1,
-      first_name: data.firstName,
-      last_name: data.lastName,
+      first_name: data.first_name,
+      last_name: data.last_name,
       gender: Number(data.gender),
       birth_date: new Date(data.birth_date),
       ethnicity_id: Number(data.ethnicity_id),
@@ -148,9 +148,9 @@ export const addTalent = async (data: TalentFormAllDataType) => {
       suburb: data.suburb,
       state: Number(data.state),
       postcode: data.postcode,
-      phone_home: data.phoneHome === "" ? null : data.phoneHome,
-      phone_work: data.phoneWork === "" ? null : data.phoneWork,
-      phone_mobile: data.phoneMobile,
+      phone_home: data.phone_home === "" ? null : data.phone_home,
+      phone_work: data.phone_work === "" ? null : data.phone_work,
+      phone_mobile: data.phone_mobile,
       email: data.email,
       occupation: data.occupation,
       eye_colour: data.eye_colour,

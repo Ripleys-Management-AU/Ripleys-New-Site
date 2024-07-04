@@ -1,14 +1,14 @@
 import * as handlebars from "handlebars";
 
 import config from "@/config/config";
-import talentRegistrationEmailTemplate from "@/templates/talentRegistrationEmailTemplate";
-
-import { TalentFormAllDataWithFileNameType } from "@/types/Form";
 import { MALE } from "@/constants";
+import talentRegistrationEmailTemplate from "@/templates/talentRegistrationEmailTemplate";
 import { mapNumberToState } from "@/utils/talent";
 
+import { TalentFormAllDataType } from "@/types/Form";
+
 export const compileRegisterNotificationTemplate = (
-  data: TalentFormAllDataWithFileNameType,
+  data: TalentFormAllDataType,
 ) => {
   const template = handlebars.compile(talentRegistrationEmailTemplate);
   const htmlBody = template({
@@ -17,7 +17,7 @@ export const compileRegisterNotificationTemplate = (
     first_name: data.first_name,
     last_name: data.last_name,
     birth_date: data.birth_date,
-    gender: data.gender === MALE ? "Male" : "Female",
+    gender: Number(data.gender) === MALE ? "Male" : "Female",
     address1: data.address1,
     suburb: data.suburb,
     state: mapNumberToState(Number(data.state)),

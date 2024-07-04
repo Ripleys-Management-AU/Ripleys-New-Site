@@ -8,10 +8,11 @@ export default async function talentRegistration(
 ) {
   if (req.method === "POST") {
     try {
-      const { talentFinalData } = req.body;
-      const talent = await addTalent(talentFinalData);
-      if (!talent) return res.status(500).json({ error: "error registration" });
-      return res.status(201).json({ talent });
+      const { talent } = req.body;
+      const addedTalent = await addTalent(talent);
+      if (!addedTalent)
+        return res.status(500).json({ error: "error registration" });
+      return res.status(201).json({ talent: addedTalent });
     } catch (e) {
       console.error(e);
       return res.status(500).json({ error: `error registration: ${e}` });

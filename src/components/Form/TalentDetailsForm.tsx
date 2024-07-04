@@ -69,19 +69,19 @@ const TalentDetailsForm: React.FC<Props> = ({
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-5 lg:mt-4">
         <FormInput
           label="FirstName"
-          register={register("firstName", {
+          register={register("first_name", {
             required: "First name is required",
           })}
-          error={errors.firstName}
+          error={errors.first_name}
           disabled={loading}
           required
         />
         <FormInput
           label="LastName"
-          register={register("lastName", {
+          register={register("last_name", {
             required: "Last name is required",
           })}
-          error={errors.lastName}
+          error={errors.last_name}
           disabled={loading}
           required
         />
@@ -150,7 +150,7 @@ const TalentDetailsForm: React.FC<Props> = ({
         />
         <FormInput
           label="Phone Home"
-          register={register("phoneHome", {
+          register={register("phone_home", {
             pattern: {
               value: /^[0-9]+$/,
               message: "Phone number must contain only digits",
@@ -161,19 +161,19 @@ const TalentDetailsForm: React.FC<Props> = ({
         />
         <FormInput
           label="Phone Mobile*"
-          register={register("phoneMobile", {
+          register={register("phone_mobile", {
             required: "Phone mobile is required",
             pattern: {
               value: /^[0-9]+$/,
               message: "Phone number must contain only digits",
             },
           })}
-          error={errors.phoneMobile}
+          error={errors.phone_mobile}
           disabled={loading}
         />
         <FormInput
           label="Phone Work"
-          register={register("phoneWork", {
+          register={register("phone_work", {
             pattern: {
               value: /^[0-9]+$/,
               message: "Phone number must contain only digits",

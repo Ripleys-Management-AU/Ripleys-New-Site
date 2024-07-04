@@ -10,7 +10,6 @@ export default async function Notify(
 ) {
   try {
     const { talent } = req.body;
-    console.log(talent);
     const smtp2goApiUrl = "https://api.smtp2go.com/v3/email/send";
     const htmlBody = compileRegisterNotificationTemplate(talent);
     const resEmail = await axios.post(

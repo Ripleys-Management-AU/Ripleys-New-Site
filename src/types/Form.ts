@@ -61,8 +61,8 @@ export interface TalentFormAllDataType {
   doc?: any;
 }
 
-export interface TalentFormAllDataWithFileNameType
-  extends TalentFormAllDataType {
-  imageFileName: string;
-  docFileName: string;
-}
+// export interface TalentFormAllDataWithFileNameType
+//   extends TalentFormAllDataType {
+//   imageFileName: string;
+//   docFileName: string;
+// }
