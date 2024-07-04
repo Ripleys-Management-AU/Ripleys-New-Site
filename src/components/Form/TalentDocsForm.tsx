@@ -1,15 +1,22 @@
 import axios from "axios";
-import React, { Dispatch } from "react";
+import React, { Dispatch, useEffect } from "react";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { RotatingLines } from "react-loader-spinner";
 
 import FormFileInput from "@/components/Form/FormFileInput/FormFileInput";
 import FormInput from "@/components/Form/FormInput/FormInput";
 
+import { TalentFormAllDataType } from "@/types/Form";
+import { InfoType } from "@/types/InfoType";
+
 interface Props {
   currentStep: number;
+  error: string | null;
+  setError: Dispatch<string | null>;
   loading: boolean;
   setLoading: Dispatch<boolean>;
+  info: InfoType | null;
+  setInfo: Dispatch<InfoType | null>;
   setCurrentStep: Dispatch<number>;
   formMethod: any;
   detailsFormMethod: any;
@@ -19,8 +26,12 @@ interface Props {
 
 const TalentDocsForm: React.FC<Props> = ({
   currentStep,
+  error,
+  setError,
   loading,
   setLoading,
+  info,
+  setInfo,
   setCurrentStep,
   detailsFormMethod,
   traitsFormMethod,
@@ -62,6 +73,34 @@ const TalentDocsForm: React.FC<Props> = ({
 
       if (!imageFileName || !docFileName)
         throw new Error("failed to upload file to s3");
+
+      const talentsDetailsData = detailsFormMethod.getValues();
+      const talentTraitsData = traitsFormMethod.getValues();
+      const talentExpData = experienceFormMethod.getValues();
+      const talentDocsData = getValues();
+
+      const talentFullData = {
+        ...talentsDetailsData,
+        ...talentTraitsData,
+        ...talentExpData,
+        ...talentDocsData,
+        imageFileName,
+        docFileName,
+      };
+
+      const { image, doc, ...talentFinalData }: TalentFormAllDataType =
+        talentFullData;
+
+      const res = await axios.post("/api/talent/registration", {
+        talentFinalData,
+      });
+
+      if (res.status !== 201) {
+        setError(error);
+        return;
+      }
+
+      setInfo({ message: "Thanks for registration!", type: "success" });
     } catch (e) {
       console.error(e);
     } finally {
@@ -82,6 +121,28 @@ const TalentDocsForm: React.FC<Props> = ({
   //     formData,
   //   );
   // };
+
+  useEffect(() => {
+    if (!error) return;
+    const timeout = setTimeout(() => {
+      setError(null);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [error]);
+
+  useEffect(() => {
+    if (!info) return;
+    const infoTimeout = setTimeout(() => {
+      setInfo(null);
+    }, 1500);
+
+    return () => {
+      clearTimeout(infoTimeout);
+    };
+  }, [info]);
 
   return (
     <div className="mt-4 lg:mt-8 lg:px-8">

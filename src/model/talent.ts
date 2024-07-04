@@ -1,10 +1,12 @@
 import { TALENT_ACTIVE } from "@/constants";
 import prisma from "@/model/client";
 import {
-  ExpAttributesDataType,
   AllExpAttributesType,
+  ExpAttributesDataType,
   TalentType,
 } from "@/model/types";
+
+import { TalentFormAllDataType } from "@/types/Form";
 
 export const queryAllTalents = async (skip?: number, take?: number) => {
   let talents: TalentType[] = [];
@@ -128,5 +130,175 @@ export const queryTalentFormExp = async () => {
       licenses: [],
       unions: [],
     } as AllExpAttributesType;
+  }
+};
+
+export const addTalent = async (data: TalentFormAllDataType) => {
+  try {
+    const newTalentData = {
+      status: 0,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      gender: Number(data.gender),
+      birth_date: new Date(data.birth_date),
+      ethnicity_id: Number(data.ethnicity_id),
+      category: Number(data.category),
+      address1: data.address1,
+      address2: data.address2 === "" ? null : data.address2,
+      suburb: data.suburb,
+      state: Number(data.state),
+      postcode: data.postcode,
+      phone_home: data.phoneHome === "" ? null : data.phoneHome,
+      phone_work: data.phoneWork === "" ? null : data.phoneWork,
+      phone_mobile: data.phoneMobile,
+      email: data.email,
+      occupation: data.occupation,
+      eye_colour: data.eye_colour,
+      hair_colour: data.hair_colour,
+      height: Number(data.height),
+      waist: data.waist === "" ? null : Number(data.waist),
+      dress_size: data.dress_size === "" ? null : data.dress_size,
+      bust: data.bust === "" ? null : Number(data.bust),
+      hips: data.hips === "" ? null : Number(data.hips),
+      chest: data.chest === "" ? null : Number(data.chest),
+      shoe: data.shoe === "" ? null : data.shoe,
+      suit: data.suit === "" ? null : data.suit,
+      suit_length: data.suit_length === "" ? null : data.suit_length,
+      shirt: data.shirt === "" ? null : data.shirt,
+      inside_leg: Number(data.inside_leg),
+      smoker: Boolean(data.smoker),
+      distinctive_marks:
+        data.distinctive_marks === "" ? null : data.distinctive_marks,
+      experience: data.experience === "" ? null : data.experience,
+      showreel: data.showreel === "" ? null : data.showreel,
+      skills_interests:
+        data.skills_interests === "" ? null : data.skills_interests,
+      artist_type: data.artist_type,
+      created_at: new Date(),
+      updated_at: new Date(),
+      tfn: "",
+    };
+
+    const result = await prisma.$transaction(async (prisma) => {
+      const addedTalent = await prisma.talent.create({
+        data: newTalentData,
+      });
+
+      if (!addedTalent) return null;
+
+      const talentId = (addedTalent as any).id;
+
+      if (!talentId) return null;
+
+      if (data.imageFileName !== "" && data.docFileName !== "") {
+        const imageAssetCreate = {
+          filename: data.imageFileName,
+          created_at: new Date(),
+          updated_at: new Date(),
+        };
+        const documentAssetCreate = {
+          filename: data.docFileName,
+          created_at: new Date(),
+          updated_at: new Date(),
+        };
+
+        const imageAsset = await prisma.asset.create({
+          data: imageAssetCreate,
+        });
+        const docAsset = await prisma.asset.create({
+          data: documentAssetCreate,
+        });
+
+        const imageAssetId = (imageAsset as any).id;
+        const docAssetId = (docAsset as any).id;
+
+        const imageCreate = {
+          talent_id: talentId,
+          sequence: 0,
+          id: imageAssetId,
+          filename: data.imageFileName,
+          title: data.image_title,
+          created_at: new Date(),
+          updated_at: new Date(),
+        };
+
+        const documentCreate = {
+          talent_id: talentId,
+          sequence: 0,
+          id: docAssetId,
+          filename: data.docFileName,
+          title: data.doc_title,
+          created_at: new Date(),
+          updated_at: new Date(),
+        };
+
+        await prisma.talent_image.create({
+          data: imageCreate,
+        });
+
+        await prisma.talent_document.createMany({
+          data: documentCreate,
+        });
+      }
+
+      if (data.accents && data.accents.length > 0) {
+        const accentCreates = data.accents.map((accentId: number) => ({
+          talent_id: talentId,
+          accent_id: accentId,
+          created_at: new Date(),
+          updated_at: new Date(),
+        }));
+
+        await prisma.talent_map_accent.createMany({
+          data: accentCreates,
+        });
+      }
+
+      if (data.languages && data.languages.length > 0) {
+        const languageCreates = data.languages.map((languageId: number) => ({
+          talent_id: talentId,
+          language_id: languageId,
+          created_at: new Date(),
+          updated_at: new Date(),
+        }));
+
+        await prisma.talent_map_language.createMany({
+          data: languageCreates,
+        });
+      }
+
+      if (data.licenses && data.licenses.length > 0) {
+        const licenseCreates = data.licenses.map((licenseId: number) => ({
+          talent_id: talentId,
+          license_id: licenseId,
+          created_at: new Date(),
+          updated_at: new Date(),
+        }));
+
+        await prisma.talent_map_license.createMany({
+          data: licenseCreates,
+        });
+      }
+
+      if (data.unions && data.unions.length > 0) {
+        const unionCreates = data.unions.map((unionId: number) => ({
+          talent_id: talentId,
+          union_id: unionId,
+          created_at: new Date(),
+          updated_at: new Date(),
+        }));
+
+        await prisma.talent_map_union.createMany({
+          data: unionCreates,
+        });
+      }
+
+      return addedTalent;
+    });
+
+    return result;
+  } catch (e) {
+    console.error(e);
+    return null;
   }
 };

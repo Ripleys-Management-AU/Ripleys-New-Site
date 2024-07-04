@@ -9,8 +9,6 @@ import FormTextArea from "@/components/Form/FormTextArea/FormTextArea";
 import Layout from "@/components/Layout/Layout";
 import Toast from "@/components/Toast/Toast";
 
-import config from "@/config/config";
-
 import { InfoType } from "@/types/InfoType";
 
 const ContactPage = () => {

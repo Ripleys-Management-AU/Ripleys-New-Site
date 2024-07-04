@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 import TalentDetailsForm from "@/components/Form/TalentDetailsForm";
@@ -11,10 +11,15 @@ import Layout from "@/components/Layout/Layout";
 import { mapExpDataToOptions } from "@/utils/talent";
 
 import { TalentExpFormAttrType } from "@/types/Form";
+import { InfoType } from "@/types/InfoType";
+import { AnimatePresence } from "framer-motion";
+import Toast from "@/components/Toast/Toast";
 
 const TalentRegistrationPage = () => {
-  const [currentStep, setCurrentStep] = useState(4);
+  const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [info, setInfo] = useState<InfoType | null>(null);
   const [allExpOptions, setAllExpOptions] =
     useState<TalentExpFormAttrType | null>(null);
 
@@ -26,7 +31,6 @@ const TalentRegistrationPage = () => {
       gender: "",
       email: "",
       phone: "",
-      enquiry: "",
       address1: "",
       address2: "",
       suburb: "",
@@ -109,6 +113,7 @@ const TalentRegistrationPage = () => {
   return (
     <Layout>
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">
+        <AnimatePresence>{info && <Toast info={info} />}</AnimatePresence>
         <div className="w-4/5">
           <h1 className="text-white text-3xl">Registration Form</h1>
           <div className="text-center mt-4 text-light-grey text-md leading-8">
@@ -178,6 +183,10 @@ const TalentRegistrationPage = () => {
                 setCurrentStep={setCurrentStep}
                 loading={loading}
                 setLoading={setLoading}
+                error={error}
+                setError={setError}
+                info={info}
+                setInfo={setInfo}
               />
             )}
           </div>
