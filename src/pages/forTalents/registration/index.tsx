@@ -1,4 +1,5 @@
 import axios from "axios";
+import { AnimatePresence } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -7,13 +8,12 @@ import TalentDocsForm from "@/components/Form/TalentDocsForm";
 import TalentExperienceForm from "@/components/Form/TalentExperienceForm";
 import TalentTraitsForm from "@/components/Form/TalentTraitsForm";
 import Layout from "@/components/Layout/Layout";
+import Toast from "@/components/Toast/Toast";
 
 import { mapExpDataToOptions } from "@/utils/talent";
 
 import { TalentExpFormAttrType } from "@/types/Form";
 import { InfoType } from "@/types/InfoType";
-import { AnimatePresence } from "framer-motion";
-import Toast from "@/components/Toast/Toast";
 
 const TalentRegistrationPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
