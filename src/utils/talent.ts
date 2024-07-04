@@ -1,7 +1,20 @@
 import moment from "moment";
 
-import { SelectionValueType } from "@/types/Form";
+import { ACT, NSW, NT, QLD, SA, TAS, VIC, WA } from "@/constants";
 import { ExpAttributesDataType } from "@/model/types";
+
+import { SelectionValueType } from "@/types/Form";
+
+export const STATES_MAP: Record<number, string> = {
+  [VIC]: "VIC",
+  [NSW]: "NSW",
+  [TAS]: "TAS",
+  [ACT]: "ACT",
+  [NT]: "NT",
+  [QLD]: "QLD",
+  [WA]: "WA",
+  [SA]: "SA",
+};
 
 export const calculateAge = (birthDate: Date) => {
   const birthMoment = moment(birthDate);
@@ -40,4 +53,8 @@ export const mapExpDataToOptions = (data: ExpAttributesDataType[]) => {
     };
   });
   return mappedData;
+};
+
+export const mapNumberToState = (value: number): string | undefined => {
+  return STATES_MAP[value];
 };

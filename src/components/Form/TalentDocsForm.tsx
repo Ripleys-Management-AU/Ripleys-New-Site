@@ -92,13 +92,18 @@ const TalentDocsForm: React.FC<Props> = ({
         talentFullData;
 
       const res = await axios.post("/api/talent/registration", {
-        talentFinalData,
+        talent: { ...talentFullData, imageFile, docFileName },
       });
 
       if (res.status !== 201) {
         setError(error);
         return;
       }
+
+      const resEmail = await axios.post(
+        "/api/email/talent/registration/notify",
+        { talentFinalData },
+      );
 
       setInfo({ message: "Thanks for registration!", type: "success" });
     } catch (e) {

@@ -11,8 +11,8 @@ export interface TalentExpFormAttrType {
 }
 
 export interface TalentFormAllDataType {
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   category: string;
   gender: string;
   email: string;
@@ -22,9 +22,9 @@ export interface TalentFormAllDataType {
   suburb: string;
   state: string;
   postcode: string;
-  phoneHome: string;
-  phoneMobile: string;
-  phoneWork: string;
+  phone_home: string;
+  phone_mobile: string;
+  phone_work: string;
   occupation: string;
   registration: string;
   birth_date: string;
@@ -59,4 +59,10 @@ export interface TalentFormAllDataType {
   docFileName: string;
   image?: any;
   doc?: any;
+}
+
+export interface TalentFormAllDataWithFileNameType
+  extends TalentFormAllDataType {
+  imageFileName: string;
+  docFileName: string;
 }
