@@ -24,6 +24,25 @@ export const compileRegisterNotificationTemplate = (
     postcode: data.postcode,
     phone_mobile: data.phone_mobile,
     occupation: data.occupation,
+    ethnicity_id: data.ethnicity_id,
+    eye_color: data.eye_colour,
+    hair_colour: data.hair_colour,
+    inside_leg: data.inside_leg,
+    height: data.height,
+    smoker: data.smoker,
+    waist: data.waist === "" || !data.waist ? "No Data" : data.waist,
+    bust: data.bust === "" || !data.bust ? "No Data" : data.bust,
+    chest: data.chest === "" || !data.chest ? "No Data" : data.chest,
+    shirt: data.shirt === "" || !data.shirt ? "No Data" : data.shirt,
+    dress_size:
+      data.dress_size === "" || !data.dress_size ? "No Data" : data.dress_size,
+    hips: data.hips === "" || !data.hips ? "No Data" : data.hips,
+    shoe: data.shoe === "" || !data.shoe ? "No Data" : data.shoe,
+    suit: data.suit === "" || !data.suit ? "No Data" : data.suit,
+    suit_length:
+      data.suit_length === "" || !data.suit_length
+        ? "No Data"
+        : data.suit_length,
   });
   return htmlBody;
 };
