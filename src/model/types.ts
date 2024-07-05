@@ -105,3 +105,31 @@ export interface AllExpAttributesType {
   licenses: ExpAttributesDataType[];
   unions: ExpAttributesDataType[];
 }
+
+export interface BlogPostImage {
+  blog_post_id: number;
+  id: number;
+  filename: string;
+  title: string;
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+export interface NewsPayload {
+  title: string;
+  slug: string;
+  publish_date?: Date;
+  is_enabled: boolean;
+  is_featured: boolean;
+  author?: string;
+  summary: string;
+  body: string;
+  quote?: string;
+  quote_author?: string;
+  image_id: number;
+  section_id: string;
+  id: number;
+  created_at?: Date;
+  updated_at?: Date;
+  blog_post_image_blog_post_image_blog_post_idToblog_post: BlogPostImage[];
+}
