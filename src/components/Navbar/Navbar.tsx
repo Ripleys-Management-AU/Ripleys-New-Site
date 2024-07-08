@@ -183,7 +183,7 @@ const Navbar = () => {
                   {/*  </Link>*/}
                   {/*</li>*/}
                   <li className="hover:text-gray-500 duration-200">
-                    <Link href="/forTalents/subpage3">Make A Payment</Link>
+                    <Link href="/forTalents/payment">Make A Payment</Link>
                   </li>
                 </ul>
               </motion.div>

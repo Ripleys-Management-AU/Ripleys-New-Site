@@ -3,6 +3,7 @@ import prisma from "@/model/client";
 import {
   AllExpAttributesType,
   ExpAttributesDataType,
+  TalentConfirmationPayload,
   TalentType,
 } from "@/model/types";
 
@@ -299,6 +300,28 @@ export const addTalent = async (data: TalentFormAllDataType) => {
     return result;
   } catch (e) {
     console.error(e);
+    return null;
+  }
+};
+
+export const getTalentByName = async (
+  first_name: string,
+  last_name: string,
+) => {
+  try {
+    const targetTalent = await prisma.talent.findFirst({
+      where: { first_name, last_name },
+      select: {
+        first_name: true,
+        last_name: true,
+        id: true,
+        email: true,
+      },
+    });
+    const talent = targetTalent as TalentConfirmationPayload;
+    return talent;
+  } catch (e) {
+    console.log(e);
     return null;
   }
 };

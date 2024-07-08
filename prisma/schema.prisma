@@ -344,6 +344,30 @@ model page_image {
   @@index([page_id], map: "page_image_I_1")
 }
 
+model payment {
+  id         Int       @id @default(autoincrement())
+  amount     Int
+  product_id Int
+  talent_id  Int
+  created_at DateTime? @default(now()) @db.Timestamp(0)
+  updated_at DateTime? @default(now()) @db.Timestamp(0)
+  product    product   @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "payment_ibfk_1")
+  talent     talent    @relation(fields: [talent_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "payment_ibfk_2")
+
+  @@index([product_id], map: "product_id")
+  @@index([talent_id], map: "talent_id")
+}
+
+model product {
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  description String?   @db.Text
+  price       Int
+  created_at  DateTime? @default(now()) @db.Timestamp(0)
+  updated_at  DateTime? @default(now()) @db.Timestamp(0)
+  payment     payment[]
+}
+
 model prop_content {
   id         Int         @id @default(autoincrement())
   page_id    Int?
@@ -635,6 +659,7 @@ model talent {
   intensive_course                                Int?                      @db.TinyInt
   collar                                          Int?
   job_map_talent                                  job_map_talent[]
+  payment                                         payment[]
   sms_log                                         sms_log[]
   country                                         country?                  @relation(fields: [nationality_id], references: [id], map: "talent_FK_1")
   ethnicity                                       ethnicity?                @relation(fields: [ethnicity_id], references: [id], map: "talent_FK_2")

@@ -133,3 +133,19 @@ export interface NewsPayload {
   updated_at?: Date;
   blog_post_image_blog_post_image_blog_post_idToblog_post: BlogPostImage[];
 }
+
+export interface TalentConfirmationPayload {
+  first_name: string;
+  last_name: string;
+  id: number;
+  email: string;
+}
+
+export interface ProductPayload {
+  id: number;
+  name: string;
+  description?: string;
+  price: number;
+  created_at?: Date;
+  updated_at?: Date;
+}

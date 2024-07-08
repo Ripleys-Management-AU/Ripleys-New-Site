@@ -6,6 +6,11 @@ const config = {
   emailSenderAddress: process.env.EMAIL_SENDER_ADDRESS || "admin@akiraspace.io",
   ripleysAdminAddress:
     process.env.RIPLEYS_ADMIN_ADDRESS || "rm@ripleysmanagement.com.au",
+  stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY || "",
+  stripeSecretKey: process.env.STRIPE_SECRET_KEY || "",
+  stripeWebhookSecret:
+    process.env.STRIPE_WEBHOOK_SECRET ||
+    "whsec_ed89263a4db51c74bff0b26fbdc6f86a5d4a6c6f98f178c7746d955850a38463",
 };
 
 export default config;

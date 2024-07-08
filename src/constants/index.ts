@@ -25,3 +25,7 @@ export const NT = 4;
 export const QLD = 5;
 export const WA = 6;
 export const SA = 7;
+
+export const REGISTRATION = 1;
+export const ANNUAL_RENEWAL = 2;
+export const SHOWREELS = 3;
