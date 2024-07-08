@@ -2,7 +2,7 @@ import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 import config from "@/config/config";
-import { compileRegisterNotificationTemplate } from "@/utils/email";
+import { compileRegisterTalentNotificationTemplate } from "@/utils/email";
 
 export default async function Notify(
   req: NextApiRequest,
@@ -11,13 +11,13 @@ export default async function Notify(
   try {
     const { talent } = req.body;
     const smtp2goApiUrl = "https://api.smtp2go.com/v3/email/send";
-    const htmlBody = compileRegisterNotificationTemplate(talent);
+    const htmlBody = compileRegisterTalentNotificationTemplate();
     const resEmail = await axios.post(
       smtp2goApiUrl,
       {
         sender: config.emailSenderAddress,
-        to: [config.ripleysAdminAddress],
-        subject: `${talent.first_name} ${talent.last_name} has registered!`,
+        to: [talent.email],
+        subject: `Thanks for your registration!`,
         html_body: htmlBody,
       },
       {

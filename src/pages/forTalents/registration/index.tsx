@@ -29,6 +29,7 @@ const TalentRegistrationPage = () => {
       last_name: "",
       category: "",
       gender: "",
+      pronoun: "",
       email: "",
       address1: "",
       address2: "",

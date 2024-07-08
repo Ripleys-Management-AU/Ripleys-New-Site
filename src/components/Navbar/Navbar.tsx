@@ -177,11 +177,11 @@ const Navbar = () => {
                       Registration Form
                     </Link>
                   </li>
-                  <li className="hover:text-gray-500 duration-200">
-                    <Link href="/forTalents/subpage3">
-                      Registration Process
-                    </Link>
-                  </li>
+                  {/*<li className="hover:text-gray-500 duration-200">*/}
+                  {/*  <Link href="/forTalents/subpage3">*/}
+                  {/*    Registration Process*/}
+                  {/*  </Link>*/}
+                  {/*</li>*/}
                   <li className="hover:text-gray-500 duration-200">
                     <Link href="/forTalents/subpage3">Make A Payment</Link>
                   </li>
@@ -190,9 +190,9 @@ const Navbar = () => {
             )}
           </AnimatePresence>
         </div>
-        <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
-          <Link href="/news">News</Link>
-        </h1>
+        {/*<h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">*/}
+        {/*  <Link href="/news">News</Link>*/}
+        {/*</h1>*/}
         <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
           <Link href="/about"> About</Link>
         </h1>

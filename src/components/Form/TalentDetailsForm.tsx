@@ -48,6 +48,12 @@ const TalentDetailsForm: React.FC<Props> = ({
     { value: 7, label: "SA" },
   ];
 
+  const pronounValues = [
+    { value: "He/Him", label: "He/Him" },
+    { value: "She/Her", label: "She/Her" },
+    { value: "They/Them", label: "They/Them" },
+  ];
+
   const registrationValues = [
     { value: 0, label: "12 months registration with headshots - $320" },
     {
@@ -104,22 +110,28 @@ const TalentDetailsForm: React.FC<Props> = ({
           required
         />
         <FormSelect
-          label="Gender*"
+          label="Gender"
           register={register("gender", {
             required: "Gender is required",
           })}
           error={errors.gender}
           disabled={loading}
           values={genderValues}
+          required
+        />
+        <FormSelect
+          label="Pronoun"
+          register={register("pronoun", {
+            required: "pronoun is required",
+          })}
+          disabled={loading}
+          values={pronounValues}
         />
         <FormInput
           label="Address1"
-          register={register("address1", {
-            required: "Address1 is required",
-          })}
+          register={register("address1")}
           error={errors.address1}
           disabled={loading}
-          required
         />
         <FormInput
           label="Address2"
@@ -184,7 +196,13 @@ const TalentDetailsForm: React.FC<Props> = ({
         />
         <FormInput
           label="Email*"
-          register={register("email", { required: "Email is required" })}
+          register={register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+              message: "Invalid email address",
+            },
+          })}
           error={errors.email}
           disabled={loading}
         />

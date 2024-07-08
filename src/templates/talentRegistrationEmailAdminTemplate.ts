@@ -1,4 +1,4 @@
-const talentRegistrationEmailTemplate = `<!DOCTYPE html>
+const talentRegistrationEmailAdminTemplate = `<!DOCTYPE html>
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
 
 <head>
@@ -277,6 +277,56 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t\t\t\t\t\t\t<table class="heading_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 style="margin: 0; color: #7747FF; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 19.2px;"><em>Gender</em></h1>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="paragraph_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div style="color:#101112;direction:ltr;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;"><span style="word-break: break-word; color: #ffffff;">{{gender}}</span></p>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="heading_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 style="margin: 0; color: #7747FF; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 19.2px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Pronoun</span></h1>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="paragraph_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div style="color:#101112;direction:ltr;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;"><span style="word-break: break-word; color: #ffffff;">{{pronoun}}</span></p>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t</tbody>
+\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t</tbody>
+\t\t\t\t\t</table>
+\t\t\t\t\t<table class="row row-7" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t\t<tbody>
+\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t<td>
+\t\t\t\t\t\t\t\t\t<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #030512; border-radius: 0; color: #000000; width: 640px; margin: 0 auto;" width="640">
+\t\t\t\t\t\t\t\t\t\t<tbody>
+\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t<td class="column column-1" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="heading_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 style="margin: 0; color: #7747FF; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 19.2px;"><em>Birth Date</em></h1>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
@@ -295,7 +345,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t\t\t\t\t\t\t<table class="heading_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 style="margin: 0; color: #7747FF; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 19.2px;"><em>Gender</em></h1>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 style="margin: 0; color: #7747FF; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 19.2px;"><em>Phone</em></h1>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t\t\t\t\t\t\t\t</table>
@@ -303,7 +353,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div style="color:#101112;direction:ltr;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;"><span style="word-break: break-word; color: #ffffff;">{{gender}}</span></p>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;"><span style="word-break: break-word; color: #ffffff;">{{phone_mobile}}</span></p>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
@@ -316,7 +366,57 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-7" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-8" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t\t<tbody>
+\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t<td>
+\t\t\t\t\t\t\t\t\t<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #030512; border-radius: 0; color: #000000; width: 640px; margin: 0 auto;" width="640">
+\t\t\t\t\t\t\t\t\t\t<tbody>
+\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t<td class="column column-1" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="heading_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 style="margin: 0; color: #7747FF; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 19.2px;"><em>Email</em></h1>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="paragraph_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div style="color:#101112;direction:ltr;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;"><span style="word-break: break-word; color: #ffffff;">{{email}}</span></p>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="heading_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 style="margin: 0; color: #7747FF; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 19.2px;"><em>Occupation</em></h1>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="paragraph_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div style="color:#101112;direction:ltr;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;"><span style="word-break: break-word; color: #ffffff;">{{occupation}}</span></p>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t\t\t\t\t</tbody>
+\t\t\t\t\t\t\t\t\t</table>
+\t\t\t\t\t\t\t\t</td>
+\t\t\t\t\t\t\t</tr>
+\t\t\t\t\t\t</tbody>
+\t\t\t\t\t</table>
+\t\t\t\t\t<table class="row row-9" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -366,7 +466,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-8" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-10" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -416,57 +516,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-9" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-\t\t\t\t\t\t<tbody>
-\t\t\t\t\t\t\t<tr>
-\t\t\t\t\t\t\t\t<td>
-\t\t\t\t\t\t\t\t\t<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #030512; border-radius: 0; color: #000000; width: 640px; margin: 0 auto;" width="640">
-\t\t\t\t\t\t\t\t\t\t<tbody>
-\t\t\t\t\t\t\t\t\t\t\t<tr>
-\t\t\t\t\t\t\t\t\t\t\t\t<td class="column column-1" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="heading_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 style="margin: 0; color: #7747FF; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 19.2px;"><em>Phone</em></h1>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
-\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
-\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="paragraph_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div style="color:#101112;direction:ltr;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;"><span style="word-break: break-word; color: #ffffff;">{{phone_mobile}}</span></p>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
-\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
-\t\t\t\t\t\t\t\t\t\t\t\t</td>
-\t\t\t\t\t\t\t\t\t\t\t\t<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="heading_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<h1 style="margin: 0; color: #7747FF; direction: ltr; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: normal; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 19.2px;"><em>Occupation</em></h1>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
-\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
-\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="paragraph_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div style="color:#101112;direction:ltr;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;"><span style="word-break: break-word; color: #ffffff;">{{occupation}}</span></p>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
-\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
-\t\t\t\t\t\t\t\t\t\t\t\t</td>
-\t\t\t\t\t\t\t\t\t\t\t</tr>
-\t\t\t\t\t\t\t\t\t\t</tbody>
-\t\t\t\t\t\t\t\t\t</table>
-\t\t\t\t\t\t\t\t</td>
-\t\t\t\t\t\t\t</tr>
-\t\t\t\t\t\t</tbody>
-\t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-10" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-11" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -491,7 +541,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-11" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-position: center top;">
+\t\t\t\t\t<table class="row row-12" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-position: center top;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -516,7 +566,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-12" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-13" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -566,7 +616,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-13" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-14" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -616,7 +666,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-14" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-15" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -666,7 +716,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-15" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-16" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -716,7 +766,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-16" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-17" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -766,7 +816,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-17" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-18" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -816,7 +866,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-18" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-19" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -866,7 +916,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-19" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-20" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -914,7 +964,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-20" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-21" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -931,7 +981,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-21" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-22" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -956,7 +1006,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-22" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-23" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -997,7 +1047,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-23" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+\t\t\t\t\t<table class="row row-24" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -1014,7 +1064,7 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t</tbody>
 \t\t\t\t\t</table>
-\t\t\t\t\t<table class="row row-24" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;">
+\t\t\t\t\t<table class="row row-25" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;">
 \t\t\t\t\t\t<tbody>
 \t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t<td>
@@ -1029,8 +1079,6 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="alignment" style="vertical-align: middle; text-align: center;"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;"><![endif]-->
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<!--[if !vml]><!-->
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<table class="icons-inner" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; margin-right: -4px; padding-left: 0px; padding-right: 0px;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</table>
@@ -1053,4 +1101,4 @@ const talentRegistrationEmailTemplate = `<!DOCTYPE html>
 
 </html>`;
 
-export default talentRegistrationEmailTemplate;
+export default talentRegistrationEmailAdminTemplate;

@@ -15,6 +15,7 @@ export interface TalentFormAllDataType {
   last_name: string;
   category: string;
   gender: string;
+  pronoun?: string;
   email: string;
   phone: string;
   address1: string;

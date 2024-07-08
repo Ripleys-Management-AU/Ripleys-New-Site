@@ -100,10 +100,13 @@ const TalentDocsForm: React.FC<Props> = ({
         return;
       }
 
-      const resEmail = await axios.post(
-        "/api/email/talent/registration/notify",
-        { talent: talentFinalData },
-      );
+      await axios.post("/api/email/talent/registration/admin/notify", {
+        talent: talentFinalData,
+      });
+
+      await axios.post("/api/email/talent/registration/talent/notify", {
+        talent: talentFinalData,
+      });
 
       setInfo({ message: "Thanks for registration!", type: "success" });
     } catch (e) {

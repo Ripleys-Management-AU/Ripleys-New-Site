@@ -2,15 +2,16 @@ import * as handlebars from "handlebars";
 
 import config from "@/config/config";
 import { MALE } from "@/constants";
-import talentRegistrationEmailTemplate from "@/templates/talentRegistrationEmailTemplate";
+import talentRegistrationEmailAdminTemplate from "@/templates/talentRegistrationEmailAdminTemplate";
 import { mapNumberToState } from "@/utils/talent";
 
 import { TalentFormAllDataType } from "@/types/Form";
+import { talentRegistrationEmailTalentTemplate } from "@/templates/talentRegistrationEmailTalentTemplate";
 
-export const compileRegisterNotificationTemplate = (
+export const compileRegisterAdminNotificationTemplate = (
   data: TalentFormAllDataType,
 ) => {
-  const template = handlebars.compile(talentRegistrationEmailTemplate);
+  const template = handlebars.compile(talentRegistrationEmailAdminTemplate);
   const htmlBody = template({
     //TODO:Change the url
     imageUrl: `${config.uploadPrefix}/test/${data.imageFileName}`,
@@ -18,7 +19,10 @@ export const compileRegisterNotificationTemplate = (
     last_name: data.last_name,
     birth_date: data.birth_date,
     gender: Number(data.gender) === MALE ? "Male" : "Female",
-    address1: data.address1,
+    address1:
+      data.address1 === "" || !data.address1 ? "No Data" : data.address1,
+    email: data.email,
+    pronoun: data.pronoun,
     suburb: data.suburb,
     state: mapNumberToState(Number(data.state)),
     postcode: data.postcode,
@@ -44,5 +48,11 @@ export const compileRegisterNotificationTemplate = (
         ? "No Data"
         : data.suit_length,
   });
+  return htmlBody;
+};
+
+export const compileRegisterTalentNotificationTemplate = () => {
+  const template = handlebars.compile(talentRegistrationEmailTalentTemplate);
+  const htmlBody = template({});
   return htmlBody;
 };
