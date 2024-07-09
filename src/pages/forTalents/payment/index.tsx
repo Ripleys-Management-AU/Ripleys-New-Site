@@ -3,7 +3,9 @@ import React, { useContext, useEffect, useState } from "react";
 
 import TalentConfirmationForm from "@/components/Form/TalentConfirmationForm";
 import Layout from "@/components/Layout/Layout";
+import PaymentPlanCard from "@/components/PaymentPlanCard/PaymentPlanCard";
 
+import { ANNUAL_RENEWAL, REGISTRATION, SHOWREELS } from "@/constants";
 import { TalentContext } from "@/context/talent/TalentProvider";
 import { ProductPayload } from "@/model/types";
 
@@ -12,17 +14,47 @@ const PaymentPage = () => {
   const [products, setProducts] = useState<ProductPayload[]>([]);
 
   useEffect(() => {
+    if (!currentTalent) return;
     const fetchProducts = async () => {
       try {
         const res = await axios.get("/api/product?action=getAllProducts");
-        console.log(res.data);
-        setProducts(res.data.products);
+
+        const filteredProducts = res.data.products.filter(
+          (product: ProductPayload) => {
+            if (!currentTalent) return false;
+            if (!currentTalent.payment) return product.id !== ANNUAL_RENEWAL;
+
+            let registrationFeePaid = false;
+            let showreelsPaid = false;
+
+            for (const payment of currentTalent.payment) {
+              if (payment.product_id === REGISTRATION) {
+                registrationFeePaid = true;
+              }
+              if (payment.product_id === SHOWREELS) {
+                showreelsPaid = true;
+              }
+            }
+
+            if (registrationFeePaid && product.id === REGISTRATION) {
+              return product.id !== REGISTRATION;
+            }
+
+            if (showreelsPaid && product.id === SHOWREELS) {
+              return product.id !== SHOWREELS;
+            }
+
+            return true;
+          },
+        );
+
+        setProducts(filteredProducts);
       } catch (e) {
         console.error(e);
       }
     };
     fetchProducts();
-  }, []);
+  }, [currentTalent]);
 
   const handleCheckout = async (productId: number) => {
     if (!currentTalent) return;
@@ -43,26 +75,20 @@ const PaymentPage = () => {
           <div className="text-center mt-4 text-light-grey text-md leading-8">
             <p>
               {currentTalent
-                ? `Hi ${currentTalent.first_name} ${currentTalent.first_name}, Please select product and make a payment`
+                ? `Hi ${currentTalent.first_name} ${currentTalent.first_name}, please select product and make a payment`
                 : "Please complete the below form to confirm your information."}
             </p>
           </div>
-          <div className="w-full">
+          <div className="w-full mt-8">
             {currentTalent ? (
-              <div>
-                <ul>
-                  {products.map((product) => (
-                    <li key={product.id}>
-                      {product.name} - ${product.price.toFixed(2)}
-                      <button
-                        onClick={() => handleCheckout(Number(product.id))}
-                        className="text-white"
-                      >
-                        Buy
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+              <div className="grid lg:grid-cols-3 gap-8">
+                {products.map((product) => (
+                  <PaymentPlanCard
+                    key={product.id}
+                    product={product}
+                    handleCheckOut={handleCheckout}
+                  />
+                ))}
               </div>
             ) : (
               <TalentConfirmationForm />

@@ -316,9 +316,12 @@ export const getTalentByName = async (
         last_name: true,
         id: true,
         email: true,
+        talent_map_customer: true,
+        payment: true,
       },
     });
     const talent = targetTalent as TalentConfirmationPayload;
+    console.log(talent);
     return talent;
   } catch (e) {
     console.log(e);

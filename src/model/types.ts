@@ -139,6 +139,17 @@ export interface TalentConfirmationPayload {
   last_name: string;
   id: number;
   email: string;
+  talent_map_customer?: CustomerPayload;
+  payment?: PaymentPayload[];
+}
+
+export interface CustomerPayload {
+  id: number;
+  talent_id: number;
+  stripe_customer_id: string;
+  created_at?: Date;
+  updated_at?: Date;
+  valid_until?: Date;
 }
 
 export interface ProductPayload {
@@ -146,6 +157,15 @@ export interface ProductPayload {
   name: string;
   description?: string;
   price: number;
+  created_at?: Date;
+  updated_at?: Date;
+}
+
+export interface PaymentPayload {
+  id: number;
+  amount: number;
+  product_id: number;
+  talent_id: number;
   created_at?: Date;
   updated_at?: Date;
 }
