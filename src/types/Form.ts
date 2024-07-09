@@ -54,11 +54,14 @@ export interface TalentFormAllDataType {
   accents: number[];
   licenses: number[];
   unions: number[];
-  image_title: string;
-  doc_title: string;
-  imageFileName: string;
-  docFileName: string;
-  image?: any;
+  head_shot_image_title?: string;
+  headShotImageFileName: string;
+  head_shot_image?: any;
+  full_body_shot_image_title: string;
+  fullBodyShotImageFileName?: string;
+  full_body_shot_image?: any;
+  doc_title?: string;
+  docFileName?: string;
   doc?: any;
 }
 

@@ -59,20 +59,34 @@ const TalentDocsForm: React.FC<Props> = ({
     try {
       setLoading(true);
 
-      const imageFile = docsFormData.image[0];
+      const headShotImageFile = docsFormData.head_shot_image[0];
+      const fullBodyShotImageFile = docsFormData.full_body_shot_image[0];
       const docFile = docsFormData.doc[0];
 
       const formData = new FormData();
-      formData.set("file", imageFile);
-      const resImg = await axios.post("/api/talent/uploads/s3", formData);
-      const imageFileName = resImg.data.fileName;
+      formData.set("file", headShotImageFile);
+      const resHeadImg = await axios.post("/api/talent/uploads/s3", formData);
+      const headShotImageFileName = resHeadImg.data.fileName;
+
+      formData.set("file", fullBodyShotImageFile);
+      const resFullBodyImage = await axios.post(
+        "/api/talent/uploads/s3",
+        formData,
+      );
+      const fullBodyShotImageFileName = resFullBodyImage.data.fileName;
 
       formData.set("file", docFile);
       const resDoc = await axios.post("/api/talent/uploads/s3", formData);
       const docFileName = resDoc.data.fileName;
 
-      if (!imageFileName || !docFileName)
+      if (!headShotImageFileName)
         throw new Error("failed to upload file to s3");
+
+      if (fullBodyShotImageFile !== "" && !fullBodyShotImageFileName)
+        throw new Error("failed to upload full body shot to s3");
+
+      if (docFile !== "" && !docFileName)
+        throw new Error("failed to upload resume to s3");
 
       const talentsDetailsData = detailsFormMethod.getValues();
       const talentTraitsData = traitsFormMethod.getValues();
@@ -84,15 +98,27 @@ const TalentDocsForm: React.FC<Props> = ({
         ...talentTraitsData,
         ...talentExpData,
         ...talentDocsData,
-        imageFileName,
-        docFileName,
+        headShotImageFileName,
+        ...(fullBodyShotImageFileName && { fullBodyShotImageFileName }),
+        ...(docFileName && { docFileName }),
       };
 
-      const { image, doc, ...talentFinalData }: TalentFormAllDataType =
-        talentFullData;
+      console.log(">>>>>>>talentFullData", talentFullData);
+
+      const {
+        head_shot_image,
+        full_body_shot_image,
+        doc,
+        ...talentFinalData
+      }: TalentFormAllDataType = talentFullData;
 
       const res = await axios.post("/api/talent/registration", {
-        talent: { ...talentFullData, imageFile, docFileName },
+        talent: {
+          ...talentFullData,
+          headShotImageFileName,
+          ...(fullBodyShotImageFileName && { fullBodyShotImageFileName }),
+          ...(docFileName && { docFileName }),
+        },
       });
 
       if (res.status !== 201) {
@@ -115,6 +141,8 @@ const TalentDocsForm: React.FC<Props> = ({
       setLoading(false);
     }
   };
+
+  const nonUrlPattern = /^(?!.*(http:\/\/|https:\/\/|www\.))[^\s]+$/;
 
   // const localUpload = async () => {
   //   const docsFormData = getValues();
@@ -156,42 +184,61 @@ const TalentDocsForm: React.FC<Props> = ({
     <div className="mt-4 lg:mt-8 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-5 lg:mt-4">
         <FormFileInput
-          label="Image"
-          register={register("image", {
+          label="Head Shot"
+          register={register("head_shot_image", {
             required: "Image is required",
           })}
           accept="image/png, image/jpeg"
-          error={errors.image}
+          error={errors.head_shot_image}
           disabled={loading}
           required
         />
         <FormInput
-          label="Image Title"
-          register={register("image_title", {
-            required: "Image Title is required",
+          label="Head Shot File Name"
+          register={register("head_shot_image_title", {
+            pattern: {
+              value: nonUrlPattern,
+              message: "Links are not allowed",
+            },
           })}
-          error={errors.image_title}
+          error={errors.head_shot_image_title}
           disabled={loading}
-          required
         />
         <FormFileInput
-          label="Document"
-          register={register("doc", {
-            required: "Document is required",
+          label="Full Body Shot"
+          register={register("full_body_shot_image")}
+          accept="image/png, image/jpeg"
+          error={errors.full_body_shot_image}
+          disabled={loading}
+        />
+        <FormInput
+          label="Full Body Shot File Name"
+          register={register("full_body_shot_image_title", {
+            pattern: {
+              value: nonUrlPattern,
+              message: "Links are not allowed",
+            },
           })}
+          error={errors.full_body_shot_image_title}
+          disabled={loading}
+        />
+        <FormFileInput
+          label="Resume"
+          register={register("doc")}
           accept=".pdf, .doc, .docx"
           error={errors.doc}
           disabled={loading}
-          required
         />
         <FormInput
-          label="Document Title"
+          label="Resume File Name"
           register={register("doc_title", {
-            required: "Document Title is required",
+            pattern: {
+              value: nonUrlPattern,
+              message: "Links are not allowed",
+            },
           })}
           error={errors.doc_title}
           disabled={loading}
-          required
         />
       </div>
       <div className="w-full mt-8">

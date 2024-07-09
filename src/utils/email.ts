@@ -3,10 +3,10 @@ import * as handlebars from "handlebars";
 import config from "@/config/config";
 import { MALE } from "@/constants";
 import talentRegistrationEmailAdminTemplate from "@/templates/talentRegistrationEmailAdminTemplate";
+import { talentRegistrationEmailTalentTemplate } from "@/templates/talentRegistrationEmailTalentTemplate";
 import { mapNumberToState } from "@/utils/talent";
 
 import { TalentFormAllDataType } from "@/types/Form";
-import { talentRegistrationEmailTalentTemplate } from "@/templates/talentRegistrationEmailTalentTemplate";
 
 export const compileRegisterAdminNotificationTemplate = (
   data: TalentFormAllDataType,
@@ -14,7 +14,7 @@ export const compileRegisterAdminNotificationTemplate = (
   const template = handlebars.compile(talentRegistrationEmailAdminTemplate);
   const htmlBody = template({
     //TODO:Change the url
-    imageUrl: `${config.uploadPrefix}/test/${data.imageFileName}`,
+    imageUrl: `${config.uploadPrefix}/test/${data.headShotImageFileName}`,
     first_name: data.first_name,
     last_name: data.last_name,
     birth_date: data.birth_date,

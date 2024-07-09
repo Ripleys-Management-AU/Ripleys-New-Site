@@ -191,37 +191,76 @@ export const addTalent = async (data: TalentFormAllDataType) => {
 
       if (!talentId) return null;
 
-      if (data.imageFileName !== "" && data.docFileName !== "") {
+      console.log(
+        ">>>>>>>>>>>headShotImageFileName",
+        data.headShotImageFileName,
+      );
+
+      if (data.headShotImageFileName) {
+        console.log("headShotImageFileName");
         const imageAssetCreate = {
-          filename: data.imageFileName,
+          filename: data.headShotImageFileName,
           created_at: new Date(),
           updated_at: new Date(),
         };
+        const imageAsset = await prisma.asset.create({
+          data: imageAssetCreate,
+        });
+        const imageAssetId = (imageAsset as any).id;
+
+        const imageCreate = {
+          talent_id: talentId,
+          sequence: 0,
+          id: imageAssetId,
+          filename: data.headShotImageFileName,
+          title: data.head_shot_image_title ? data.head_shot_image_title : "",
+          created_at: new Date(),
+          updated_at: new Date(),
+        };
+        await prisma.talent_image.create({
+          data: imageCreate,
+        });
+      }
+
+      if (data.fullBodyShotImageFileName) {
+        const imageAssetCreate = {
+          filename: data.fullBodyShotImageFileName,
+          created_at: new Date(),
+          updated_at: new Date(),
+        };
+        const imageAsset = await prisma.asset.create({
+          data: imageAssetCreate,
+        });
+        const imageAssetId = (imageAsset as any).id;
+
+        const imageCreate = {
+          talent_id: talentId,
+          sequence: 0,
+          id: imageAssetId,
+          filename: data.fullBodyShotImageFileName,
+          title: data.full_body_shot_image_title
+            ? data.full_body_shot_image_title
+            : "",
+          created_at: new Date(),
+          updated_at: new Date(),
+        };
+        await prisma.talent_image.create({
+          data: imageCreate,
+        });
+      }
+
+      if (data.docFileName) {
         const documentAssetCreate = {
           filename: data.docFileName,
           created_at: new Date(),
           updated_at: new Date(),
         };
 
-        const imageAsset = await prisma.asset.create({
-          data: imageAssetCreate,
-        });
         const docAsset = await prisma.asset.create({
           data: documentAssetCreate,
         });
 
-        const imageAssetId = (imageAsset as any).id;
         const docAssetId = (docAsset as any).id;
-
-        const imageCreate = {
-          talent_id: talentId,
-          sequence: 0,
-          id: imageAssetId,
-          filename: data.imageFileName,
-          title: data.image_title,
-          created_at: new Date(),
-          updated_at: new Date(),
-        };
 
         const documentCreate = {
           talent_id: talentId,
@@ -232,10 +271,6 @@ export const addTalent = async (data: TalentFormAllDataType) => {
           created_at: new Date(),
           updated_at: new Date(),
         };
-
-        await prisma.talent_image.create({
-          data: imageCreate,
-        });
 
         await prisma.talent_document.createMany({
           data: documentCreate,

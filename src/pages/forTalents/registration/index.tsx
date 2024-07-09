@@ -80,8 +80,10 @@ const TalentRegistrationPage = () => {
 
   const docsFormMethod = useForm({
     defaultValues: {
-      image: "",
-      image_title: "",
+      head_shot_image: "",
+      head_shot_image_title: "",
+      full_body_shot_image: "",
+      full_body_shot_image_title: "",
       doc: "",
       doc_title: "",
     },
