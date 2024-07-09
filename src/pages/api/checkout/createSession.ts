@@ -15,7 +15,7 @@ export default async function createSession(
   res: NextApiResponse,
 ) {
   if (req.method === "POST") {
-    const { productId, talentId } = req.body;
+    const { productId, talentId, email } = req.body;
     try {
       const product = await getProductById(Number(productId));
 

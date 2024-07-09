@@ -3,6 +3,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 
 import prisma from "@/model/client";
+import { ANNUAL_RENEWAL, REGISTRATION } from "@/constants";
+import moment from "moment";
+import { CustomerPayload } from "@/model/types";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
   apiVersion: "2024-06-20",
@@ -32,12 +35,36 @@ export default async function handler(
       const productId = session.metadata.productId;
       const talentId = session.metadata.talentId;
 
-      await prisma.payment.create({
-        data: {
-          talent_id: Number(talentId),
-          product_id: Number(productId),
-          amount: 1,
-        },
+      await prisma.$transaction(async (prisma) => {
+        await prisma.payment.create({
+          data: {
+            talent_id: Number(talentId),
+            product_id: Number(productId),
+            amount: 1,
+          },
+        });
+
+        if (productId === REGISTRATION) {
+          await prisma.talent_map_customer.update({
+            where: { talent_id: talentId },
+            data: { valid_until: moment().add(1, "year").toDate() },
+          });
+        }
+
+        if (productId === ANNUAL_RENEWAL) {
+          const customer = await prisma.talent_map_customer.findUnique({
+            where: { talent_id: talentId },
+          });
+
+          await prisma.talent_map_customer.update({
+            where: { talent_id: talentId },
+            data: {
+              valid_until: moment((customer as CustomerPayload).valid_until)
+                .add(1, "year")
+                .toDate(),
+            },
+          });
+        }
       });
     }
 

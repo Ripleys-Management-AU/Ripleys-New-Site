@@ -65,6 +65,7 @@ const PaymentPage = () => {
     const res = await axios.post("/api/checkout/createSession", {
       productId,
       talentId: currentTalent?.id,
+      email: currentTalent.email,
     });
 
     const { url } = await res.data;

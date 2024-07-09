@@ -321,7 +321,6 @@ export const getTalentByName = async (
       },
     });
     const talent = targetTalent as TalentConfirmationPayload;
-    console.log(talent);
     return talent;
   } catch (e) {
     console.log(e);
