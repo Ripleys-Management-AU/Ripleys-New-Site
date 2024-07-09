@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-black min-h-[20vh] w-full mt-24">
+    <footer className="relative bg-black min-h-[20vh] w-full mt-24">
       <div className="mx-auto w-full lg:w-[80%] py-5 px-5 lg:px-0 border-gray-500 border-t-[1px]">
         <div className="flex md:items-end lg:items-center justify-bewteen w-full flex-col md:flex-row gap-8 ">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 w-full lg:w-[55%] relative">
@@ -95,6 +95,9 @@ const Footer = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="lg:hidden absolute top-8 right-16 z-[10]">
+        <img src="/images/aws-logo.svg" className="w-[80px]" />
       </div>
     </footer>
   );
