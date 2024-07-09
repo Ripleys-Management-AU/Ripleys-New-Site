@@ -1,10 +1,10 @@
 import { buffer } from "micro";
+import moment from "moment";
 import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 
-import prisma from "@/model/client";
 import { ANNUAL_RENEWAL, REGISTRATION } from "@/constants";
-import moment from "moment";
+import prisma from "@/model/client";
 import { CustomerPayload } from "@/model/types";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
@@ -44,20 +44,20 @@ export default async function handler(
           },
         });
 
-        if (productId === REGISTRATION) {
+        if (Number(productId) === REGISTRATION) {
           await prisma.talent_map_customer.update({
-            where: { talent_id: talentId },
+            where: { talent_id: Number(talentId) },
             data: { valid_until: moment().add(1, "year").toDate() },
           });
         }
 
-        if (productId === ANNUAL_RENEWAL) {
+        if (Number(productId) === ANNUAL_RENEWAL) {
           const customer = await prisma.talent_map_customer.findUnique({
-            where: { talent_id: talentId },
+            where: { talent_id: Number(talentId) },
           });
 
           await prisma.talent_map_customer.update({
-            where: { talent_id: talentId },
+            where: { talent_id: Number(talentId) },
             data: {
               valid_until: moment((customer as CustomerPayload).valid_until)
                 .add(1, "year")
