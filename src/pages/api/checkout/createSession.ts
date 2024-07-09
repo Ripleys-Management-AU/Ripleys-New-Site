@@ -2,7 +2,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 
 import config from "@/config/config";
+import { addCustomer, getCustomerByTalentId } from "@/model/customer";
 import { getProductById } from "@/model/product";
+import { CustomerPayload } from "@/model/types";
 
 const stripe = new Stripe(config.stripeSecretKey as string, {
   apiVersion: "2024-06-20",
@@ -21,7 +23,19 @@ export default async function createSession(
         return res.status(404).json({ error: "Product not found" });
       }
 
-      // const customer =
+      let customer: CustomerPayload | string | null =
+        await getCustomerByTalentId(Number(talentId));
+
+      if (customer === "error") {
+        throw new Error("Error get customer");
+      }
+
+      if (!customer) {
+        const stripeCustomer = await stripe.customers.create({
+          metadata: { talentId: talentId.toString() },
+        });
+        customer = await addCustomer(talentId, stripeCustomer.id);
+      }
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
@@ -38,6 +52,7 @@ export default async function createSession(
           },
         ],
         mode: "payment",
+        customer: (customer as CustomerPayload).stripe_customer_id,
         success_url: `${req.headers.origin}/forTalents/payment/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${req.headers.origin}/forTalents/payment`,
         metadata: {
