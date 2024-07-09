@@ -80,7 +80,7 @@ const PaymentPage = () => {
           <div className="text-center mt-4 text-light-grey text-md leading-8">
             <p>
               {currentTalent
-                ? `Hi ${currentTalent.first_name} ${currentTalent.first_name}, please select product and make a payment`
+                ? `Hi ${currentTalent.first_name} ${currentTalent.last_name}, please select product and make a payment`
                 : "Please complete the below form to confirm your information."}
             </p>
           </div>
