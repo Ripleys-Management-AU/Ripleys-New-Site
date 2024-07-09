@@ -214,15 +214,15 @@ const TalentDetailsForm: React.FC<Props> = ({
           error={errors.occupation}
           disabled={loading}
         />
-        <FormSelect
-          label="Registration*"
-          register={register("registration", {
-            required: "Registration is required",
-          })}
-          error={errors.registration}
-          disabled={loading}
-          values={registrationValues}
-        />
+        {/*<FormSelect*/}
+        {/*  label="Registration*"*/}
+        {/*  register={register("registration", {*/}
+        {/*    required: "Registration is required",*/}
+        {/*  })}*/}
+        {/*  error={errors.registration}*/}
+        {/*  disabled={loading}*/}
+        {/*  values={registrationValues}*/}
+        {/*/>*/}
       </div>
       <div className="w-full mt-8">
         <div className="flex justify-end">
