@@ -36,6 +36,10 @@ const PaymentPage = () => {
               }
             }
 
+            if (!registrationFeePaid && product.id === ANNUAL_RENEWAL) {
+              return false;
+            }
+
             if (registrationFeePaid && product.id === REGISTRATION) {
               return product.id !== REGISTRATION;
             }
