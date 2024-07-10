@@ -95,6 +95,7 @@ const RequestTalentPage = () => {
                   disabled={loading}
                   values={talentsOptions}
                   error={errors.selected_talents}
+                  required
                 />
               </div>
               <div className="mt-4 lg:mt-8 lg:px-8">
