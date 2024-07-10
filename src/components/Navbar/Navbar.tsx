@@ -135,10 +135,10 @@ const Navbar = () => {
               >
                 <ul className="flex flex-col gap-5 py-[8px] px-[5px]">
                   <li className="hover:text-gray-500 duration-200">
-                    <Link href="/forClients/subpage1">Booking Terms</Link>
+                    <Link href="/forClients/terms">Booking Terms</Link>
                   </li>
                   <li className="hover:text-gray-500 duration-200">
-                    <Link href="/forClients/subpage2">Request Talent</Link>
+                    <Link href="/forClients/requestTalent">Request Talent</Link>
                   </li>
                 </ul>
               </motion.div>

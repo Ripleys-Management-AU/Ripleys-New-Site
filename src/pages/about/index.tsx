@@ -9,12 +9,12 @@ const AboutPage = () => {
         <div className="w-4/5">
           <h1 className="text-white text-3xl">About Us</h1>
           <div className="w-full mt-8 text-white flex flex-col gap-16 tracking-wider">
-            <p>
+            <h2 className="text-xl font-semibold italic mt-8">
               Ripleys Management Australia is a small boutique agency
               representing extras and interesting/character faces for
               Film,Television, TV commercials, photographic modelling and print
               advertising.
-            </p>
+            </h2>
             <p>
               Ripleys is based in Melbourne and is owned and operated by Karu
               Balasundram and represents only a select number of talent from

@@ -1,6 +1,7 @@
-import Marquee from "react-fast-marquee";
-import { LogoType } from "@/data/types";
 import React from "react";
+import Marquee from "react-fast-marquee";
+
+import { LogoType } from "@/data/data";
 
 interface Props {
   logos: LogoType[];

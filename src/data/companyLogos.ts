@@ -1,4 +1,4 @@
-import { LogoType } from "@/data/types";
+import { LogoType } from "@/data/data";
 
 export const filmCompanyLogosSectionOne: LogoType[] = [
   {

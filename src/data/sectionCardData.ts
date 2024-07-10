@@ -1,4 +1,4 @@
-import { SectionCardData } from "@/data/types";
+import { SectionCardData } from "@/data/data";
 
 export const sectionCards: SectionCardData[] = [
   {

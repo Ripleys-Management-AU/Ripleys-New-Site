@@ -73,15 +73,18 @@ const Footer = () => {
                   About Us
                 </div>
                 <div className="text-xs font-light lg:text-base lg:mt-4 text-gray-300 cursor-pointer">
-                  T&CS
+                  {/*T&CS*/}
+                  Booking Terms
                 </div>
               </div>
               <div className="flex items-start justify-center gap-5 lg:gap-8 lg:mt-4 flex-col cursor-pointer">
                 <div className=" text-xs font-semibold lg:text-base text-white">
-                  Sitemap
+                  {/*Sitemap*/}
+                  Register
                 </div>
                 <div className="text-xs font-light lg:text-base lg:mt-4 text-gray-300 cursor-pointer">
-                  Privacy
+                  {/*Privacy*/}
+                  Contact Us
                 </div>
               </div>
             </div>

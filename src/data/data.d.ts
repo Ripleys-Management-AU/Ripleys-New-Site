@@ -22,3 +22,8 @@ export interface TalentProfileColsDataType {
   dbAttribute: string;
   dbSubAttribute?: string;
 }
+
+export interface BookingTermPayload {
+  title: string;
+  desc: string;
+}

@@ -1,4 +1,4 @@
-import { TalentProfileColsDataType } from "@/data/types";
+import { TalentProfileColsDataType } from "@/data/data";
 
 export const femaleTalentProfileColsData: TalentProfileColsDataType[] = [
   // {

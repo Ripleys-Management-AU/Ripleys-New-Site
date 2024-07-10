@@ -1,4 +1,4 @@
-import { WebBannerImage } from "@/data/types";
+import { WebBannerImage } from "@/data/data";
 
 export const webBannerImages: WebBannerImage[] = [
   { id: 0, image: "/images/webBanner/promotions.jpg", desc: "promotions" },
