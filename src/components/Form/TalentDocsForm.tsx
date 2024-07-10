@@ -103,8 +103,6 @@ const TalentDocsForm: React.FC<Props> = ({
         ...(docFileName && { docFileName }),
       };
 
-      console.log(">>>>>>>talentFullData", talentFullData);
-
       const {
         head_shot_image,
         full_body_shot_image,
