@@ -16,10 +16,10 @@ import {
   WEB_PRESENTER,
 } from "@/constants";
 import { TalentType } from "@/model/types";
-
-import { InfoType } from "@/types/InfoType";
-import { SelectionValueType } from "@/types/Form";
 import { mapTalentsToOptions } from "@/utils/talent";
+
+import { SelectionValueType } from "@/types/Form";
+import { InfoType } from "@/types/InfoType";
 
 const RequestTalentPage = () => {
   const [info, setInfo] = useState<InfoType | null>(null);
@@ -112,27 +112,37 @@ const RequestTalentPage = () => {
                     label="Email"
                     register={register("email", {
                       required: "Email is required",
+                      pattern: {
+                        value:
+                          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                        message: "Invalid email address",
+                      },
                     })}
-                    error={errors.name}
+                    error={errors.email}
                     disabled={loading}
                     required
                   />
                   <FormInput
                     label="Phone"
-                    register={register("phone")}
-                    error={errors.name}
+                    register={register("phone", {
+                      pattern: {
+                        value: /^[0-9]+$/,
+                        message: "Phone number must contain only digits",
+                      },
+                    })}
+                    error={errors.phone}
                     disabled={loading}
                   />
                   <FormInput
                     label="Organisation"
                     register={register("organisation")}
-                    error={errors.name}
+                    error={errors.organisation}
                     disabled={loading}
                   />
                   <FormInput
                     label="Job Description"
                     register={register("job_description")}
-                    error={errors.name}
+                    error={errors.job_description}
                     disabled={loading}
                   />
                 </div>
