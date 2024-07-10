@@ -117,38 +117,45 @@ const TalentRegistrationPage = () => {
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">
         <AnimatePresence>{info && <Toast info={info} />}</AnimatePresence>
         <div className="w-4/5">
-          <h1 className="text-white text-3xl">Registration Form</h1>
+          <h1 className="text-white text-3xl">
+            Registration {currentStep < 5 ? "Form" : "Completed"}
+          </h1>
           <div className="text-center mt-4 text-light-grey text-md leading-8">
             <p>
-              Please complete the form to register your interest with Ripleys
-              Management Australia.
+              {currentStep < 5
+                ? `Please complete the form to register your interest with Ripleys
+              Management Australia.`
+                : `Thanks for your registration, we will contact you shortly`}
             </p>
           </div>
 
-          <div className="w-full mt-4 lg:mt-16 flex justify-center font-msb-bold">
-            <ul className="steps steps-horizontal lg:w-2/3">
-              <li
-                className={`step duration-200 ${currentStep >= 1 ? "step-info" : ""}`}
-              >
-                Details
-              </li>
-              <li
-                className={`step duration-200 ${currentStep >= 2 ? "step-info" : ""}`}
-              >
-                Traits
-              </li>
-              <li
-                className={`step duration-200 ${currentStep >= 3 ? "step-info" : ""}`}
-              >
-                Experience
-              </li>
-              <li
-                className={`step duration-200 ${currentStep >= 4 ? "step-info" : ""}`}
-              >
-                Docs
-              </li>
-            </ul>
-          </div>
+          {currentStep < 5 && (
+            <div className="w-full mt-4 lg:mt-16 flex justify-center font-msb-bold">
+              <ul className="steps steps-horizontal lg:w-2/3">
+                <li
+                  className={`step duration-200 ${currentStep >= 1 ? "step-info" : ""}`}
+                >
+                  Details
+                </li>
+                <li
+                  className={`step duration-200 ${currentStep >= 2 ? "step-info" : ""}`}
+                >
+                  Traits
+                </li>
+                <li
+                  className={`step duration-200 ${currentStep >= 3 ? "step-info" : ""}`}
+                >
+                  Experience
+                </li>
+                <li
+                  className={`step duration-200 ${currentStep >= 4 ? "step-info" : ""}`}
+                >
+                  Docs
+                </li>
+              </ul>
+            </div>
+          )}
+
           <div className="w-full">
             {currentStep === 1 && (
               <TalentDetailsForm
@@ -191,6 +198,7 @@ const TalentRegistrationPage = () => {
                 setInfo={setInfo}
               />
             )}
+            {currentStep === 5 && <div></div>}
           </div>
         </div>
       </div>
