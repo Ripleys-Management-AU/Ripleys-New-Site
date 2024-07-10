@@ -1,6 +1,7 @@
 import React, { Dispatch, useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
+import FormMultiSelect from "@/components/Form/FormMultiSelect/FormMultiSelect";
 import FormSelect from "@/components/Form/FormSelect/FormSelect";
 import FormTextArea from "@/components/Form/FormTextArea/FormTextArea";
 
@@ -10,7 +11,7 @@ import {
   EXTRA_COMMERCIAL_W_EXP,
   WEB_PRESENTER,
 } from "@/constants";
-import FormMultiSelect from "@/components/Form/FormMultiSelect/FormMultiSelect";
+
 import { TalentExpFormAttrType } from "@/types/Form";
 
 interface Props {

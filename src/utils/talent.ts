@@ -1,7 +1,7 @@
 import moment from "moment";
 
 import { ACT, NSW, NT, QLD, SA, TAS, VIC, WA } from "@/constants";
-import { ExpAttributesDataType } from "@/model/types";
+import { ExpAttributesDataType, TalentType } from "@/model/types";
 
 import { SelectionValueType } from "@/types/Form";
 
@@ -57,4 +57,17 @@ export const mapExpDataToOptions = (data: ExpAttributesDataType[]) => {
 
 export const mapNumberToState = (value: number): string | undefined => {
   return STATES_MAP[value];
+};
+
+export const mapTalentsToOptions = (
+  talents: TalentType[],
+): SelectionValueType[] => {
+  return talents.map((talent) => {
+    const fullName = `${talent.first_name} ${talent.last_name || ""}`.trim();
+    const value = `${talent.id}-${fullName}-${talent.email}`;
+    return {
+      label: fullName,
+      value: value,
+    };
+  });
 };

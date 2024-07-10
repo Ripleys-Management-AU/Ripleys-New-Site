@@ -27,3 +27,8 @@ export interface BookingTermPayload {
   title: string;
   desc: string;
 }
+
+export interface FAQPayload {
+  question: string;
+  answer: string;
+}
