@@ -166,12 +166,12 @@ const Navbar = () => {
                 transition={{ duration: 0.3 }}
               >
                 <ul className="flex flex-col gap-5 py-[8px] px-[5px]">
-                  <li className="hover:text-gray-500 duration-200">
-                    <Link href="/forTalents/subpage1">How To Join</Link>
-                  </li>
-                  <li className="hover:text-gray-500 duration-200">
-                    <Link href="/forTalents/subpage2">FAQ</Link>
-                  </li>
+                  {/*<li className="hover:text-gray-500 duration-200">*/}
+                  {/*  <Link href="/forTalents/subpage1">How To Join</Link>*/}
+                  {/*</li>*/}
+                  {/*<li className="hover:text-gray-500 duration-200">*/}
+                  {/*  <Link href="/forTalents/subpage2">FAQ</Link>*/}
+                  {/*</li>*/}
                   <li className="hover:text-gray-500 duration-200">
                     <Link href="/forTalents/registration">
                       Registration Form

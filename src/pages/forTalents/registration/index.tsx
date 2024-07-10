@@ -112,6 +112,17 @@ const TalentRegistrationPage = () => {
     fetchExpAttrValues();
   }, []);
 
+  useEffect(() => {
+    if (!info) return;
+    const infoTimeout = setTimeout(() => {
+      setInfo(null);
+    }, 1500);
+
+    return () => {
+      clearTimeout(infoTimeout);
+    };
+  }, [info]);
+
   return (
     <Layout>
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">

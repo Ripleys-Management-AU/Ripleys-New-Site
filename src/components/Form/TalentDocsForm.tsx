@@ -178,17 +178,6 @@ const TalentDocsForm: React.FC<Props> = ({
     };
   }, [error]);
 
-  useEffect(() => {
-    if (!info) return;
-    const infoTimeout = setTimeout(() => {
-      setInfo(null);
-    }, 1500);
-
-    return () => {
-      clearTimeout(infoTimeout);
-    };
-  }, [info]);
-
   return (
     <div className="mt-4 lg:mt-8 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-5 lg:mt-4">
