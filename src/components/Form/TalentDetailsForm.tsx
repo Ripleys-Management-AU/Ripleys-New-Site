@@ -124,8 +124,10 @@ const TalentDetailsForm: React.FC<Props> = ({
           register={register("pronoun", {
             required: "pronoun is required",
           })}
+          error={errors.pronoun}
           disabled={loading}
           values={pronounValues}
+          required
         />
         <FormInput
           label="Address1"

@@ -166,7 +166,7 @@ const TalentTraitsForm: React.FC<Props> = ({
     <div className="mt-4 lg:mt-8 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-5 lg:mt-4">
         <FormSelect
-          label="Ethnicity"
+          label="Ethnic Appearance"
           register={register("ethnicity_id", {
             required: "Ethnicity is required",
           })}

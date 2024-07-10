@@ -68,24 +68,34 @@ const TalentDocsForm: React.FC<Props> = ({
       const resHeadImg = await axios.post("/api/talent/uploads/s3", formData);
       const headShotImageFileName = resHeadImg.data.fileName;
 
-      formData.set("file", fullBodyShotImageFile);
-      const resFullBodyImage = await axios.post(
-        "/api/talent/uploads/s3",
-        formData,
-      );
-      const fullBodyShotImageFileName = resFullBodyImage.data.fileName;
+      let fullBodyShotImageFileName = null;
+      if (fullBodyShotImageFile && fullBodyShotImageFile !== "") {
+        formData.set("file", fullBodyShotImageFile);
+        const resFullBodyImage = await axios.post(
+          "/api/talent/uploads/s3",
+          formData,
+        );
+        fullBodyShotImageFileName = resFullBodyImage.data.fileName;
+      }
 
-      formData.set("file", docFile);
-      const resDoc = await axios.post("/api/talent/uploads/s3", formData);
-      const docFileName = resDoc.data.fileName;
+      let docFileName = null;
+      if (docFile && docFile !== "") {
+        formData.set("file", docFile);
+        const resDoc = await axios.post("/api/talent/uploads/s3", formData);
+        docFileName = resDoc.data.fileName;
+      }
 
       if (!headShotImageFileName)
         throw new Error("failed to upload file to s3");
 
-      if (fullBodyShotImageFile !== "" && !fullBodyShotImageFileName)
+      if (
+        fullBodyShotImageFile &&
+        fullBodyShotImageFile !== "" &&
+        !fullBodyShotImageFileName
+      )
         throw new Error("failed to upload full body shot to s3");
 
-      if (docFile !== "" && !docFileName)
+      if (docFile && docFile !== "" && !docFileName)
         throw new Error("failed to upload resume to s3");
 
       const talentsDetailsData = detailsFormMethod.getValues();
@@ -186,7 +196,7 @@ const TalentDocsForm: React.FC<Props> = ({
           register={register("head_shot_image", {
             required: "Image is required",
           })}
-          accept="image/png, image/jpeg"
+          accept="image/png, image/jpeg, image/jpg"
           error={errors.head_shot_image}
           disabled={loading}
           required

@@ -76,9 +76,8 @@ const TalentExperienceForm: React.FC<Props> = ({
           control={formMethod.control}
           values={allExpOptions.accentOptions}
           disabled={loading}
-          rules={accentsRules}
+          rules={{}}
           error={errors.accents}
-          required
         />
         <FormMultiSelect
           name="languages"
@@ -86,9 +85,8 @@ const TalentExperienceForm: React.FC<Props> = ({
           control={formMethod.control}
           values={allExpOptions.languageOptions}
           disabled={loading}
-          rules={languageRules}
+          rules={{}}
           error={errors.languages}
-          required
         />
         <FormMultiSelect
           name="licenses"
@@ -96,9 +94,8 @@ const TalentExperienceForm: React.FC<Props> = ({
           control={formMethod.control}
           values={allExpOptions.licenseOptions}
           disabled={loading}
-          rules={languageRules}
+          rules={{}}
           error={errors.licenses}
-          required
         />
         <FormMultiSelect
           name="unions"
@@ -106,9 +103,8 @@ const TalentExperienceForm: React.FC<Props> = ({
           control={formMethod.control}
           values={allExpOptions.unionOptions}
           disabled={loading}
-          rules={languageRules}
+          rules={{}}
           error={errors.unions}
-          required
         />
       </div>
       <div className="w-full">
@@ -122,13 +118,13 @@ const TalentExperienceForm: React.FC<Props> = ({
           required
         />
         <FormTextArea
-          label="Showreel"
+          label="Training"
           register={register("showreel")}
           error={errors.showreel}
           disabled={loading}
         />
         <FormTextArea
-          label="Skill&Interests"
+          label="Skills & Interests"
           register={register("skills_interests", {
             required: "Skill&Interests is required",
           })}

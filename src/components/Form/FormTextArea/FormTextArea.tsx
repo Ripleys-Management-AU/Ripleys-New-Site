@@ -28,7 +28,7 @@ const FormTextArea: React.FC<Props> = ({
       </div>
       <div className="w-full">
         <textarea
-          className={`textarea bg-white text-black w-full min-h-[200px] text-md ${error ? "textarea-error" : ""}`}
+          className={`textarea bg-white text-black w-full min-h-[100px] text-md ${error ? "textarea-error" : ""}`}
           disabled={disabled}
           {...register}
         />

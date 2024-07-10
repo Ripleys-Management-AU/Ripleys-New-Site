@@ -2,6 +2,7 @@ import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 import config from "@/config/config";
+import { ACTOR } from "@/constants";
 import { compileRegisterTalentNotificationTemplate } from "@/utils/email";
 
 export default async function Notify(
@@ -10,14 +11,16 @@ export default async function Notify(
 ) {
   try {
     const { talent } = req.body;
+    const artistType = talent.artist_type;
+    const isActor = Number(artistType) === ACTOR;
     const smtp2goApiUrl = "https://api.smtp2go.com/v3/email/send";
-    const htmlBody = compileRegisterTalentNotificationTemplate();
+    const htmlBody = compileRegisterTalentNotificationTemplate(isActor);
     const resEmail = await axios.post(
       smtp2goApiUrl,
       {
         sender: config.emailSenderAddress,
         to: [talent.email],
-        subject: `Thanks for your registration!`,
+        subject: `Welcome to Ripleys Management Australia! ${isActor && `- We Will Contact You To Discuss Your Opportunities`}`,
         html_body: htmlBody,
       },
       {

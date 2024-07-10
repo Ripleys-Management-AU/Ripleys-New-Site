@@ -151,7 +151,7 @@ const Navbar = () => {
           onMouseLeave={handleMouseLeave}
         >
           <h1 className="flex items-center gap-2 cursor-pointer hover:text-gray-500 duration-200">
-            For Talents
+            For Talent
             <FaChevronDown size={12} />
           </h1>
           <AnimatePresence>

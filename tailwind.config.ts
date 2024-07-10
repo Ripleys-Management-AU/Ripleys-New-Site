@@ -41,6 +41,9 @@ const config: Config = {
       },
     },
   },
+  daisyui: {
+    themes: ["dark"],
+  },
   plugins: [daisyui, flowbite.plugin()],
 };
 export default config;

@@ -2,6 +2,7 @@ import axios from "axios";
 import { NextApiRequest, NextApiResponse } from "next";
 
 import config from "@/config/config";
+import { ACTOR } from "@/constants";
 import { compileRegisterAdminNotificationTemplate } from "@/utils/email";
 
 export default async function Notify(
@@ -10,14 +11,18 @@ export default async function Notify(
 ) {
   try {
     const { talent } = req.body;
+    const artistType = talent.artist_type;
+    const isActor = Number(artistType) === ACTOR;
     const smtp2goApiUrl = "https://api.smtp2go.com/v3/email/send";
-    const htmlBody = compileRegisterAdminNotificationTemplate(talent);
+    const htmlBody = compileRegisterAdminNotificationTemplate(talent, isActor);
     const resEmail = await axios.post(
       smtp2goApiUrl,
       {
         sender: config.emailSenderAddress,
         to: [config.ripleysAdminAddress],
-        subject: `${talent.first_name} ${talent.last_name} has registered!`,
+        subject: isActor
+          ? `An actor named ${talent.first_name} ${talent.last_name} has registered`
+          : `${talent.first_name} ${talent.last_name} has registered`,
         html_body: htmlBody,
       },
       {

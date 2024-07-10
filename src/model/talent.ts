@@ -191,11 +191,6 @@ export const addTalent = async (data: TalentFormAllDataType) => {
 
       if (!talentId) return null;
 
-      console.log(
-        ">>>>>>>>>>>headShotImageFileName",
-        data.headShotImageFileName,
-      );
-
       if (data.headShotImageFileName) {
         console.log("headShotImageFileName");
         const imageAssetCreate = {

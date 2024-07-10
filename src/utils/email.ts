@@ -10,6 +10,7 @@ import { TalentFormAllDataType } from "@/types/Form";
 
 export const compileRegisterAdminNotificationTemplate = (
   data: TalentFormAllDataType,
+  isActor: boolean,
 ) => {
   const template = handlebars.compile(talentRegistrationEmailAdminTemplate);
   const htmlBody = template({
@@ -47,12 +48,17 @@ export const compileRegisterAdminNotificationTemplate = (
       data.suit_length === "" || !data.suit_length
         ? "No Data"
         : data.suit_length,
+    actor_message: isActor ? "This talent has registered as an actor" : "",
   });
   return htmlBody;
 };
 
-export const compileRegisterTalentNotificationTemplate = () => {
+export const compileRegisterTalentNotificationTemplate = (isActor: boolean) => {
   const template = handlebars.compile(talentRegistrationEmailTalentTemplate);
-  const htmlBody = template({});
+  const htmlBody = template({
+    actor_message: isActor
+      ? "We will contact you to discuss the fee arrangements and the next steps."
+      : "",
+  });
   return htmlBody;
 };
