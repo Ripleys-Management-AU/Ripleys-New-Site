@@ -49,7 +49,7 @@ export default async function Notify(
       smtp2goApiUrl,
       {
         sender: config.emailSenderAddress,
-        to: [config.ripleysAdminAddress],
+        to: [email],
         subject: `Thanks for your requesting`,
         html_body: clientEmailHtmlBody,
       },
