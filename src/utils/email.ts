@@ -7,6 +7,7 @@ import { talentRegistrationEmailTalentTemplate } from "@/templates/talentRegistr
 import { mapNumberToState } from "@/utils/talent";
 
 import { TalentFormAllDataType } from "@/types/Form";
+import { talentRequestEmailClientTemplate } from "@/templates/talentRequestEmailClientTemplate";
 
 export const compileRegisterAdminNotificationTemplate = (
   data: TalentFormAllDataType,
@@ -60,5 +61,11 @@ export const compileRegisterTalentNotificationTemplate = (isActor: boolean) => {
       ? "We will contact you to discuss the fee arrangements and the next steps."
       : "",
   });
+  return htmlBody;
+};
+
+export const compileRequestEmailClientTemplate = () => {
+  const template = handlebars.compile(talentRequestEmailClientTemplate);
+  const htmlBody = template({});
   return htmlBody;
 };

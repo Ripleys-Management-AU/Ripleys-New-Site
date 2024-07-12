@@ -71,3 +71,15 @@ export const mapTalentsToOptions = (
     };
   });
 };
+
+export const mapSelectedTalentsToTalentAndEmail = (
+  selectedTalents: string[],
+) => {
+  const mappedTalents = selectedTalents.map((talent) => {
+    const splitData = talent.split("-");
+    const talentName = splitData[1];
+    const talentEmail = splitData[2];
+    return { talentName, talentEmail };
+  });
+  return mappedTalents;
+};
