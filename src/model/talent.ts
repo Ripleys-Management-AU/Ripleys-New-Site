@@ -44,7 +44,7 @@ export const queryAllTalents = async (skip?: number, take?: number) => {
     return { talents, count: total };
   } catch (e) {
     console.error(`error find all talents: ${e}`);
-    return { talents, count: total };
+    return { talents, count: total, error: e };
   }
 };
 

@@ -18,7 +18,10 @@ export default async function talent(
       if (!action) {
         if (!gender && !type) {
           if (!skip || !take) {
-            const { talents, count } = await queryAllTalents();
+            const { talents, count, error } = await queryAllTalents();
+            if (error) {
+              return res.status(200).json({ talents, count, error });
+            }
             return res.status(200).json({ talents, count });
           } else {
             const { talents, count } = await queryAllTalents(
