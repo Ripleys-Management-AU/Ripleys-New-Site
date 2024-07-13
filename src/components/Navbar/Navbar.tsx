@@ -230,27 +230,27 @@ const Navbar = () => {
             <li>
               <Link
                 className="py-2.5 w-full items-center block relative flex border-b border-cyan-500"
-                href="/forClients"
+                href="/forClients/requestTalent"
               >
-                For Clients
+                Request Talent
               </Link>
             </li>
             <li>
               <Link
                 className="py-2.5 w-full items-center block relative flex border-b border-cyan-500"
-                href="/forTalent"
+                href="/forTalents/registration"
               >
-                For Talent
+                Join Us
               </Link>
             </li>
-            <li>
-              <Link
-                className="py-2.5 w-full items-center block relative flex border-b border-cyan-500"
-                href="/news"
-              >
-                News
-              </Link>
-            </li>
+            {/*<li>*/}
+            {/*  <Link*/}
+            {/*    className="py-2.5 w-full items-center block relative flex border-b border-cyan-500"*/}
+            {/*    href="/news"*/}
+            {/*  >*/}
+            {/*    News*/}
+            {/*  </Link>*/}
+            {/*</li>*/}
             <li>
               <Link
                 className="py-2.5 w-full items-center block relative flex border-b border-cyan-500"
