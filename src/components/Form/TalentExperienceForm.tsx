@@ -55,8 +55,8 @@ const TalentExperienceForm: React.FC<Props> = ({
     { value: WEB_PRESENTER, label: "Web Presenter" },
   ];
 
-  // const accentsRules = { required: "Accents is required" } as any;
-  // const languageRules = { required: "Language is required" } as any;
+  const accentsRules = { required: "Accents is required" } as any;
+  const languageRules = { required: "Language is required" } as any;
 
   return (
     <div className="mt-4 lg:mt-8 lg:px-8">
