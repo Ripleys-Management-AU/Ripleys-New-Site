@@ -77,7 +77,6 @@ const TalentRegistrationPage = () => {
       unions: [],
     },
   });
-
   const docsFormMethod = useForm({
     defaultValues: {
       head_shot_image: "",
