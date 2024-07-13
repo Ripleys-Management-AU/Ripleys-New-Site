@@ -209,10 +209,8 @@ const TalentDetailsForm: React.FC<Props> = ({
           disabled={loading}
         />
         <FormInput
-          label="Occupation*"
-          register={register("occupation", {
-            required: "Occupation is required",
-          })}
+          label="Occupation"
+          register={register("occupation")}
           error={errors.occupation}
           disabled={loading}
         />

@@ -167,13 +167,10 @@ const TalentTraitsForm: React.FC<Props> = ({
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-5 lg:mt-4">
         <FormSelect
           label="Ethnic Appearance"
-          register={register("ethnicity_id", {
-            required: "Ethnicity is required",
-          })}
+          register={register("ethnicity_id")}
           error={errors.ethnicity_id}
           disabled={loading}
-          values={ethnicityValues} // 需要定义 ethnicityValues
-          required
+          values={ethnicityValues}
         />
         <FormSelect
           label="Eye Colour"
@@ -276,13 +273,10 @@ const TalentTraitsForm: React.FC<Props> = ({
           values={collarValues}
         />
         <FormSelect
-          label="Inside Leg"
-          register={register("inside_leg", {
-            required: "Inside Leg is required",
-          })}
+          label="Pants/Jeans Size"
+          register={register("inside_leg")}
           error={errors.inside_leg}
           disabled={loading}
-          required
           values={insideLegValues}
         />
         <FormSelect

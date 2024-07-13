@@ -9,7 +9,7 @@ import s3 from "@/config/awsConfig";
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: process.env.AWS_S3_BUCKET_NAME as string,
+    bucket: process.env.NEXT_AWS_S3_BUCKET_NAME as string,
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });
     },

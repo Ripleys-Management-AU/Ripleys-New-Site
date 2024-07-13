@@ -111,12 +111,9 @@ const TalentExperienceForm: React.FC<Props> = ({
       <div className="w-full">
         <FormTextArea
           label="Experience"
-          register={register("experience", {
-            required: "Experience is required",
-          })}
+          register={register("experience")}
           error={errors.experience}
           disabled={loading}
-          required
         />
         <FormTextArea
           label="Training"
@@ -126,12 +123,9 @@ const TalentExperienceForm: React.FC<Props> = ({
         />
         <FormTextArea
           label="Skills & Interests"
-          register={register("skills_interests", {
-            required: "Skill&Interests is required",
-          })}
+          register={register("skills_interests")}
           error={errors.skills_interests}
           disabled={loading}
-          required
         />
       </div>
       <div className="w-full mt-8">

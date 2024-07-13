@@ -46,7 +46,7 @@ const TalentRegistrationPage = () => {
   });
   const traitsFormMethod = useForm({
     defaultValues: {
-      ethnicity_id: "",
+      ethnicity_id: 0,
       eye_colour: "",
       hair_colour: "",
       height: "",
@@ -60,7 +60,7 @@ const TalentRegistrationPage = () => {
       suit_length: "",
       shirt: "",
       collar: "",
-      inside_leg: "",
+      inside_leg: 0,
       smoker: "",
       distinctive_marks: "",
     },
