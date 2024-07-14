@@ -208,7 +208,7 @@ const TalentRegistrationPage = () => {
                 setInfo={setInfo}
               />
             )}
-            {currentStep === 5 && <div></div>}
+            {/*{currentStep === 5 && <div></div>}*/}
           </div>
         </div>
       </div>
