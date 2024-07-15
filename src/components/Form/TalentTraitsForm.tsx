@@ -146,7 +146,7 @@ const TalentTraitsForm: React.FC<Props> = ({
   const chestValues = generateSelectionValues(45, 150);
   const suitValues = generateSelectionValues(30, 150);
   const collarValues = generateSelectionValues(15, 60);
-  const insideLegValues = generateSelectionValues(45, 150);
+  const insideLegValues = generateSelectionValues(26, 150);
 
   const shoeValues = generateSelectionValues(0, 45, 0.5);
 

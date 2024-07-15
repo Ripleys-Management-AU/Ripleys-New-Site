@@ -105,7 +105,7 @@ const RequestTalentPage = () => {
               <div className="text-center mt-4 text-light-grey text-md leading-8">
                 <p>
                   {submitted
-                    ? "Thanks for your requesting!"
+                    ? "Thanks for submitting your request. We will be in touch soon."
                     : "Complete the form below to book specific Talent."}
                 </p>
               </div>

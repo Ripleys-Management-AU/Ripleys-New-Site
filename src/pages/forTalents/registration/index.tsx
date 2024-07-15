@@ -135,7 +135,7 @@ const TalentRegistrationPage = () => {
               {currentStep < 5
                 ? `Please complete the form to register your interest with Ripleys
               Management Australia.`
-                : `Thanks for your registration, we will contact you shortly`}
+                : `Thanks for registering with Ripleys. We will be in touch soon.`}
             </p>
           </div>
 
