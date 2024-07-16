@@ -9,7 +9,7 @@ import s3 from "@/config/awsConfig";
 const upload = multer({
   storage: multerS3({
     s3: s3,
-    bucket: process.env.NEXT_AWS_S3_BUCKET_NAME as string,
+    bucket: "fe-ripleys",
     metadata: (req, file, cb) => {
       cb(null, { fieldName: file.fieldname });
     },
@@ -41,6 +41,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   uploadMiddleware(req, res, (err: any) => {
     if (err) {
+      console.log(err);
       return res
         .status(501)
         .json({ error: `Sorry something happened! ${err.message}` });

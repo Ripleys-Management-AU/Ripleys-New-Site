@@ -1,11 +1,15 @@
 import { S3Client } from "@aws-sdk/client-s3";
+import dotenv from "dotenv";
 
+import config from "@/config/config";
+
+dotenv.config();
 const s3 = new S3Client([
   {
-    region: process.env.NEXT_AWS_REGION,
+    region: config.awsRegion,
     credentials: {
-      accessKeyId: process.env.NEXT_AWS_ACCESS_KEY_ID as string,
-      secretAccessKey: process.env.NEXT_AWS_SECRET_ACCESS_KEY as string,
+      accessKeyId: config.awsAccessKeyId,
+      secretAccessKey: "config.awsSecretAccessKey",
     },
   },
 ]);
