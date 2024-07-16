@@ -9,7 +9,7 @@ const s3 = new S3Client([
     region: config.awsRegion,
     credentials: {
       accessKeyId: config.awsAccessKeyId,
-      secretAccessKey: "config.awsSecretAccessKey",
+      secretAccessKey: config.awsSecretAccessKey,
     },
   },
 ]);
