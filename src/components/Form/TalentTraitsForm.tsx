@@ -4,7 +4,10 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import FormInput from "@/components/Form/FormInput/FormInput";
 import FormSelect from "@/components/Form/FormSelect/FormSelect";
 
-import { generateSelectionValues } from "@/utils/talent";
+import {
+  generateJeansSelectionValues,
+  generateSelectionValues,
+} from "@/utils/talent";
 
 import { SelectionValueType } from "@/types/Form";
 
@@ -146,7 +149,7 @@ const TalentTraitsForm: React.FC<Props> = ({
   const chestValues = generateSelectionValues(45, 150);
   const suitValues = generateSelectionValues(30, 150);
   const collarValues = generateSelectionValues(15, 60);
-  const insideLegValues = generateSelectionValues(26, 150);
+  const insideLegValues = generateJeansSelectionValues(4, 150, 26, 2, 1);
 
   const shoeValues = generateSelectionValues(0, 45, 0.5);
 

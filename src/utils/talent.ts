@@ -45,6 +45,30 @@ export const generateSelectionValues = (
   return values;
 };
 
+export const generateJeansSelectionValues = (
+  min: number,
+  upper: number,
+  breakPoint: number,
+  increasedByBeforeBreakPoint: number,
+  increasedByAfterBreakPoint: number,
+): SelectionValueType[] => {
+  if (min > upper) throw new Error("invalid arguments");
+  if (breakPoint <= min || breakPoint >= upper)
+    throw new Error("invalid breakpoint");
+
+  const values: SelectionValueType[] = [];
+
+  for (let i = min; i < breakPoint; i += increasedByBeforeBreakPoint) {
+    values.push({ value: i, label: i.toString() });
+  }
+
+  for (let i = breakPoint; i <= upper; i += increasedByAfterBreakPoint) {
+    values.push({ value: i, label: i.toString() });
+  }
+
+  return values;
+};
+
 export const mapExpDataToOptions = (data: ExpAttributesDataType[]) => {
   const mappedData = data.map((item) => {
     return {
