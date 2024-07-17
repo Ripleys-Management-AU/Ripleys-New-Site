@@ -7,7 +7,10 @@ import {
   TalentType,
 } from "@/model/types";
 
+import { Prisma } from ".prisma/client";
+
 import { TalentFormAllDataType } from "@/types/Form";
+import SortOrder = Prisma.SortOrder;
 
 export const queryAllTalents = async (skip?: number, take?: number) => {
   let talents: TalentType[] = [];
@@ -17,6 +20,7 @@ export const queryAllTalents = async (skip?: number, take?: number) => {
     if (skip === null || take === null) {
       const results = await Promise.all([
         prisma.talent.findMany({
+          // orderBy: [{ nationality_id: SortOrder.desc }],
           where: { status: TALENT_ACTIVE },
           include: { talent_image: true, ethnicity: true },
         }),
@@ -29,6 +33,7 @@ export const queryAllTalents = async (skip?: number, take?: number) => {
     } else {
       const results = await Promise.all([
         prisma.talent.findMany({
+          // orderBy: [{ birth_date: SortOrder.desc }],
           where: { status: TALENT_ACTIVE },
           include: { talent_image: true, ethnicity: true },
           skip,

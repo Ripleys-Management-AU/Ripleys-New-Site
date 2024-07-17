@@ -45,7 +45,7 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <div className="fixed bg-black flex flex-row lg:flex-col justify-between lg:justify-center items-center pt-2 px-8 lg:px-0 pb-2 lg:pb-4 w-full lg:text-white top-0 z-[998]">
+    <div className="fixed bg-primary-theme flex flex-row lg:flex-col justify-between lg:justify-center items-center pt-2 px-8 lg:px-0 pb-2 lg:pb-4 w-full lg:text-white top-0 z-[998]">
       <div
         className="flex items-center gap-2 cursor-pointer"
         onClick={() => {

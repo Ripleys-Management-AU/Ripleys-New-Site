@@ -179,7 +179,7 @@ export const talentRequestEmailClientTemplate = `<!DOCTYPE html>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t<tr>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="pad">
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div style="color:#ffffff;direction:ltr;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:left;mso-line-height-alt:19.2px;">
-\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;">Thank you for your requesting, we will be in touch shortly.</p>
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<p style="margin: 0;">Thank you for your request, we will be in touch shortly.</p>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>

@@ -151,6 +151,7 @@ const RequestTalentPage = () => {
                       <FormInput
                         label="Phone"
                         register={register("phone", {
+                          required: "Phone is required",
                           pattern: {
                             value: /^[0-9]+$/,
                             message: "Phone number must contain only digits",
@@ -166,7 +167,7 @@ const RequestTalentPage = () => {
                         disabled={loading}
                       />
                       <FormInput
-                        label="Job Description"
+                        label="Job Description/Casting Brief"
                         register={register("job_description")}
                         error={errors.job_description}
                         disabled={loading}

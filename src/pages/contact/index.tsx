@@ -28,6 +28,7 @@ const ContactPage = () => {
 
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState<InfoType | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = async () => {
     const isValid = await trigger();
@@ -41,9 +42,10 @@ const ContactPage = () => {
       });
 
       setInfo({
-        message: "Enquiry has been submitted successfully",
+        message: "Thanks for your enquiry, we will be in touch shortly!",
         type: "success",
       });
+      setSubmitted(true);
     } catch (e) {
       console.error(e);
       setInfo({
@@ -84,79 +86,82 @@ const ContactPage = () => {
             <p>Alternatively, please email: rm@ripleysmanagement.com.au</p>
           </div>
 
-          <div className="mt-4 lg:mt-8 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-5">
-              <FormInput
-                label="Name"
-                register={register("name", { required: "Name is required" })}
-                error={errors.name}
-                disabled={loading}
-                required
-              />
-              <FormInput
-                label="Email Address"
-                register={register("email_address", {
-                  required: "Email Address is required",
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                    message: "Invalid email address",
-                  },
-                })}
-                error={errors.email_address}
-                disabled={loading}
-                required
-              />
-              <FormInput
-                label="Phone"
-                register={register("phone", {
-                  required: "Phone is required",
-                  pattern: {
-                    value: /^[0-9]+$/,
-                    message: "Phone number must contain only digits",
-                  },
-                })}
-                error={errors.phone}
-                disabled={loading}
-                required
-              />
-            </div>
-            <div className="w-full mt-8">
-              <FormTextArea
-                label="Enquiry/Comment"
-                register={register("enquiry", {
-                  required: "Comment is required",
-                })}
-                error={errors.enquiry}
-                disabled={loading}
-                required
-              />
-            </div>
-            <button
-              className="btn w-full mt-8 duration-200 bg-button-grey hover:bg-button-grey-light text-white"
-              disabled={loading}
-              onClick={() => {
-                handleSubmit();
-              }}
-            >
-              {loading ? (
-                <RotatingLines
-                  visible={true}
-                  //eslint-disable-next-line
-                  // @ts-ignore
-                  height="24"
-                  //eslint-disable-next-line
-                  // @ts-ignore
-                  width="24"
-                  strokeColor="white"
-                  strokeWidth="5"
-                  animationDuration="0.75"
-                  ariaLabel="rotating-lines-loading"
+          {!submitted && (
+            <div className="mt-4 lg:mt-8 lg:px-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-5">
+                <FormInput
+                  label="Name"
+                  register={register("name", { required: "Name is required" })}
+                  error={errors.name}
+                  disabled={loading}
+                  required
                 />
-              ) : (
-                "Submit"
-              )}
-            </button>
-          </div>
+                <FormInput
+                  label="Email Address"
+                  register={register("email_address", {
+                    required: "Email Address is required",
+                    pattern: {
+                      value:
+                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  error={errors.email_address}
+                  disabled={loading}
+                  required
+                />
+                <FormInput
+                  label="Phone"
+                  register={register("phone", {
+                    required: "Phone is required",
+                    pattern: {
+                      value: /^[0-9]+$/,
+                      message: "Phone number must contain only digits",
+                    },
+                  })}
+                  error={errors.phone}
+                  disabled={loading}
+                  required
+                />
+              </div>
+              <div className="w-full mt-8">
+                <FormTextArea
+                  label="Enquiry/Comment"
+                  register={register("enquiry", {
+                    required: "Comment is required",
+                  })}
+                  error={errors.enquiry}
+                  disabled={loading}
+                  required
+                />
+              </div>
+              <button
+                className="btn w-full mt-8 duration-200 bg-button-grey hover:bg-button-grey-light text-white"
+                disabled={loading}
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                {loading ? (
+                  <RotatingLines
+                    visible={true}
+                    //eslint-disable-next-line
+                    // @ts-ignore
+                    height="24"
+                    //eslint-disable-next-line
+                    // @ts-ignore
+                    width="24"
+                    strokeColor="white"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    ariaLabel="rotating-lines-loading"
+                  />
+                ) : (
+                  "Submit"
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </Layout>

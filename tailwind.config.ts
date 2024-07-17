@@ -40,6 +40,7 @@ const config: Config = {
         "button-grey-light": "#999999",
         "blog-pirate-silver": "#818988",
         "blog-birch-forest": "#899a8b",
+        "primary-theme": "#030130",
       },
     },
   },
