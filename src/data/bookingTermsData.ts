@@ -3,11 +3,11 @@ import { BookingTermPayload } from "@/data/data";
 export const bookingTermsData: BookingTermPayload[] = [
   {
     title: "TELEVISION DRAMA, FILMS AND DOCUMENTARIES",
-    desc: "All talent bookings for film and television are minimum 4 hour calls. MEAA (equity) rates apply for background extras.",
+    desc: "The minimum Call Length for talent bookings shall be 4 hours. MEAA (equity) rates apply for background extras, unless negotiated and agreed otherwise.",
   },
   {
     title: "FEATURED EXTRAS, BIT PARTS AND SPEAKING PARTS",
-    desc: "Minimum call time - 4 hours. Standard contracts at MEAA equity rates are considered the minimum negotiation. Negotiated contracts apply for featured, bit-part or lead actors.",
+    desc: "The minimum Call Length for talent bookings shall be 4 hours. Standard contracts at MEAA equity rates apply, unless agreed otherwise. Lead roles and speaking parts will be based on rates to be negotiated based on the level of performance expected and the number of rehearsals required.",
   },
   {
     title: "TELEVISION COMMERCIALS, STILLS AND CORPORATE VIDEOS",
@@ -15,27 +15,27 @@ export const bookingTermsData: BookingTermPayload[] = [
   },
   {
     title: "WARDROBE AND MAKE-UP CALLS",
-    desc: "Film and Television wardrobe and make-up calls are payable as per current MEAA (equity) rates. Television Commercial wardrobe will be paid at fee listed on contract or agreed between agency and casting company.",
+    desc: "Film and Television wardrobe and make-up calls are payable as per current MEAA (equity) rates. Costume fittings for Commercial campaigns will be paid at the fee listed on the agreed Deal Memo between the agency and the casting company.",
   },
   {
     title: "CALL BACKS/SCREENTESTS",
-    desc: "Call backs for commercials, film and television drama are payable as per current MEAA (equity) rates.",
+    desc: "Call backs for commercials, film and television drama are payable as per current MEAA(equity) rates or as otherwise agreed upon.",
   },
   {
     title: "POST SYNC",
-    desc: "Post Sync / Audio calls are payable as per current MEAA (equity) rates.",
+    desc: "Post Sync / Audio calls are payable as per current MEAA (equity) rates or as otherwise agreed upon.",
   },
   {
     title: "CANCELLATIONS",
-    desc: "It is a requirement that 24 hours notice be given for all booking cancellations. Cancellation fees shall apply otherwise.",
+    desc: "A minimum of 24 hours notice should be given for all booking cancellations. A cancellation fee amounting to the full talent fee (or as otherwise agreed upon) shall apply in cases where the notice given is less than 24 hours from Call Time.",
   },
   {
     title: "TRAVEL TIME",
-    desc: "Not applicable for locations within a 20 km radius of Melbourne CBD. For all travel outside the Melbourne Metropolitan area- client may provide travel options or alternatively travel allowance is payable at MEAA (equity) rates.",
+    desc: "Not applicable for locations within a 25 km radius of Melbourne CBD. For all travel outside the Melbourne Metropolitan area, the client should provide travel options or an allowance payable at MEAA (equity) rates, or as otherwise agreed upon.",
   },
   {
     title: "PHOTOGRAPHIC",
-    desc: "All photographic/stills are negotiated at the time of booking. Time and a half is applicable before 8am and after 6pm. Saturdays are billed at time and a half. Sundays and public holidays are billed at double time. Minimum call time for all photographic bookings is 2 hours.",
+    desc: "All talent bookings for photographic stills work are negotiated at the time of booking. Time and a half is applicable before 8am and after 6pm. Saturdays are billed at time and a half. Sundays and public holidays are billed at double time. The minimum call time for all photographic stills  bookings is 2 hours.",
   },
   {
     title: "USAGE",
@@ -47,7 +47,7 @@ export const bookingTermsData: BookingTermPayload[] = [
   },
   {
     title: "PHOTOGRAPHIC FITTINGS/WARDROBE CALLS",
-    desc: "1hr – 2.5hr or otherwise negotiated (minimum agreed rate MEAA).",
+    desc: "1hr – 2.5hr calls at the minimum MEAA rate or as otherwise agreed upon.",
   },
   {
     title: "STILLS TO AIR",
@@ -59,7 +59,7 @@ export const bookingTermsData: BookingTermPayload[] = [
   },
   {
     title: "MEALS",
-    desc: "It is the client's responsibility to provide meals for all bookings over 4 hours duration.",
+    desc: "It is the client's responsibility to provide meals for all bookings over a 4 hour duration.",
   },
   {
     title: "UNDERTAKING",

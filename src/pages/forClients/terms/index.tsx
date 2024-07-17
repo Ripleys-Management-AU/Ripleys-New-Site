@@ -14,7 +14,7 @@ const TermsPage = () => {
             <h2 className="text-xl font-semibold italic mt-8">
               The employment of any person or persons registered with Ripleys
               Management Australia shall be deemed to constitute acceptance of
-              the terms and conditions herewith.
+              the terms and conditions stated herein.
             </h2>
             {bookingTermsData.map((item, index) => (
               <div key={index} className="flex flex-col gap-4">
