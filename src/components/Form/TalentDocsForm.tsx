@@ -142,7 +142,10 @@ const TalentDocsForm: React.FC<Props> = ({
         talent: talentFinalData,
       });
 
-      setInfo({ message: "Thanks for registration!", type: "success" });
+      setInfo({
+        message: "Thanks for registering! We will be in tough very soon!",
+        type: "success",
+      });
       setCurrentStep(5);
     } catch (e) {
       console.error(e);

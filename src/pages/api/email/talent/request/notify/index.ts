@@ -50,7 +50,7 @@ export default async function Notify(
       {
         sender: config.emailSenderAddress,
         to: [email],
-        subject: `Thanks for your requesting`,
+        subject: `Thanks for submitting your request`,
         html_body: clientEmailHtmlBody,
       },
       {

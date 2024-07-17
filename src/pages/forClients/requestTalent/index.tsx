@@ -58,7 +58,7 @@ const RequestTalentPage = () => {
       if (res.status !== 200) throw new Error("failed to send email");
       setSubmitted(true);
       setInfo({
-        message: "Request successful!",
+        message: "Request successful! We will be in touch very soon!",
         type: "success",
       });
     } catch (e) {
