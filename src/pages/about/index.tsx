@@ -1,10 +1,17 @@
 import React from "react";
 
 import Layout from "@/components/Layout/Layout";
-
+import Head from "next/head";
 const AboutPage = () => {
   return (
     <Layout>
+      <Head>
+        <title>About Us | Ripleys Management Australia</title>
+        <meta
+          name="description"
+          content="Learn about Ripleys, a top Melbourne-based talent agency representing actors, extras, and models since 1999."
+        />
+      </Head>
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">
         <div className="w-4/5">
           <h1 className="text-white text-3xl">About Us</h1>

@@ -10,6 +10,7 @@ import Layout from "@/components/Layout/Layout";
 import Toast from "@/components/Toast/Toast";
 
 import { InfoType } from "@/types/InfoType";
+import Head from "next/head";
 
 const ContactPage = () => {
   const {
@@ -68,6 +69,13 @@ const ContactPage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Contact Us | Ripleys Management Australia</title>
+        <meta
+          name="description"
+          content="Get in touch with Ripleys Management Australia for talent bookings and inquiries. Call 0425 763 377."
+        />
+      </Head>
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">
         <div className="w-4/5">
           <AnimatePresence>{info && <Toast info={info} />}</AnimatePresence>
