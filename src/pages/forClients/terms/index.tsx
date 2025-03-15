@@ -3,10 +3,18 @@ import React from "react";
 import { bookingTermsData } from "@/data/bookingTermsData";
 
 import Layout from "@/components/Layout/Layout";
+import Head from "next/head";
 
 const TermsPage = () => {
   return (
     <Layout>
+         <Head>
+        <title>Booking Terms | Ripleys Management Australia</title>
+        <meta
+          name="description"
+          content="Review our booking terms and conditions for talent employment, including MEAA rates and contract details."
+        />
+      </Head>
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">
         <div className="w-4/5">
           <h1 className="text-white text-3xl">Booking Terms</h1>

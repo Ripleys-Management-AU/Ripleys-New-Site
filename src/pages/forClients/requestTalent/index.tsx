@@ -14,6 +14,7 @@ import { mapTalentsToOptions } from "@/utils/talent";
 
 import { SelectionValueType } from "@/types/Form";
 import { InfoType } from "@/types/InfoType";
+import Head from "next/head";
 
 const RequestTalentPage = () => {
   const [info, setInfo] = useState<InfoType | null>(null);
@@ -96,6 +97,13 @@ const RequestTalentPage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Request Talent | Ripleys Management Australia</title>
+        <meta
+          name="description"
+          content="Request actors, extras, and models for your project. Top talent agency with a diverse roster."
+        />
+      </Head>
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">
         <div className="w-4/5">
           <AnimatePresence>{info && <Toast info={info} />}</AnimatePresence>

@@ -14,6 +14,7 @@ import { mapExpDataToOptions } from "@/utils/talent";
 
 import { TalentExpFormAttrType } from "@/types/Form";
 import { InfoType } from "@/types/InfoType";
+import Head from "next/head";
 
 const TalentRegistrationPage = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -124,6 +125,13 @@ const TalentRegistrationPage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Talent Registration | Ripleys Management Australia</title>
+        <meta
+          name="description"
+          content="Register as an actor, extra, or model with Ripleys. Join our renowned talent agency today."
+        />
+      </Head>
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">
         <AnimatePresence>{info && <Toast info={info} />}</AnimatePresence>
         <div className="w-4/5">

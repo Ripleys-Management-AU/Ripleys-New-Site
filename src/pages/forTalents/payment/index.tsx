@@ -8,6 +8,7 @@ import PaymentPlanCard from "@/components/PaymentPlanCard/PaymentPlanCard";
 import { ANNUAL_RENEWAL, REGISTRATION, SHOWREELS } from "@/constants";
 import { TalentContext } from "@/context/talent/TalentProvider";
 import { ProductPayload } from "@/model/types";
+import Head from "next/head";
 
 const PaymentPage = () => {
   const { currentTalent } = useContext(TalentContext);
@@ -74,6 +75,13 @@ const PaymentPage = () => {
 
   return (
     <Layout>
+      <Head>
+        <title>Make A Payment | Ripleys Management Australia</title>
+        <meta
+          name="description"
+          content="Securely make payments for your bookings and services. Trusted talent agency since 1999."
+        />
+      </Head>
       <div className="min-h-screen pt-20 lg:pt-44 flex flex-col items-center text-white">
         <div className="w-4/5">
           <h1 className="text-white text-3xl">Make a Payment</h1>
